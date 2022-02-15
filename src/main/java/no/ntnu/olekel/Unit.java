@@ -1,5 +1,8 @@
 package no.ntnu.olekel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * The abstract superclass Unit Todo: more here.
  *
@@ -11,6 +14,7 @@ public abstract class Unit {
   private int health;
   private int attack;
   private int armor;
+  private Logger logger;
 
   /**
    * Construct new Unit.
@@ -22,7 +26,13 @@ public abstract class Unit {
    */
   Unit(String name, int health, int attack, int armor) {
     this.name = name;
-    this.health = health;
+    this.logger = Logger.getLogger(this.getClass().toString());
+    //this.health = health;
+    try {
+      setHealth(health);
+    } catch (IllegalArgumentException e) {
+      logger.log(Level.SEVERE, "caught by setHealth in constructor: {0} ",  e.getMessage());
+    }
     this.attack = attack;
     this.armor = armor;
   }
@@ -34,8 +44,12 @@ public abstract class Unit {
    * @param opponent  The Unit object opponent.
    */
   public void attack(Unit opponent) {
-    opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
-        + (opponent.getArmor() + opponent.getResistBonus()));
+    try {
+      opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
+         + (opponent.getArmor() + opponent.getResistBonus()));
+    } catch (IllegalArgumentException e) {
+      logger.log(Level.SEVERE, "caught by setHealth in Unit.attack: {0} ",  e.getMessage());
+    }
   }
 
   /**
@@ -75,12 +89,17 @@ public abstract class Unit {
   }
 
   /**
-   * Sets the health of the unit.
+   * Sets the health of the unit. Checks whether the value sent to it is within bounds, if not,
+   * an exception is thrown.
    *
    * @param health  The unit's health represented as an int.
    */
   public void setHealth(int health) {
-    this.health = health;
+    if (health >= 0){
+      this.health = health;
+    } else {
+      throw new IllegalArgumentException("illegal health: " + health + " (health should not be less than 0)");
+    }
   }
 
   //TODO: correct return value on this method

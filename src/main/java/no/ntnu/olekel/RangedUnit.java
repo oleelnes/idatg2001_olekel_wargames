@@ -1,13 +1,13 @@
 package no.ntnu.olekel;
 
-public class InfantryUnit extends Unit{
+public class RangedUnit extends Unit {
 
-  InfantryUnit(String name, int health, int attack, int armor) {
+  RangedUnit(String name, int health, int attack, int armor){
     super(name, health, attack, armor);
   }
 
-  InfantryUnit(String name, int health){
-    super(name, health, 15, 10);
+  RangedUnit(String name, int health){
+    super(name, health, 15, 8);
   }
 
   @Override
@@ -19,6 +19,5 @@ public class InfantryUnit extends Unit{
   public int getResistBonus() {
     return 0;
   }
-
 
 }
