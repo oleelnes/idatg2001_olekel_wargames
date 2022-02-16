@@ -47,7 +47,6 @@ public class Army {
      */
     public String getName() {
         return name;
-
     }
 
     /**

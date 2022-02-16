@@ -94,7 +94,7 @@ public abstract class Unit {
     if (health >= 0){
       this.health = health;
     } else {
-      throw new IllegalArgumentException("illegal health: " + health + " (health should not be less than 0)");
+      throw new IllegalArgumentException("illegal health: (health should not be less than 0)");
     }
   }
 
@@ -106,7 +106,9 @@ public abstract class Unit {
    */
   @Override
   public String toString() {
-    return (getName() + " something!");
+
+    return ("Unit: " + getName() + ", health: " + getHealth() +
+            ", attack: " + getAttack() + ", armor: " + getArmor());
   }
 
   protected abstract int getAttackBonus();
