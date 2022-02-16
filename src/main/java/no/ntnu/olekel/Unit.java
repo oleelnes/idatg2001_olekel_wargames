@@ -44,12 +44,8 @@ public abstract class Unit {
    * @param opponent  The Unit object opponent.
    */
   public void attack(Unit opponent) {
-    try {
-      opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
-         + (opponent.getArmor() + opponent.getResistBonus()));
-    } catch (IllegalArgumentException e) {
-      logger.log(Level.SEVERE, "caught by setHealth in Unit.attack: {0} ",  e.getMessage());
-    }
+    opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
+            + (opponent.getArmor() + opponent.getResistBonus()));
   }
 
   /**
