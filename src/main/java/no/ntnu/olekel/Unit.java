@@ -28,7 +28,7 @@ public abstract class Unit {
     this.name = name;
     this.logger = Logger.getLogger(this.getClass().toString());
     //this.health = health;
-    try {
+    try { //todo: flytt try-catch til ui
       setHealth(health);
     } catch (IllegalArgumentException e) {
       logger.log(Level.SEVERE, "caught by setHealth in constructor: {0} ",  e.getMessage());

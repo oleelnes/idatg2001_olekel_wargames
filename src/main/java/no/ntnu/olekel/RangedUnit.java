@@ -1,13 +1,30 @@
 package no.ntnu.olekel;
 
+/**
+ * The type Ranged unit.
+ */
 public class RangedUnit extends Unit {
   private int timesResisted;
 
+  /**
+   * Instantiates a new Ranged unit.
+   *
+   * @param name   the name
+   * @param health the health
+   * @param attack the attack
+   * @param armor  the armor
+   */
   RangedUnit(String name, int health, int attack, int armor){
     super(name, health, attack, armor);
     timesResisted = 0;
   }
 
+  /**
+   * Instantiates a new Ranged unit.
+   *
+   * @param name   the name
+   * @param health the health
+   */
   RangedUnit(String name, int health){
     super(name, health, 15, 8);
     timesResisted = 0;
