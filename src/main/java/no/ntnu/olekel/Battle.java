@@ -5,77 +5,87 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The class Battle.
+ * The class Battle. This class is responsible for simulating a battle between
+ * two warring armies.
  *
  * @author Ole Kristian Elnæs
  * @version 16.02.2022
  */
 public class Battle {
-    private Army armyOne;
-    private Army armyTwo;
-    private Logger logger;
-    private Random random;
+  private Army armyOne;
+  private Army armyTwo;
+  private Logger logger;
+  private Random random;
 
-    /**
-     * Instantiates a new Battle.
-     *
-     * @param armyOne the army one
-     * @param armyTwo the army two
-     */
-    Battle(Army armyOne, Army armyTwo) {
-        this.armyOne = armyOne;
-        this.armyTwo = armyTwo;
-        this.logger = Logger.getLogger(this.getClass().toString());
-        this.random = new Random();
+  /**
+   * Instantiates a new Battle.
+   *
+   * @param armyOne the army one
+   * @param armyTwo the army two
+   */
+  Battle(Army armyOne, Army armyTwo) {
+    this.armyOne = armyOne;
+    this.armyTwo = armyTwo;
+    this.logger = Logger.getLogger(this.getClass().toString());
+    this.random = new Random();
+  }
+
+  /**
+   * Simulate a battle between two armies.
+   *
+   * @return the winning army.
+   */
+  public Army simulate() {
+    int rounds = 0;
+
+    logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
+        " and " + armyTwo.getName() + " is about to start!");
+    while (armyOne.hasUnits() && armyTwo.hasUnits()) {
+      int firstBlood = random.nextInt(2);
+      Unit unitA1 = armyOne.getRandom();
+      Unit unitA2 = armyTwo.getRandom();
+
+      //This if-else todo:->
+      if (firstBlood == 0) {
+        attack(unitA1, unitA2, armyTwo);
+        attack(unitA2, unitA1, armyOne);
+      } else {
+        attack(unitA2, unitA1, armyOne);
+        attack(unitA1, unitA2, armyTwo);
+      }
+      rounds++;
     }
+    logger.log(Level.INFO, "rounds: {0}", rounds);
 
-    /**
-     * Simulate a battle between two armies.
-     *
-     * @return the winning army.
-     */
-    public Army simulate(){
-        int rounds = 0;
-
-        while(armyOne.hasUnits() && armyTwo.hasUnits()){
-            int firstBlood = random.nextInt(2);
-           /*
-            if(firstBlood == 1) {
-                logger.log(Level.INFO, "army two attacks first");
-            } else {
-                logger.log(Level.INFO, "army one attacks first");
-            }*/
-            Unit unitA1 = armyOne.getRandom();
-            Unit unitA2 = armyTwo.getRandom();
-            try { //todo: find a better solution than try-catch here?
-                if(firstBlood == 1) unitA2.attack(unitA1);
-                else unitA1.attack(unitA2);
-            } catch (IllegalArgumentException e) {
-                if(firstBlood == 1) armyOne.remove(unitA1);
-                else armyTwo.remove(unitA2);
-            }
-            try {
-                if(firstBlood == 1) unitA1.attack(unitA2);
-                else unitA2.attack(unitA1);
-            } catch (IllegalArgumentException e) {
-                if(firstBlood == 1) armyTwo.remove(unitA2);
-                else armyOne.remove(unitA1);
-            }
-            rounds++;
-        }
-        logger.log(Level.INFO, "rounds: {0}", rounds);
-
-        if(armyOne.getAllUnits().size() == 0) {
-            logger.log(Level.INFO, "a2 won");
-            return armyTwo;
-        } else {
-            logger.log(Level.INFO, "a1 won");
-            return armyOne;
-        }
+    if (armyOne.getAllUnits().isEmpty()) {
+      logger.log(Level.INFO, "a2 won");
+      return armyTwo;
+    } else {
+      logger.log(Level.INFO, "a1 won");
+      return armyOne;
     }
+  }
 
-    @Override
-    public String toString(){
-        return "Battle";
+  /**
+   * Method that performs an attack between an attacker- and defender instance
+   * of Unit. It also nests the functionality inside a try-catch; if an exception is
+   * caught, it means that the defender's health is out of bounds and that the defender
+   * Unit is dead, and is thus removed from its respective Army instance.
+   *
+   * @param attacker     The instance of Unit that is attacking.
+   * @param defender     The instance of Unit that is defending.
+   * @param defenderArmy The instance of Army that is defending.
+   */
+  private void attack(Unit attacker, Unit defender, Army defenderArmy) {
+    try {
+      attacker.attack(defender);
+    } catch (IllegalArgumentException e) {
+      defenderArmy.remove(defender);
     }
+  }
+
+  @Override
+  public String toString() {
+    return "Battle";
+  }
 }

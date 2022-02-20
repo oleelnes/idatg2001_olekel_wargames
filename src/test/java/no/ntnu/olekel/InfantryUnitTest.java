@@ -15,9 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 16.02.2022
  */
 public class InfantryUnitTest {
-  /**
-   * The Infantry unit.
-   */
   InfantryUnit infantryUnit;
 
   /**
@@ -33,7 +30,7 @@ public class InfantryUnitTest {
    */
   @Test
   void getNameTest(){
-    assertEquals(infantryUnit.getName(), "infantry 1");
+    assertEquals("infantry 1", infantryUnit.getName());
   }
 
   /**
@@ -41,7 +38,7 @@ public class InfantryUnitTest {
    */
   @Test
   void getHealthTest(){
-    assertEquals(infantryUnit.getHealth(), 12);
+    assertEquals(12, infantryUnit.getHealth());
   }
 
   /**
@@ -49,7 +46,7 @@ public class InfantryUnitTest {
    */
   @Test
   void getArmorTest(){
-    assertEquals(infantryUnit.getArmor(), 10);
+    assertEquals(10, infantryUnit.getArmor());
   }
 
   /**
@@ -57,7 +54,7 @@ public class InfantryUnitTest {
    */
   @Test
   void getAttackTest(){
-    assertEquals(infantryUnit.getAttack(), 15);
+    assertEquals(15, infantryUnit.getAttack());
   }
 
   /**
@@ -66,7 +63,7 @@ public class InfantryUnitTest {
   @Test
   void setHealthTest(){
     infantryUnit.setHealth(100);
-    assertEquals(infantryUnit.getHealth(), 100);
+    assertEquals(100, infantryUnit.getHealth());
   }
 
   /**
@@ -89,7 +86,7 @@ public class InfantryUnitTest {
   @Test
   @DisplayName("Testing the getAttackBonus method in the class InfantryUnit")
   void getAttackBonusTest(){
-    assertEquals(infantryUnit.getAttackBonus(), 2);
+    assertEquals(2, infantryUnit.getAttackBonus());
   }
 
   /**
@@ -97,6 +94,6 @@ public class InfantryUnitTest {
    */
   @Test
   void getDefenderBonusTest(){
-    assertEquals(infantryUnit.getResistBonus(), 1);
+    assertEquals(1, infantryUnit.getResistBonus());
   }
 }
