@@ -2,6 +2,7 @@ package no.ntnu.olekel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -105,5 +106,30 @@ public class Army {
      */
     public Unit getRandom() {
         return units.get(random.nextInt(units.size()));
+    }
+
+    @Override
+    public String toString() {
+        return "Army{" +
+                "name='" + name + '\'' +
+                ", units=" + units +
+                ", random=" + random +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Army army = (Army) o;
+        return Objects.equals(name, army.name) &&
+                Objects.equals(units, army.units) &&
+                Objects.equals(random, army.random) &&
+                Objects.equals(logger, army.logger);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, units, random, logger);
     }
 }

@@ -107,8 +107,10 @@ public abstract class Unit {
   @Override
   public String toString() {
 
-    return ("Unit: " + getName() + ", health: " + getHealth() +
-            ", attack: " + getAttack() + ", armor: " + getArmor());
+    return ("Unit: " + getName() +
+            ", health: " + getHealth() +
+            ", attack: " + getAttack() +
+            ", armor: " + getArmor());
   }
 
   protected abstract int getAttackBonus();

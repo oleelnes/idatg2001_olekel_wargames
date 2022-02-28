@@ -1,5 +1,6 @@
 package no.ntnu.olekel;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -88,6 +89,26 @@ public class Battle {
 
   @Override
   public String toString() {
-    return "Battle";
+    return "Battle{" +
+            "armyOne=" + armyOne +
+            ", armyTwo=" + armyTwo +
+            ", random=" + random +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Battle battle = (Battle) o;
+    return Objects.equals(armyOne, battle.armyOne) &&
+            Objects.equals(armyTwo, battle.armyTwo) &&
+            Objects.equals(logger, battle.logger) &&
+            Objects.equals(random, battle.random);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(armyOne, armyTwo, logger, random);
   }
 }
