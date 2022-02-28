@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ArmyTest {
     Army army;
-    ArrayList<Unit> units;
+    List<Unit> units;
 
     /**
      * Create army before every test.

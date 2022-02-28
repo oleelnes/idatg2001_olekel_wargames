@@ -14,13 +14,14 @@ import java.util.logging.Logger;
  */
 public class Army {
     private String name;
-    private ArrayList<Unit> units;
+    private List<Unit> units;
     private final Random random;
     private final Logger logger;
 
     /**
+     * Constructor.
      *
-     * @param name
+     * @param name  The name of the army
      */
     Army(String name){
         this.name = name;
@@ -29,11 +30,12 @@ public class Army {
     }
 
     /**
+     * Constructor.
      *
-     * @param name
-     * @param units
+     * @param name  The name of the army
+     * @param units An arraylist of subclasses of the superclass unit
      */
-    Army(String name, ArrayList<Unit> units) {
+    Army(String name, List<Unit> units) {
         this.name = name;
         this.units = units;
         this.random = new Random();
@@ -91,7 +93,7 @@ public class Army {
      *
      * @return  A list of units (instances of Unit)
      */
-    public ArrayList<Unit> getAllUnits() {
+    public List<Unit> getAllUnits() {
         return units;
     }
 
@@ -104,5 +106,4 @@ public class Army {
     public Unit getRandom() {
         return units.get(random.nextInt(units.size()));
     }
-
 }

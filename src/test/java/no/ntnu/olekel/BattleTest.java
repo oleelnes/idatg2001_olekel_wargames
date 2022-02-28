@@ -2,9 +2,10 @@ package no.ntnu.olekel;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class Battle test.
@@ -16,8 +17,8 @@ public class BattleTest {
     Battle battle;
     Army armyOne;
     Army armyTwo;
-    ArrayList<Unit> unitsA1;
-    ArrayList<Unit> unitsA2;
+    List<Unit> unitsA1;
+    List<Unit> unitsA2;
 
     /**
      * Create armies and fill them with various units.
@@ -52,6 +53,7 @@ public class BattleTest {
      */
     @Test
     void simulateTest(){
-        battle.simulate();
+        Army winningArmy = battle.simulate();
+        assertTrue(winningArmy.hasUnits());
     }
 }

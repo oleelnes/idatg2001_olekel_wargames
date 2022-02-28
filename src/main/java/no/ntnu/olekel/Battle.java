@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 public class Battle {
   private Army armyOne;
   private Army armyTwo;
-  private Logger logger;
-  private Random random;
+  private final Logger logger;
+  private final Random random;
 
   /**
    * Instantiates a new Battle.
@@ -33,13 +33,15 @@ public class Battle {
   /**
    * Simulate a battle between two armies.
    *
-   * @return the winning army.
+   * @return  the winning army.
    */
   public Army simulate() {
     int rounds = 0;
 
     logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
         " and " + armyTwo.getName() + " is about to start!");
+
+    //This is the main loop which runs as long as both of the armies still have armies left
     while (armyOne.hasUnits() && armyTwo.hasUnits()) {
       int firstBlood = random.nextInt(2);
       Unit unitA1 = armyOne.getRandom();
@@ -48,16 +50,16 @@ public class Battle {
       //This if-else todo:->
       if (firstBlood == 0) {
         attack(unitA1, unitA2, armyTwo);
-        attack(unitA2, unitA1, armyOne);
+        /*if (unitA2.getHealth() > 0)*/ attack(unitA2, unitA1, armyOne);
       } else {
         attack(unitA2, unitA1, armyOne);
-        attack(unitA1, unitA2, armyTwo);
+        /*if (unitA1.getHealth() > 0)*/ attack(unitA1, unitA2, armyTwo);
       }
       rounds++;
     }
     logger.log(Level.INFO, "rounds: {0}", rounds);
 
-    if (armyOne.getAllUnits().isEmpty()) {
+    if (armyTwo.hasUnits()) {
       logger.log(Level.INFO, "a2 won");
       return armyTwo;
     } else {
