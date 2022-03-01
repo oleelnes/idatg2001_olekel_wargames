@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 
 /**
- * This class represents the functionality of an army
+ * This class represents the functionality of an army.
  *
  * @author  Ole Kristian Elnæs
  * @version 16.02.2022
@@ -22,7 +22,7 @@ public class Army {
     /**
      * Constructor.
      *
-     * @param name  The name of the army
+     * @param name  The name of the army.
      */
     Army(String name){
         this.name = name;
@@ -66,7 +66,7 @@ public class Army {
      *
      * @param units A list of one or more units, which are instances of the class Unit.
      */
-    public void addAll(ArrayList<Unit> units) {
+    public void addAll(List<Unit> units) {
         this.units.addAll(units);
     }
 

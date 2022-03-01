@@ -14,7 +14,7 @@ public abstract class Unit {
   private int health;
   private int attack;
   private int armor;
-  private Logger logger;
+  private final Logger logger;
 
   /**
    * Construct new Unit.

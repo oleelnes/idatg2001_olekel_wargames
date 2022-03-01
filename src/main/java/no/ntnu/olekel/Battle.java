@@ -34,6 +34,8 @@ public class Battle {
   /**
    * Simulate a battle between two armies.
    *
+   * todo: create another version of simulate that has a more realistic battle structure
+   *
    * @return  the winning army.
    */
   public Army simulate() {
@@ -50,11 +52,11 @@ public class Battle {
 
       //This if-else todo:->
       if (firstBlood == 0) {
-        attack(unitA1, unitA2, armyTwo);
-        /*if (unitA2.getHealth() > 0)*/ attack(unitA2, unitA1, armyOne);
+        attackUnit(unitA1, unitA2, armyTwo);
+        attackUnit(unitA2, unitA1, armyOne);
       } else {
-        attack(unitA2, unitA1, armyOne);
-        /*if (unitA1.getHealth() > 0)*/ attack(unitA1, unitA2, armyTwo);
+        attackUnit(unitA2, unitA1, armyOne);
+        attackUnit(unitA1, unitA2, armyTwo);
       }
       rounds++;
     }
@@ -79,7 +81,7 @@ public class Battle {
    * @param defender     The instance of Unit that is defending.
    * @param defenderArmy The instance of Army that is defending.
    */
-  private void attack(Unit attacker, Unit defender, Army defenderArmy) {
+  private void attackUnit(Unit attacker, Unit defender, Army defenderArmy) {
     try {
       attacker.attack(defender);
     } catch (IllegalArgumentException e) {

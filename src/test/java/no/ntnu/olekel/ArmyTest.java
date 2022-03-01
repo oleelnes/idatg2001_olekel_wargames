@@ -84,4 +84,12 @@ public class ArmyTest {
         assertEquals(getTest.size(), units.size());
     }
 
+    @Test
+    void addTest() {
+        InfantryUnit iUnit = new InfantryUnit("infantry unit test", 10);
+        army.add(iUnit);
+        String name;
+        assertEquals("infantry unit test", army.getAllUnits().get(army.getAllUnits().size() - 1).getName());
+    }
+
 }
