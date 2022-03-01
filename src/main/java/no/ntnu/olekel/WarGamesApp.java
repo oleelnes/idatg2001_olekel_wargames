@@ -25,9 +25,9 @@ public class WarGamesApp {
   public static void main(String[] args) {
     int armyOneWins = 0;
     int armyTwoWins = 0;
-    for (int i = 0; i < 100; i++){
-      Army armyOne = new Army("armyOne", createUnits(1, 10, 18, 12));
-      Army armyTwo = new Army("armyTwo", createUnits(1, 10, 18, 12));
+    for (int i = 0; i < 500; i++){
+      Army armyOne = new Army("armyOne", createUnits(14, 100, 180, 120));
+      Army armyTwo = new Army("armyTwo", createUnits(14, 100, 180, 120));
       Battle battle = new Battle(armyOne, armyTwo);
       if (battle.simulate() == armyOne) {
         armyOneWins++;
@@ -36,6 +36,13 @@ public class WarGamesApp {
       }
     }
     logger.log(Level.INFO, "army one wins: " + armyOneWins + "\narmy two wins: " + armyTwoWins);
+    if (armyOneWins > armyTwoWins) {
+      logger.log(Level.INFO, "Army one won the war!");
+    } else if (armyOneWins == armyTwoWins) {
+      logger.log(Level.INFO, "The war ended in a tie!");
+    } else {
+      logger.log(Level.INFO, "Army two won the war!");
+    }
   }
 
   /**
@@ -50,20 +57,18 @@ public class WarGamesApp {
    */
   private static List<Unit> createUnits(int commanderUnits, int cavalryUnits, int infantryUnits, int rangedUnits) {
     List<Unit> units = new ArrayList<>();
-    List<Unit> unita = new ArrayList<>();
     for (int i = 0; i < commanderUnits; i++) {
-      units.add(new CommanderUnit("Commander Unit " + i + 1, 100));
+      units.add(new CommanderUnit("Commander Unit " + i + 1, 20));
     }
     for (int i = 0; i < cavalryUnits; i++) {
-      units.add(new CavalryUnit("Cavalry Unit " + i + 1, 100));
+      units.add(new CavalryUnit("Cavalry Unit " + i + 1, 10));
     }
     for (int i = 0; i < infantryUnits; i++) {
-      units.add(new InfantryUnit("Infantry Unit " + i + 1, 100));
+      units.add(new InfantryUnit("Infantry Unit " + i + 1, 10));
     }
     for (int i = 0; i < rangedUnits; i++) {
-      units.add(new RangedUnit("Ranged Unit " + i + 1, 100));
+      units.add(new RangedUnit("Ranged Unit " + i + 1, 10));
     }
-
     return units;
   }
 }

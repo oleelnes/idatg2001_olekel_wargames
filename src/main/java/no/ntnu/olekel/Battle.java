@@ -46,18 +46,14 @@ public class Battle {
 
     //This is the main loop which runs as long as both of the armies still have armies left
     while (armyOne.hasUnits() && armyTwo.hasUnits()) {
-      int firstBlood = random.nextInt(2);
+      int attacker = random.nextInt(2);
       Unit unitA1 = armyOne.getRandom();
       Unit unitA2 = armyTwo.getRandom();
 
       //This if-else todo:->
-      if (firstBlood == 0) {
-        attackUnit(unitA1, unitA2, armyTwo);
-        attackUnit(unitA2, unitA1, armyOne);
-      } else {
-        attackUnit(unitA2, unitA1, armyOne);
-        attackUnit(unitA1, unitA2, armyTwo);
-      }
+      if (attacker == 0) attackUnit(unitA1, unitA2, armyTwo);
+      else attackUnit(unitA2, unitA1, armyOne);
+
       rounds++;
     }
     logger.log(Level.INFO, "rounds: {0}", rounds);
