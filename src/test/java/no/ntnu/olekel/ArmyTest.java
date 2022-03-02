@@ -58,25 +58,6 @@ public class ArmyTest {
     assertNotNull(army.getRandom());
   }
 
-  /**
-   * Negative test that attempts to get a random unit from an army that doesn't have any units.
-   */
-  @Test
-  void getRandomUnitNegativeTest(){
-    Army testArmy = new Army("Test Army");
-    Unit unit = testArmy.getRandom();
-    assertNull(unit);
-  }
-
-  /**
-   * Negative test that attempts to get a random unit from an army that doesn't have any units.
-   */
-  @Test
-  void getAllUnitsNegativeTest(){
-    Army testArmy = new Army("Test Army");
-    List<Unit> units = testArmy.getAllUnits();
-    assertNull(units);
-  }
 
   /**
    * Get name test.

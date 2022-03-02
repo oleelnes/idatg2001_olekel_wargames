@@ -67,20 +67,6 @@ public class InfantryUnitTest {
   }
 
   /**
-   * Testing that exception is thrown when trying to set an out-of-range
-   * health value.
-   */
-  @Test
-  void setHealthNegativeTest() {
-    IllegalArgumentException thrown =
-            assertThrows(IllegalArgumentException.class, () -> {
-              infantryUnit.setHealth(-10);
-            });
-    assertEquals("illegal health: (health should not be less than 0)",
-            thrown.getMessage());
-  }
-
-  /**
    * Get attack bonus test.
    */
   @Test

@@ -9,7 +9,7 @@ package no.ntnu.olekel;
  */
 public class CavalryUnit extends Unit {
   private int timesAttacking;
-  private static final int CHARGE_BONUS = 4; //todo: figure out if having constants is the right thing here.
+  private static final int CHARGE_BONUS = 4;
   private static final int MELEE_BONUS = 2;
   private static final int RESIST_BONUS = 1;
 
