@@ -2,6 +2,7 @@ package no.ntnu.olekel;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -14,95 +15,126 @@ import java.util.List;
  * @version 16.02.2022
  */
 public class ArmyTest {
-    Army army;
-    List<Unit> units;
+  Army army;
+  List<Unit> units;
 
-    /**
-     * Create army before every test.
-     */
-    @BeforeEach
-    void createArmy() {
-        this.units = new ArrayList<Unit>();
-        this.units.add(new InfantryUnit("Infantry 1", 12));
-        this.units.add(new InfantryUnit("Infantry 2", 20));
-        this.army = new Army("test", units);
-    }
+  /**
+   * Create army before every test.
+   */
+  @BeforeEach
+  void createArmy() {
+    this.units = new ArrayList<Unit>();
+    this.units.add(new InfantryUnit("Infantry 1", 12));
+    this.units.add(new InfantryUnit("Infantry 2", 20));
+    this.army = new Army("test", units);
+  }
 
-    /**
-     * Remove one unit test.
-     */
-    @Test
-    public void removeOneUnitTest() {
-        int after = army.getAllUnits().size() - 1;
-        army.remove(army.getRandom());
-        assertEquals(army.getAllUnits().size(), after);
-    }
+  /**
+   * Remove one unit test.
+   */
+  @Test
+  public void removeOneUnitTest() {
+    int correctAfterSize = army.getAllUnits().size() - 1;
+    army.remove(army.getRandom());
+    assertEquals(army.getAllUnits().size(), correctAfterSize);
+  }
 
-    /**
-     * Get random unit test.
-     */
-    @Test
-    void getRandomUnitTest(){
-        assertNotNull(army.getRandom());
-    }
+  /**
+   * Negative tests that tries to remove a unit that isn't part of the army.
+   */
+  @Test
+  void removeUnitNegativeTest() {
+    int beforeSize = army.getAllUnits().size();
+    InfantryUnit iUnit = new InfantryUnit("test unit", 10);
+    army.remove(iUnit);
+    assertEquals(beforeSize, army.getAllUnits().size());
+  }
 
-    /**
-     * Get name test.
-     */
-    @Test
-    void getNameTest(){
-        assertEquals(army.getName(), "test");
-    }
+  /**
+   * Get random unit test.
+   */
+  @Test
+  void getRandomUnitTest() {
+    assertNotNull(army.getRandom());
+  }
 
-    /**
-     * Add all test.
-     */
-    @Test
-    void addAllTest(){
-        ArrayList<Unit> newUnits = new ArrayList();
-        newUnits.add(new InfantryUnit("3", 11));
-        newUnits.add(new InfantryUnit("4", 23));
-        army.addAll(newUnits);
-        assertEquals(army.getAllUnits().size(), 4);
-    }
+  /**
+   * Negative test that attempts to get a random unit from an army that doesn't have any units.
+   */
+  @Test
+  void getRandomUnitNegativeTest(){
+    Army testArmy = new Army("Test Army");
+    Unit unit = testArmy.getRandom();
+    assertNull(unit);
+  }
 
-    /**
-     * Checks whether army has units, testing the hasUnits() method.
-     */
-    @Test
-    void hasUnitsTest(){
-        assertTrue(army.hasUnits());
-    }
+  /**
+   * Negative test that attempts to get a random unit from an army that doesn't have any units.
+   */
+  @Test
+  void getAllUnitsNegativeTest(){
+    Army testArmy = new Army("Test Army");
+    List<Unit> units = testArmy.getAllUnits();
+    assertNull(units);
+  }
 
-    /**
-     * Checks whether an empty army has any units.
-     * Should return false.
-     */
-    @Test
-    void hasUnitsNegativeTest(){
-        Army emptyArmy = new Army("Empty army");
-        assertFalse(emptyArmy.hasUnits());
-    }
+  /**
+   * Get name test.
+   */
+  @Test
+  void getNameTest() {
+    assertEquals(army.getName(), "test");
+  }
 
-    /**
-     * Get all units test.
-     */
-    @Test
-    void getAllUnitsTest(){
-        ArrayList<Unit> getTest = new ArrayList<>();
-        getTest.addAll(army.getAllUnits());
-        assertEquals(getTest.size(), units.size());
-    }
+  /**
+   * Add all test.
+   */
+  @Test
+  void addAllTest() {
+    ArrayList<Unit> newUnits = new ArrayList();
+    newUnits.add(new InfantryUnit("3", 11));
+    newUnits.add(new InfantryUnit("4", 23));
+    army.addAll(newUnits);
+    assertEquals(army.getAllUnits().size(), 4);
+  }
 
-    /**
-     * Test of the method add in Army class
-     */
-    @Test
-    void addTest() {
-        InfantryUnit iUnit = new InfantryUnit("infantry unit test", 10);
-        army.add(iUnit);
-        String name;
-        assertEquals("infantry unit test", army.getAllUnits().get(army.getAllUnits().size() - 1).getName());
-    }
+  /**
+   * Checks whether army has units, testing the hasUnits() method.
+   */
+  @Test
+  void hasUnitsTest() {
+    assertTrue(army.hasUnits());
+  }
+
+  /**
+   * Checks whether an empty army has any units.
+   * Should return false.
+   */
+  @Test
+  void hasUnitsNegativeTest() {
+    Army emptyArmy = new Army("Empty army");
+    assertFalse(emptyArmy.hasUnits());
+  }
+
+  /**
+   * Get all units test.
+   */
+  @Test
+  void getAllUnitsTest() {
+    ArrayList<Unit> getTest = new ArrayList<>();
+    getTest.addAll(army.getAllUnits());
+    assertEquals(getTest.size(), units.size());
+  }
+
+  /**
+   * Test of the method add in Army class
+   */
+  @Test
+  void addTest() {
+    InfantryUnit iUnit = new InfantryUnit("infantry unit test", 10);
+    army.add(iUnit);
+    String name;
+    assertEquals("infantry unit test", army.getAllUnits().get(army.getAllUnits().size() - 1).getName());
+  }
 
 }

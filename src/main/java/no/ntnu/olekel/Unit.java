@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The abstract superclass Unit Todo: more here.
+ * The abstract superclass Unit.
  *
  * @version 2022.02.08
  * @author Ole Kristian Elnæs
@@ -98,7 +98,6 @@ public abstract class Unit {
     }
   }
 
-  //TODO: correct return value on this method
   /**
    * Returns toString.
    *
