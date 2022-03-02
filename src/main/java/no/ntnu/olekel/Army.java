@@ -86,7 +86,11 @@ public class Army {
      * @return @true if the list units has units, @false if it doesn't.
      */
     public boolean hasUnits() {
-        return units.size() > 0;
+        try {
+            return !units.isEmpty();
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     /**

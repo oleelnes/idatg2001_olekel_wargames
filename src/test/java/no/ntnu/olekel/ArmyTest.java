@@ -67,11 +67,21 @@ public class ArmyTest {
     }
 
     /**
-     * Has units test.
+     * Checks whether army has units, testing the hasUnits() method.
      */
     @Test
     void hasUnitsTest(){
         assertTrue(army.hasUnits());
+    }
+
+    /**
+     * Checks whether an empty army has any units.
+     * Should return false.
+     */
+    @Test
+    void hasUnitsNegativeTest(){
+        Army emptyArmy = new Army("Empty army");
+        assertFalse(emptyArmy.hasUnits());
     }
 
     /**

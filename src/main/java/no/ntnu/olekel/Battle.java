@@ -32,9 +32,7 @@ public class Battle {
   }
 
   /**
-   * Simulate a battle between two armies.
-   *
-   * todo: create another version of simulate that has a more realistic battle structure
+   * iThis method simulates a battle between two armies.
    *
    * @return  the winning army.
    */
@@ -50,7 +48,7 @@ public class Battle {
       Unit unitA1 = armyOne.getRandom();
       Unit unitA2 = armyTwo.getRandom();
 
-      //This if-else todo:->
+      //This if-else statement decides which army and unit gets to attack
       if (attacker == 0) attackUnit(unitA1, unitA2, armyTwo);
       else attackUnit(unitA2, unitA1, armyOne);
 
@@ -59,10 +57,10 @@ public class Battle {
     logger.log(Level.INFO, "rounds: {0}", rounds);
 
     if (armyTwo.hasUnits()) {
-      logger.log(Level.INFO, "a2 won");
+      logger.log(Level.INFO, armyTwo.getName() + "won");
       return armyTwo;
     } else {
-      logger.log(Level.INFO, "a1 won");
+      logger.log(Level.INFO, armyOne.getName() + " won");
       return armyOne;
     }
   }

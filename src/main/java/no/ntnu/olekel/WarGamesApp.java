@@ -26,8 +26,8 @@ public class WarGamesApp {
     int armyOneWins = 0;
     int armyTwoWins = 0;
     for (int i = 0; i < 500; i++){
-      Army armyOne = new Army("armyOne", createUnits(14, 100, 180, 120));
-      Army armyTwo = new Army("armyTwo", createUnits(14, 100, 180, 120));
+      Army armyOne = new Army("Army One", createUnits(14, 100, 180, 120));
+      Army armyTwo = new Army("Army Two", createUnits(14, 100, 180, 120));
       Battle battle = new Battle(armyOne, armyTwo);
       if (battle.simulate() == armyOne) {
         armyOneWins++;
@@ -55,7 +55,7 @@ public class WarGamesApp {
    * @param rangedUnits     Number of ranged units.
    * @return                A List<Unit> with all the units.
    */
-  private static List<Unit> createUnits(int commanderUnits, int cavalryUnits, int infantryUnits, int rangedUnits) {
+  public static List<Unit> createUnits(int commanderUnits, int cavalryUnits, int infantryUnits, int rangedUnits) {
     List<Unit> units = new ArrayList<>();
     for (int i = 0; i < commanderUnits; i++) {
       units.add(new CommanderUnit("Commander Unit " + i + 1, 20));
