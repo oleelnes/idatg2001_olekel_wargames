@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class WarGamesApp {
   private static final Logger logger = Logger.getLogger("logger");;
 
-
   /**
    * The entry point of the application. This method creates two armies and a
    * battle for as many times as is set as the limit in the for-loop, then

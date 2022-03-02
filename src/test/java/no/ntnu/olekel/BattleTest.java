@@ -11,7 +11,7 @@ import java.util.List;
  * The class Battle test.
  *
  * @author  Ole Kristian Elnæs
- * @version 16.02.2022
+ * @version 02.03.2022
  */
 public class BattleTest {
     Battle battle;
@@ -56,4 +56,5 @@ public class BattleTest {
         Army winningArmy = battle.simulate();
         assertTrue(winningArmy.hasUnits());
     }
+
 }

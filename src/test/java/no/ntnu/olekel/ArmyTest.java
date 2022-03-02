@@ -23,8 +23,8 @@ public class ArmyTest {
     @BeforeEach
     void createArmy() {
         this.units = new ArrayList<Unit>();
-        units.add(new InfantryUnit("Infantry 1", 12));
-        units.add(new InfantryUnit("Infantry 2", 20));
+        this.units.add(new InfantryUnit("Infantry 1", 12));
+        this.units.add(new InfantryUnit("Infantry 2", 20));
         this.army = new Army("test", units);
     }
 
@@ -94,6 +94,9 @@ public class ArmyTest {
         assertEquals(getTest.size(), units.size());
     }
 
+    /**
+     * Test of the method add in Army class
+     */
     @Test
     void addTest() {
         InfantryUnit iUnit = new InfantryUnit("infantry unit test", 10);
