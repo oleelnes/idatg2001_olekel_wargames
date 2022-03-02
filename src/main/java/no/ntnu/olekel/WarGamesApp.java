@@ -1,5 +1,6 @@
 package no.ntnu.olekel;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,13 +29,13 @@ public class WarGamesApp {
       Army armyOne = new Army("Army One", createUnits(14, 100, 180, 120));
       Army armyTwo = new Army("Army Two", createUnits(14, 100, 180, 120));
       Battle battle = new Battle(armyOne, armyTwo);
-      if (battle.simulate() == armyOne) {
+      /*if (battle.simulate() == armyOne) {
         armyOneWins++;
       } else {
         armyTwoWins++;
-      }
+      }*/
     }
-    logger.log(Level.INFO,  "army one wins: {0}", armyOneWins);
+    /*logger.log(Level.INFO,  "army one wins: {0}", armyOneWins);
     logger.log(Level.INFO, "army two wins: {0}", armyTwoWins);
     if (armyOneWins > armyTwoWins) {
       logger.log(Level.INFO, "Army one won the war!");
@@ -42,7 +43,9 @@ public class WarGamesApp {
       logger.log(Level.INFO, "The war ended in a tie!");
     } else {
       logger.log(Level.INFO, "Army two won the war!");
-    }
+    }*/
+    Army fileArmy = new Army("File Army", createUnits(14, 10, 10, 10));
+    ArmyFileHandler.writeArmyCSV(fileArmy, Path.of("ArmyOne.csv"));
   }
 
   /**
@@ -58,16 +61,16 @@ public class WarGamesApp {
   public static List<Unit> createUnits(int commanderUnits, int cavalryUnits, int infantryUnits, int rangedUnits) {
     List<Unit> units = new ArrayList<>();
     for (int i = 0; i < commanderUnits; i++) {
-      units.add(new CommanderUnit("Commander Unit " + i + 1, 20));
+      units.add(new CommanderUnit("Commander Unit " + i, 20));
     }
     for (int i = 0; i < cavalryUnits; i++) {
-      units.add(new CavalryUnit("Cavalry Unit " + i + 1, 10));
+      units.add(new CavalryUnit("Cavalry Unit " + i, 10));
     }
     for (int i = 0; i < infantryUnits; i++) {
-      units.add(new InfantryUnit("Infantry Unit " + i + 1, 10));
+      units.add(new InfantryUnit("Infantry Unit " + i, 10));
     }
     for (int i = 0; i < rangedUnits; i++) {
-      units.add(new RangedUnit("Ranged Unit " + i + 1, 10));
+      units.add(new RangedUnit("Ranged Unit " + i, 10));
     }
     return units;
   }

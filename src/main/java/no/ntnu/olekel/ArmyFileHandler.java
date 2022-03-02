@@ -28,7 +28,7 @@ public class ArmyFileHandler {
    */
   public static void writeArmyCSV(Army army, Path path) {
     try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-      writer.write(army.getName());
+      writer.write(army.getName() + "\n");
       for (Unit unit : army.getInfantryUnits()) {
         writer.write("Infantry Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
@@ -36,6 +36,7 @@ public class ArmyFileHandler {
         writer.write("Cavalry Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
       for (Unit unit : army.getCommanderUnits()) {
+        System.out.println(army.getCommanderUnits().size());
         writer.write("Commander Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
       for (Unit unit : army.getRangedUnits()) {
