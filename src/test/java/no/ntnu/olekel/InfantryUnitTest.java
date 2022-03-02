@@ -96,4 +96,31 @@ public class InfantryUnitTest {
   void getDefenderBonusTest(){
     assertEquals(1, infantryUnit.getResistBonus());
   }
+
+  /**
+   *
+   */
+  @Test
+  void attackTest(){
+    InfantryUnit attacker = new InfantryUnit("Attacker unit", 10);
+    InfantryUnit defender = new InfantryUnit("Defender unit", 10);
+    int beforeHealth = defender.getHealth();
+    attacker.attack(defender);
+    assertNotEquals(beforeHealth, defender.getHealth());
+  }
+
+  /**
+   *
+   */
+  @Test
+  void attackNegativeTest(){
+    InfantryUnit attacker = new InfantryUnit("Attacker unit", 10);
+    InfantryUnit defender = new InfantryUnit("Defender unit", 10);
+    while (defender.getHealth() > 0) {
+      attacker.attack(defender);
+      System.out.println("health: " + defender.getHealth());
+    }
+    assertEquals(0, defender.getHealth());
+  }
+
 }

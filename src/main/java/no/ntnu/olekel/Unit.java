@@ -27,10 +27,10 @@ public abstract class Unit {
   Unit(String name, int health, int attack, int armor) {
     this.name = name;
     this.logger = Logger.getLogger(this.getClass().toString());
-    //this.health = health;
     try {
       setHealth(health);
     } catch (IllegalArgumentException e) {
+      setHealth(10);
       logger.log(Level.SEVERE, "caught by setHealth in constructor: {0} ",  e.getMessage());
     }
     this.attack = attack;
@@ -44,8 +44,12 @@ public abstract class Unit {
    * @param opponent  The Unit object opponent.
    */
   public void attack(Unit opponent) {
-    opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
-            + (opponent.getArmor() + opponent.getResistBonus()));
+    try {
+      opponent.setHealth(opponent.getHealth() - (this.getAttack() + this.getAttackBonus())
+              + (opponent.getArmor() + opponent.getResistBonus()));
+    } catch (IllegalArgumentException e) {
+      opponent.setHealth(0);
+    }
   }
 
   /**
@@ -94,7 +98,7 @@ public abstract class Unit {
     if (health >= 0){
       this.health = health;
     } else {
-      throw new IllegalArgumentException("illegal health: (health should not be less than 0)");
+      throw new IllegalArgumentException("Illegal health: (health should not be less than 0)");
     }
   }
 

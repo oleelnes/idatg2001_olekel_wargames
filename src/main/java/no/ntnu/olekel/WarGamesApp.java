@@ -34,7 +34,8 @@ public class WarGamesApp {
         armyTwoWins++;
       }
     }
-    logger.log(Level.INFO, "army one wins: " + armyOneWins + "\narmy two wins: " + armyTwoWins);
+    logger.log(Level.INFO,  "army one wins: {0}", armyOneWins);
+    logger.log(Level.INFO, "army two wins: {0}", armyTwoWins);
     if (armyOneWins > armyTwoWins) {
       logger.log(Level.INFO, "Army one won the war!");
     } else if (armyOneWins == armyTwoWins) {

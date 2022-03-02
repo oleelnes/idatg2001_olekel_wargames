@@ -38,7 +38,7 @@ public class Battle {
    */
   public Army simulate() {
     int rounds = 0;
-    logger.log(Level.INFO, "A battle between the two armies " + armyOne.getName() +
+    logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
             " and " + armyTwo.getName() + " is about to start!");
 
     //This is the main loop which runs as long as both of the armies still have armies left.
@@ -57,10 +57,10 @@ public class Battle {
     logger.log(Level.INFO, "rounds: {0}", rounds);
 
     if (armyTwo.hasUnits()) {
-      logger.log(Level.INFO, armyTwo.getName() + " won");
+      logger.log(Level.INFO, () -> armyTwo.getName() + " won");
       return armyTwo;
     } else {
-      logger.log(Level.INFO, armyOne.getName() + " won");
+      logger.log(Level.INFO, () -> armyOne.getName() + " won");
       return armyOne;
     }
   }
@@ -76,11 +76,8 @@ public class Battle {
    * @param defenderArmy The instance of Army that is defending.
    */
   private void attackUnit(Unit attacker, Unit defender, Army defenderArmy) {
-    try {
-      attacker.attack(defender);
-    } catch (IllegalArgumentException e) {
-      defenderArmy.remove(defender);
-    }
+    attacker.attack(defender);
+    if (defender.getHealth() <= 0) defenderArmy.remove(defender);
   }
 
   @Override
