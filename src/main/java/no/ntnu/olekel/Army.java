@@ -29,6 +29,7 @@ public class Army {
     this.name = name;
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
+    this.units = new ArrayList<>();
   }
 
   /**
