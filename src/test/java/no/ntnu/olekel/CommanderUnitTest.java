@@ -30,6 +30,12 @@ public class CommanderUnitTest {
     assertEquals(20, commanderUnit.getAttack());
   }
 
+  @Test
+  void getAttackBonusTest() {
+    assertEquals(6, commanderUnit.getAttackBonus());
+    assertEquals(2, commanderUnit.getAttackBonus());
+  }
+
   /**
    * getArmor method test.
    */

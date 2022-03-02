@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 
 /**
@@ -104,6 +105,46 @@ public class Army {
   }
 
   /**
+   * Method that returns a list sorted with only infantry units.
+   *
+   * @return  a List<Unit> consisting of instances of the units list that are
+   * instances of InfantryUnit
+   */
+  public List<Unit> getInfantryUnits() {
+    return units.stream().filter(InfantryUnit.class::isInstance).collect(Collectors.toList());
+  }
+
+  /**
+   * Method that returns a list sorted with only cavalry units.
+   *
+   * @return  a List<Unit> consisting of instances of the units list that are
+   * instances of CavalryUnit
+   */
+  public List<Unit> getCavalryUnits(){
+    return units.stream().filter(CavalryUnit.class::isInstance).collect(Collectors.toList());
+  }
+
+  /**
+   * Method that returns a list sorted with only ranged units.
+   *
+   * @return  a List<Unit> consisting of instances of the units list that are
+   * instances of RangedUnit
+   */
+  public List<Unit> getRangedUnits(){
+    return units.stream().filter(RangedUnit.class::isInstance).collect(Collectors.toList());
+  }
+
+  /**
+   * Method that returns a list sorted with only commander units.
+   *
+   * @return  a List<Unit> consisting of instances of the units list that are
+   * instances of CommanderUnit
+   */
+  public List<Unit> getCommanderUnits(){
+    return units.stream().filter(CommanderUnit.class::isInstance).collect(Collectors.toList());
+  }
+
+  /**
    * This method returns a random unit from the class' unit list.
    *
    * @return A random unit in the list units.
@@ -112,7 +153,7 @@ public class Army {
     try {
       return units.get(random.nextInt(units.size()));
     } catch (NullPointerException e) {
-      logger.log(Level.WARNING, "No units in this army. Error: " + e.getMessage());
+      logger.log(Level.WARNING, () -> "No units in this army. Error: " + e.getMessage());
       return null;
     }
   }

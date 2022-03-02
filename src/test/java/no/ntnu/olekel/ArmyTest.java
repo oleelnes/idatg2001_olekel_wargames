@@ -26,6 +26,7 @@ public class ArmyTest {
     this.units = new ArrayList<Unit>();
     this.units.add(new InfantryUnit("Infantry 1", 12));
     this.units.add(new InfantryUnit("Infantry 2", 20));
+    this.units.add(new CavalryUnit("Cavalry 1", 10));
     this.army = new Army("test", units);
   }
 
@@ -105,6 +106,12 @@ public class ArmyTest {
     ArrayList<Unit> getTest = new ArrayList<>();
     getTest.addAll(army.getAllUnits());
     assertEquals(getTest.size(), units.size());
+  }
+
+  @Test
+  void getInfantryUnitsTest() {
+    List<Unit> sortedInfantryUnits = army.getInfantryUnits();
+    System.out.println(sortedInfantryUnits);
   }
 
   /**
