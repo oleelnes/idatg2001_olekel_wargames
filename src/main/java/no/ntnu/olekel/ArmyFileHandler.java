@@ -36,7 +36,6 @@ public class ArmyFileHandler {
         writer.write("Cavalry Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
       for (Unit unit : army.getCommanderUnits()) {
-        System.out.println(army.getCommanderUnits().size());
         writer.write("Commander Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
       for (Unit unit : army.getRangedUnits()) {

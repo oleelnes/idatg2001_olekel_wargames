@@ -43,13 +43,13 @@ public class Battle {
 
     //This is the main loop which runs as long as both of the armies still have armies left.
     while (armyOne.hasUnits() && armyTwo.hasUnits()) {
-      int attacker = random.nextInt(2);
+      boolean attacker = random.nextBoolean();
       Unit unitA1 = armyOne.getRandom();
       Unit unitA2 = armyTwo.getRandom();
 
       //This if-else statement decides which army and unit gets to attack
       //depending on the random int attacker.
-      if (attacker == 0) attackUnit(unitA1, unitA2, armyTwo);
+      if (attacker) attackUnit(unitA1, unitA2, armyTwo);
       else attackUnit(unitA2, unitA1, armyOne);
 
       rounds++;
