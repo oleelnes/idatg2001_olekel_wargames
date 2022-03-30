@@ -1,10 +1,18 @@
 package no.ntnu.olekel;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import no.ntnu.olekel.core.*;
 
+import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -13,8 +21,22 @@ import java.util.logging.Logger;
  * @author Ole Kristian Elnæs.
  * @version 28.02.2022.
  */
-public class WarGamesApp {
-  private static final Logger logger = Logger.getLogger("logger");;
+public class WarGamesApp extends Application {
+  private static final Logger logger = Logger.getLogger("logger");
+
+  @Override
+  public void start(Stage stage) throws IOException {
+    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml-files/mainPage.fxml")));
+    Scene scene = new Scene(root, 800, 600);
+    stage.setMinHeight(600);
+    stage.setMinWidth(800);
+    stage.setTitle("WarGames");
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  @Override
+  public void stop() throws IOException {System.exit(0);}
 
   /**
    * The entry point of the application. This method creates two armies and a
@@ -24,6 +46,7 @@ public class WarGamesApp {
    * @param args the input arguments.
    */
   public static void main(String[] args) {
+    launch();
     int armyOneWins = 0;
     int armyTwoWins = 0;
     for (int i = 0; i < 500; i++){
