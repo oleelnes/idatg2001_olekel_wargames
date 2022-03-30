@@ -135,7 +135,7 @@ public class Army {
   public List<Unit> getRangedUnits(){
     return units.stream().filter(RangedUnit.class::isInstance).collect(Collectors.toList());
   }
-
+  
   /**
    * Method that returns a list sorted with only commander units.
    *

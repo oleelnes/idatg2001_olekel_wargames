@@ -27,6 +27,11 @@ public class ArmyFileHandlerTest {
     public void readCSVTest() {
         Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
         assertNotNull(testArmy);
+    }
+
+    @Test
+    public void readCSVTest2(){
+        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
         assertEquals(testArmy.getAllUnits().get(0).getName(), "Infantry Unit 0");
     }
 
