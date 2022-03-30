@@ -42,4 +42,10 @@ public class ArmyFileHandlerTest {
         assertNotNull(testArmy);
     }
 
+    //todo: assertThrows
+    @Test
+    public void readCSVTestInvalidType(){
+        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ererer.csv"));
+        assertEquals(testArmy.getAllUnits().get(0).getName(), "Infantry Unit 0");
+    }
 }

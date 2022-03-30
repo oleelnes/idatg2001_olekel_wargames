@@ -41,6 +41,9 @@ public class ArmyFileHandler {
       for (Unit unit : army.getRangedUnits()) {
         writer.write("Ranged Unit" + "," + unit.getName() + "," + unit.getHealth() + "\n");
       }
+      for (Unit unit : army.getAllUnits()) {
+        //todo:
+      }
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
     }
