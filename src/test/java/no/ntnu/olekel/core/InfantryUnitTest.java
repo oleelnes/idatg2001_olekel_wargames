@@ -1,5 +1,6 @@
-package no.ntnu.olekel;
+package no.ntnu.olekel.core;
 
+import no.ntnu.olekel.core.InfantryUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

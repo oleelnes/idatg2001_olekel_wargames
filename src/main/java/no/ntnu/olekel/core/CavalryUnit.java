@@ -1,4 +1,4 @@
-package no.ntnu.olekel;
+package no.ntnu.olekel.core;
 
 /**
  * The class for the cavalry unit, a subclass of Unit, and defines the

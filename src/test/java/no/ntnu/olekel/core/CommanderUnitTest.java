@@ -1,5 +1,6 @@
-package no.ntnu.olekel;
+package no.ntnu.olekel.core;
 
+import no.ntnu.olekel.core.CommanderUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

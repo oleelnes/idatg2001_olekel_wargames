@@ -1,4 +1,4 @@
-package no.ntnu.olekel;
+package no.ntnu.olekel.core;
 
 import java.util.ArrayList;
 import java.util.List;
