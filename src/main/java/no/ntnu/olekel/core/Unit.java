@@ -24,7 +24,7 @@ public abstract class Unit {
    * @param attack  The attack strength(?) of the unit.
    * @param armor   A number that represents the value of the unit's armor.
    */
-  Unit(String name, int health, int attack, int armor) {
+  public Unit(String name, int health, int attack, int armor) {
     this.name = name;
     this.logger = Logger.getLogger(this.getClass().toString());
     try {

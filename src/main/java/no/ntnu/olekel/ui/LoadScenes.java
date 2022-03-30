@@ -21,7 +21,7 @@ public class LoadScenes {
      * Method that loads the main page of the application.
      *
      * @param event         Event.
-     * @throws IOException  Exception
+     * @throws IOException  Exception.
      */
     public void loadMainPage(ActionEvent event) throws IOException {
         url = getClass().getClassLoader().getResource("fxml-files/mainPage.fxml");

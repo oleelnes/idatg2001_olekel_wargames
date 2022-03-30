@@ -39,7 +39,7 @@ public class Army {
    * @param name  The name of the army
    * @param units An arraylist of subclasses of the superclass unit
    */
-  Army(String name, List<Unit> units) {
+  public Army(String name, List<Unit> units) {
     this.name = name;
     this.units = units;
     this.random = new Random();

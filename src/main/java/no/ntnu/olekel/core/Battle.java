@@ -24,7 +24,7 @@ public class Battle {
    * @param armyOne the army one
    * @param armyTwo the army two
    */
-  Battle(Army armyOne, Army armyTwo) {
+  public Battle(Army armyOne, Army armyTwo) {
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
     this.logger = Logger.getLogger(this.getClass().toString());
