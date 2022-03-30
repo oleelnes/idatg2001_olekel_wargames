@@ -19,6 +19,7 @@ public class ArmyFileHandlerTest {
         this.units.add(new InfantryUnit("Infantry 1", 12));
         this.units.add(new InfantryUnit("Infantry 2", 20));
         this.units.add(new CavalryUnit("Cavalry 1", 10));
+        this.units.add(new CommanderUnit("Commander 1", 30));
         this.army = new Army("test", units);
     }
 
