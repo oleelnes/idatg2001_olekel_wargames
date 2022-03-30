@@ -9,13 +9,14 @@ package no.ntnu.olekel.ui;
  */
 public class Facade {
     private static volatile Facade instance;
+    private final LoadScenes loadScenes;
 
     /**
      * Private constructor.
      * todo: initialize fields.
      */
     private Facade(){
-
+        this.loadScenes = new LoadScenes();
     }
 
     /**
