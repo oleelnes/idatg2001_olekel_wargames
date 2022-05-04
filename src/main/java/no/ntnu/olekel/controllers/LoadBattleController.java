@@ -1,5 +1,4 @@
 package no.ntnu.olekel.controllers;
 
-public class mainPageController {
-
+public class LoadBattleController {
 }
