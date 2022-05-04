@@ -115,7 +115,7 @@ public class ArmyTest {
   @Test
   void getInfantryUnitsTest() {
     List<Unit> sortedInfantryUnits = army.getInfantryUnits();
-    System.out.println(sortedInfantryUnits);
+    //assertEquals();
   }
 
   /**

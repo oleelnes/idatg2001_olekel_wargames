@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core;
 
+import com.sun.nio.sctp.SctpStandardSocketOptions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -121,7 +123,7 @@ public class Army {
    * instances of CavalryUnit
    */
   public List<Unit> getCavalryUnits(){
-    return units.stream().filter(CavalryUnit.class::isInstance).collect(Collectors.toList());
+    return units.stream().filter(u -> u.getClass().getName().equals("no.ntnu.olekel.CavalryUnit")).collect(Collectors.toList());
   }
 
   /**
@@ -133,7 +135,7 @@ public class Army {
   public List<Unit> getRangedUnits(){
     return units.stream().filter(RangedUnit.class::isInstance).collect(Collectors.toList());
   }
-
+  
   /**
    * Method that returns a list sorted with only commander units.
    *
