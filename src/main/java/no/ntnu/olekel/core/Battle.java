@@ -1,4 +1,6 @@
-package no.ntnu.olekel.core.units;
+package no.ntnu.olekel.core;
+
+import no.ntnu.olekel.core.units.Unit;
 
 import java.util.Objects;
 import java.util.Random;

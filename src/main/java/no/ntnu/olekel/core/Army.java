@@ -1,4 +1,9 @@
-package no.ntnu.olekel.core.units;
+package no.ntnu.olekel.core;
+
+import no.ntnu.olekel.core.units.CommanderUnit;
+import no.ntnu.olekel.core.units.InfantryUnit;
+import no.ntnu.olekel.core.units.RangedUnit;
+import no.ntnu.olekel.core.units.Unit;
 
 import java.util.ArrayList;
 import java.util.List;

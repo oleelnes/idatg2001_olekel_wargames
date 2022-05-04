@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import no.ntnu.olekel.core.units.Army;
+import no.ntnu.olekel.core.Army;
 
 import java.net.URL;
 import java.util.ResourceBundle;

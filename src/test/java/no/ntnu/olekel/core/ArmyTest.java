@@ -1,6 +1,5 @@
 package no.ntnu.olekel.core;
 
-import no.ntnu.olekel.core.units.Army;
 import no.ntnu.olekel.core.units.CavalryUnit;
 import no.ntnu.olekel.core.units.InfantryUnit;
 import no.ntnu.olekel.core.units.Unit;
