@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core;
 
+import no.ntnu.olekel.core.units.*;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,7 +16,7 @@ import java.util.logging.Logger;
  * @author  Ole Kristian Elnæs
  * @version 02.03.2022
  */
-public class ArmyFileHandler {
+public class FileHandler {
   static Logger logger = Logger.getLogger("logger");
 
 

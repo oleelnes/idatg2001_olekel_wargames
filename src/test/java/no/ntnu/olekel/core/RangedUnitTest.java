@@ -1,6 +1,6 @@
 package no.ntnu.olekel.core;
 
-import no.ntnu.olekel.core.RangedUnit;
+import no.ntnu.olekel.core.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

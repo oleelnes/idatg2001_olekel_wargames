@@ -1,6 +1,4 @@
-package no.ntnu.olekel.core;
-
-import com.sun.nio.sctp.SctpStandardSocketOptions;
+package no.ntnu.olekel.core.units;
 
 import java.util.ArrayList;
 import java.util.List;

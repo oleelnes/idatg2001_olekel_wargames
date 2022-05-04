@@ -1,6 +1,7 @@
 package no.ntnu.olekel;
 
 import no.ntnu.olekel.core.*;
+import no.ntnu.olekel.core.units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,27 +27,27 @@ public class ArmyFileHandlerTest {
 
     @Test
     public void readCSVTest() {
-        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
+        Army testArmy = FileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
         assertNotNull(testArmy);
     }
 
     @Test
     public void readCSVTest2(){
-        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
+        Army testArmy = FileHandler.readArmyCSV(Path.of("ArmyOne.csv"));
         assertEquals(testArmy.getAllUnits().get(0).getName(), "Infantry Unit 0");
     }
 
     @Test
     public void writeCSVTest(){
-        ArmyFileHandler.writeArmyCSV(army, Path.of("test.csv"));
-        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("test.csv"));
+        FileHandler.writeArmyCSV(army, Path.of("test.csv"));
+        Army testArmy = FileHandler.readArmyCSV(Path.of("test.csv"));
         assertNotNull(testArmy);
     }
 
     //todo: assertThrows
     @Test
     public void readCSVTestInvalidType(){
-        Army testArmy = ArmyFileHandler.readArmyCSV(Path.of("ererer.csv"));
+        Army testArmy = FileHandler.readArmyCSV(Path.of("ererer.csv"));
         assertEquals(testArmy.getAllUnits().get(0).getName(), "Infantry Unit 0");
     }
 }

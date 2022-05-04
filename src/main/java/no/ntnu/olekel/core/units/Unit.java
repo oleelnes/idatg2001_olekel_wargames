@@ -1,4 +1,4 @@
-package no.ntnu.olekel.core;
+package no.ntnu.olekel.core.units;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -6,9 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import no.ntnu.olekel.core.*;
+import no.ntnu.olekel.core.units.*;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class WarGamesApp extends Application {
       logger.log(Level.INFO, "Army two won the war!");
     }*/
     Army fileArmy = new Army("File Army", createUnits(14, 10, 10, 10));
-    ArmyFileHandler.writeArmyCSV(fileArmy, Path.of("ArmyOne.csv"));
+    FileHandler.writeArmyCSV(fileArmy, Path.of("ArmyOne.csv"));
   }
 
   /**

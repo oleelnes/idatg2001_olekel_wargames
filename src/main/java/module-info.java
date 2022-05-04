@@ -10,4 +10,5 @@ module no.ntnu.olekel {
     opens no.ntnu.olekel.core to javafx.base;
     exports no.ntnu.olekel.controllers;
     exports no.ntnu.olekel;
+  opens no.ntnu.olekel.core.units to javafx.base;
 }
