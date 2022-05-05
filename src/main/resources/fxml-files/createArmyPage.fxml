@@ -3,16 +3,22 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.CreateArmyController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
+            <Label prefHeight="40.0" text="Create New Army">
+               <font>
+                  <Font name="Times New Roman" size="30.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" minHeight="40.0" text="Name of army:">
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets right="5.0" />
                      </HBox.margin></Label>
                   <TextField>
                      <HBox.margin>
@@ -33,26 +39,133 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0">
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="500.0" text="Create New Units" HBox.hgrow="ALWAYS" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="300.0" text="Existing Units" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="500.0" text="Add New Units" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="300.0" text="Existing Units" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="400.0" prefWidth="200.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="500.0">
                      <children>
-                        <HBox prefHeight="400.0" prefWidth="200.0">
+                        <Separator prefWidth="200.0" />
+                        <HBox prefHeight="400.0" prefWidth="500.0">
                            <children>
-                              <VBox prefHeight="300.0" prefWidth="250.0" />
-                              <VBox prefHeight="310.0" prefWidth="250.0" />
+                              <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label prefHeight="75.0" text="Commander Units" />
+                                    <Label layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Infantry Units" />
+                                    <Label layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Ranged Units" />
+                                    <Label layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Cavalry Units" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <TextField maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="25.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="110.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="135.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label prefHeight="75.0" text="Health:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Health:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Health:" />
+                                    <Label layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Health:" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <TextField maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="25.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="310.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                       <VBox.margin>
+                                          <Insets top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                      </children></VBox>
                   <ListView prefHeight="200.0" prefWidth="300.0" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Separator>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#mainPageAction" text="Back to main page" />
