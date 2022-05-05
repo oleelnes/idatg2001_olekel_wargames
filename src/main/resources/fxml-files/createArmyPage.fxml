@@ -13,8 +13,11 @@
                <font>
                   <Font name="Times New Roman" size="30.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="25.0" />
+               </VBox.margin>
             </Label>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="85.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" minHeight="40.0" text="Name of army:">
                      <HBox.margin>
