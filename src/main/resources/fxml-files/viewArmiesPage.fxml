@@ -28,12 +28,15 @@
                <children>
                   <Button mnemonicParsing="false" text="Back to main page">
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="80.0" />
                      </HBox.margin>
                   </Button>
                   <Button layoutX="284.0" layoutY="48.0" mnemonicParsing="false" text="Add army" />
                   <Button layoutX="320.0" layoutY="48.0" mnemonicParsing="false" text="Edit army" />
-                  <Button layoutX="356.0" layoutY="48.0" mnemonicParsing="false" text="Appoint army to war" />
+                  <Button layoutX="356.0" layoutY="48.0" mnemonicParsing="false" prefHeight="50.0" text="Appoint army to war">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </children>

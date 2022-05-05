@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefWidth="599.0" text="New War">
+               <font>
+                  <Font name="Times New Roman" size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Army Name">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
+               </children></HBox>
+            <Label alignment="CENTER" prefWidth="599.0" text="Army 1">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="64.0" prefHeight="75.0" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Army Name">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
+               </children>
+            </HBox>
+            <Label alignment="CENTER" prefWidth="599.0" text="Army 2">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="129.0" prefHeight="75.0" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Army Name">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+               </children></HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+               </children></HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
