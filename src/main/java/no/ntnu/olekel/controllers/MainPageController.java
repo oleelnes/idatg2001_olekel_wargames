@@ -17,7 +17,13 @@ public class MainPageController {
     scenes.loadScene(event, ClassPaths.newWarPageURL);
   }
 
+  @FXML
   public void viewArmies(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.viewArmiesURL);
+  }
+
+  @FXML
+  public void newArmyAction(ActionEvent event) throws IOException {
+    scenes.loadScene(event, ClassPaths.createArmyPageURL);
   }
 }

@@ -52,7 +52,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="New Army">
+                  <Button mnemonicParsing="false" onAction="#newArmyAction" prefHeight="50.0" prefWidth="150.0" text="New Army">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
