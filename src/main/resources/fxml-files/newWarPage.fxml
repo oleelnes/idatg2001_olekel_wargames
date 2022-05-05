@@ -11,12 +11,13 @@
          <children>
             <Label alignment="CENTER" prefWidth="599.0" text="New War">
                <font>
-                  <Font name="Times New Roman" size="25.0" />
+                  <Font name="Times New Roman Bold" size="27.0" />
                </font>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </Label>
+            <Separator prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
                <children>
                   <Label prefWidth="100.0" text="Army Name">
@@ -46,9 +47,10 @@
                   </Label>
                   <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
                </children></HBox>
+            <Separator prefWidth="200.0" />
             <Label alignment="CENTER" prefWidth="599.0" text="Army 1">
                <font>
-                  <Font name="Times New Roman" size="15.0" />
+                  <Font name="Times New Roman Bold" size="22.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="64.0" prefHeight="75.0" prefWidth="200.0">
@@ -81,9 +83,10 @@
                   <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
                </children>
             </HBox>
+            <Separator prefWidth="200.0" />
             <Label alignment="CENTER" prefWidth="599.0" text="Army 2">
                <font>
-                  <Font name="Times New Roman" size="15.0" />
+                  <Font name="Times New Roman Bold" size="22.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="129.0" prefHeight="75.0" prefWidth="200.0">
@@ -116,17 +119,18 @@
                   <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Create army" />
+                  <Button mnemonicParsing="false" text="Select army from list" />
+                  <Button mnemonicParsing="false" text="Edit army" />
+                  <Button mnemonicParsing="false" text="Start war" />
                </children></HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Back to main page" />
+                  <Button mnemonicParsing="false" text="Exit" />
                </children></HBox>
          </children>
       </VBox>
