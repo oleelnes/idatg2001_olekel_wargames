@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 /**
  * The abstract superclass Unit.
  *
- * @version 2022.02.08
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION} todo: is this good practice?
  * @author Ole Kristian Elnæs
  */
 public abstract class Unit {
@@ -14,7 +14,7 @@ public abstract class Unit {
   private int health;
   private int attack;
   private int armor;
-  private final Logger logger;
+  private static final Logger logger = Logger.getLogger(Unit.class.toString());
 
   /**
    * Construct new Unit.
@@ -26,7 +26,6 @@ public abstract class Unit {
    */
   public Unit(String name, int health, int attack, int armor) {
     this.name = name;
-    this.logger = Logger.getLogger(this.getClass().toString());
     try {
       setHealth(health);
     } catch (IllegalArgumentException e) {

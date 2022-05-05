@@ -2,6 +2,7 @@ package no.ntnu.olekel.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 

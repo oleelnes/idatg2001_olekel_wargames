@@ -11,4 +11,6 @@ module no.ntnu.olekel {
     exports no.ntnu.olekel.controllers;
     exports no.ntnu.olekel;
   opens no.ntnu.olekel.core.units to javafx.base;
+  exports no.ntnu.olekel.constants;
+  opens no.ntnu.olekel.constants to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package no.ntnu.olekel.controllers;
+package no.ntnu.olekel.constants;
 
 import java.net.URL;
 

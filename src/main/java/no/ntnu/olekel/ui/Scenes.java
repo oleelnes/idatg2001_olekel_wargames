@@ -27,15 +27,15 @@ public class Scenes {
     public void loadScene(ActionEvent event, URL url) throws  IOException {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(url));
+            stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root, 800, 600);
+            stage.setScene(scene);
+            stage.setMinHeight(600);
+            stage.setMinWidth(800);
+            stage.show();
         } catch (NullPointerException e) {
             System.out.println("whattafac");
         }
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
-        stage.setMinHeight(600);
-        stage.setMinWidth(800);
-        stage.show();
     }
 
 }
