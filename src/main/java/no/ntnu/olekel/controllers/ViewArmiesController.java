@@ -1,15 +1,21 @@
 package no.ntnu.olekel.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.ui.Facade;
+import no.ntnu.olekel.ui.Scenes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewArmiesController implements Initializable {
+
+  Scenes scenes = Facade.getInstance().getScenes();
 
   @FXML
   private TableView<Army> tableView;
@@ -36,6 +42,11 @@ public class ViewArmiesController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 
+  }
+
+  @FXML
+  public void mainPageAction(ActionEvent event) throws IOException {
+    scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
 }

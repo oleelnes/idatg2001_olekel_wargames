@@ -40,7 +40,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="New War">
+                  <Button fx:id="newWarButton" mnemonicParsing="false" onAction="#newWarAction" prefHeight="50.0" prefWidth="150.0" text="New War">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
@@ -56,7 +56,7 @@
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Load Army">
+                  <Button mnemonicParsing="false" onAction="#viewArmies" prefHeight="50.0" prefWidth="150.0" text="View Armies">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>

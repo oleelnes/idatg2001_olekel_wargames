@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.NewWarController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label alignment="CENTER" prefWidth="599.0" text="New War">
+            <Label alignment="CENTER" prefWidth="200.0" text="New Battle">
                <font>
-                  <Font name="Times New Roman Bold" size="27.0" />
+                  <Font name="Times New Roman Bold" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets bottom="30.0" top="15.0" />
                </VBox.margin>
             </Label>
             <Separator prefWidth="200.0" />
@@ -129,7 +129,7 @@
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Back to main page" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mainPageAction" text="Back to main page" />
                   <Button mnemonicParsing="false" text="Exit" />
                </children></HBox>
          </children>
