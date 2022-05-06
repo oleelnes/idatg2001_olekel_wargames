@@ -1,125 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.NewWarController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: rgba(10, 10, 10, 0.4);">
          <children>
-            <Label alignment="CENTER" prefWidth="200.0" text="New Battle">
+            <Label text="General">
                <font>
-                  <Font name="Times New Roman Bold" size="36.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" top="15.0" />
-               </VBox.margin>
-            </Label>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
-               <children>
-                  <Label prefWidth="100.0" text="Army Name">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
-               </children></HBox>
-            <Separator prefWidth="200.0" />
-            <Label alignment="CENTER" prefWidth="599.0" text="Army 1">
+                  <Font name="Times New Roman" size="20.0" />
+               </font></Label>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: rgba(10, 10, 10, 0.3);" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Army 1">
                <font>
-                  <Font name="Times New Roman Bold" size="22.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="64.0" prefHeight="75.0" prefWidth="200.0">
-               <children>
-                  <Label prefWidth="100.0" text="Army Name">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <Label alignment="CENTER" prefWidth="599.0" text="Army 2">
-               <font>
-                  <Font name="Times New Roman Bold" size="22.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="129.0" prefHeight="75.0" prefWidth="200.0">
-               <children>
-                  <Label prefWidth="100.0" text="Army Name">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefWidth="75.0" text="Com. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="38.0" layoutY="10.0" prefWidth="75.0" text="Ran. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="66.0" layoutY="10.0" prefWidth="75.0" text="Inf. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="94.0" layoutY="10.0" prefWidth="75.0" text="Cav. Units">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="122.0" layoutY="10.0" prefWidth="50.0" text="Health" />
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
+                  <Font name="Times New Roman" size="20.0" />
+               </font></Label>
+         </children></VBox>
+   </left>
+   <top>
+      <Label alignment="CENTER" prefHeight="90.0" text="New Battle " BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Times New Roman Bold" size="36.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <VBox prefHeight="125.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" text="Create army" />
@@ -134,5 +48,15 @@
                </children></HBox>
          </children>
       </VBox>
-   </center>
+   </bottom>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="201.0" prefWidth="250.0" style="-fx-background-color: rgba(10, 10, 10, 0.3);" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Army 2">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font></Label>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
