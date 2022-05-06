@@ -27,9 +27,10 @@ public class WarGamesApp extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml-files/mainPage.fxml")));
-    Scene scene = new Scene(root, 800, 600);
-    stage.setMinHeight(600);
-    stage.setMinWidth(800);
+    //Scene scene = new Scene(root, 800, 600);
+    Scene scene = new Scene(root);
+    stage.setMinHeight(650);
+    stage.setMinWidth(820);
     stage.setTitle("WarGames");
     stage.setScene(scene);
     stage.show();

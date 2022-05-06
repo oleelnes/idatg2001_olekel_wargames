@@ -30,8 +30,8 @@ public class Scenes {
             stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root, 800, 600);
             stage.setScene(scene);
-            stage.setMinHeight(600);
-            stage.setMinWidth(800);
+            stage.setMinHeight(650);
+            stage.setMinWidth(820);
             stage.show();
         } catch (NullPointerException e) {
             System.out.println("whattafac");
