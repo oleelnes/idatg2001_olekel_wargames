@@ -3,8 +3,8 @@ package no.ntnu.olekel.core.units;
 /**
  * The class Infantry unit.
  *
- * @author  Ole Kristian Elnæs
- * @version 16.02.2022
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
  */
 public class InfantryUnit extends Unit{
 

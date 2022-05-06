@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 /**
  * Class that handles file writing and -reading with regards to the class Army.
  *
- * @author  Ole Kristian Elnæs
- * @version 02.03.2022
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
  */
 public class FileHandler {
   static Logger logger = Logger.getLogger("logger");

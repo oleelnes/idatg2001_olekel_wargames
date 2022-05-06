@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ *
+ *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
+ */
 public class ViewArmiesController implements Initializable {
 
   Scenes scenes = Facade.getInstance().getScenes();

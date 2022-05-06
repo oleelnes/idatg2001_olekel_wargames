@@ -2,6 +2,9 @@ package no.ntnu.olekel.core.units;
 
 /**
  * The type Ranged unit.
+ *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
  */
 public class RangedUnit extends Unit {
   private int timesResisted;

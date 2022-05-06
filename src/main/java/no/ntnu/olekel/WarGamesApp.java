@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 /**
  * The class WarGamesApp.
  *
- * @author Ole Kristian Elnæs.
- * @version 28.02.2022.
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
  */
 public class WarGamesApp extends Application {
   private static final Logger logger = Logger.getLogger("logger");

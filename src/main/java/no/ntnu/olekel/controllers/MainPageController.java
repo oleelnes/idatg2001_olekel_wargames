@@ -8,6 +8,12 @@ import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 
+/**
+ *
+ *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
+ */
 public class MainPageController {
 
   private final Scenes scenes = Facade.getInstance().getScenes();

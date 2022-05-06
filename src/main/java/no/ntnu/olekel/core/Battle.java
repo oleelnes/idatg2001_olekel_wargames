@@ -11,8 +11,8 @@ import java.util.logging.Logger;
  * The class Battle. This class is responsible for simulating a battle between
  * two warring armies.
  *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
- * @version 16.02.2022
  */
 public class Battle {
   private Army armyOne;

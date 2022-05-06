@@ -3,8 +3,8 @@ package no.ntnu.olekel.core.units;
 /**
  * The class Commander unit.
  *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
- * @version 16.02.2022
  */
 public class CommanderUnit extends CavalryUnit {
 

@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 /**
  * This class represents the functionality of an army.
  *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
- * @version 16.02.2022
  */
 public class Army {
   private String name;

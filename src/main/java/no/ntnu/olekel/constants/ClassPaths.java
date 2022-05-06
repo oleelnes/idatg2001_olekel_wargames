@@ -4,7 +4,13 @@ import java.net.URL;
 
 import static java.util.Objects.requireNonNull;
 
-public class ClassPaths {
+/**
+ *
+ *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
+ */
+public final class ClassPaths {
 
   /**
    * Private constructor to hide the public one.

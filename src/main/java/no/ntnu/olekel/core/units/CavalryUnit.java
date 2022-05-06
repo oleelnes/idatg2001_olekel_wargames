@@ -4,8 +4,8 @@ package no.ntnu.olekel.core.units;
  * The class for the cavalry unit, a subclass of Unit, and defines the
  * abstract classes from Unit
  *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
- * @version 15.02.2022
  */
 public class CavalryUnit extends Unit {
   private int timesAttacking;

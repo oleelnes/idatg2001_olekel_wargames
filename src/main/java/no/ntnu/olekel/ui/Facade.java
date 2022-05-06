@@ -4,8 +4,8 @@ package no.ntnu.olekel.ui;
  * Facade class that implements the Design Pattern Singleton.
  * Holds objects that we only want one of.
  *
- * @author  Ole Kristian Elnæs
- * @version 30.03.2022
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
  */
 public class Facade {
     private static volatile Facade instance;
