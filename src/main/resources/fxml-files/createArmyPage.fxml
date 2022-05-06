@@ -47,7 +47,7 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="500.0" text="Add New Units" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="Times New Roman" size="17.0" />
                      </font></Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="300.0" text="Existing Units" HBox.hgrow="ALWAYS">
                      <font>

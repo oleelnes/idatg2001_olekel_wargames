@@ -40,7 +40,7 @@ public class UnitFactory {
   }
 
   /**
-   *
+   * Method that creates and returns a unit of a specified type.
    *
    * @param unitType  The type of the unit.
    * @param name      The name of the unit.
@@ -78,7 +78,7 @@ public class UnitFactory {
 
   /**
    * Method that checks whether the input to the createUnitList() method is valid.
-   * todo: check if name is already used, if so, return false.
+   * todo: check if name is already used, if so, return false. (should prob be for createUnit() instead)
    *
    * @param unitType  The type of the unit.
    * @param name      The name of the unit.
