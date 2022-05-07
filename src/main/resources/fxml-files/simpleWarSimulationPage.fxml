@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Army 1 unit name">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin></Label>
+            <VBox minHeight="275.0" prefWidth="100.0" style="-fx-background-color: rgba(0, 100, 0, 0.35);">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin></VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin></VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Battle">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <VBox minHeight="175.0" prefWidth="100.0" style="-fx-background-color: rgba(10, 10, 10, 0.35);">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin></VBox>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Army 2 unit name">
+               <VBox.margin>
+                  <Insets right="25.0" />
+               </VBox.margin></Label>
+            <VBox minHeight="275.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: rgba(100, 0, 0, 0.35);">
+               <VBox.margin>
+                  <Insets right="25.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin></VBox>
    </right>
    <top>
       <VBox BorderPane.alignment="CENTER">
@@ -21,16 +65,35 @@
                <children>
                   <Label text="Battle Simulation">
                      <font>
-                        <Font name="Times New Roman Bold" size="20.0" />
+                        <Font name="Times New Roman Bold" size="29.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label text="General stuff about the battle in here" />
-               </children>
-            </HBox>
+            <BorderPane prefHeight="125.0" prefWidth="200.0">
+               <left>
+                  <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="25.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <Label text="Army 1 name" />
+                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(0, 100, 0, 0.25);" />
+                     </children>
+                  </VBox>
+               </left>
+               <right>
+                  <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="25.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <Label text="Army 2 name" />
+                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(100, 0, 0, 0.25);" />
+                     </children>
+                  </VBox>
+               </right>
+            </BorderPane>
          </children>
       </VBox>
    </top>
