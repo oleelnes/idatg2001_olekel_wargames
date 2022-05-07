@@ -32,4 +32,9 @@ public class MainPageController {
   public void newArmyAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.createArmyPageURL);
   }
+
+  @FXML
+  public void simpleWarSimulationAction(ActionEvent event) throws IOException {
+    scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
+  }
 }

@@ -44,7 +44,7 @@
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Load War">
+                  <Button mnemonicParsing="false" onAction="#simpleWarSimulationAction" prefHeight="50.0" prefWidth="150.0" text="Load War">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
