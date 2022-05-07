@@ -16,7 +16,15 @@
             <VBox minHeight="275.0" style="-fx-background-color: rgba(0, 100, 0, 0.35);">
                <VBox.margin>
                   <Insets left="25.0" />
-               </VBox.margin></VBox>
+               </VBox.margin>
+               <children>
+                  <Label text="Units extinguished: n/a" />
+                  <Label text="Units lost: n/a" />
+                  <Label text="Attacks dealt:  n/a" />
+                  <Label text="Total damage dealt: n/a" />
+                  <Label layoutX="10.0" layoutY="61.0" text="Avg. health of remaining units: n/a" />
+                  <Label layoutX="10.0" layoutY="78.0" text="Avg. health total: n/a" />
+               </children></VBox>
          </children>
          <BorderPane.margin>
             <Insets top="15.0" />
