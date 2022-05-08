@@ -1,5 +1,8 @@
 package no.ntnu.olekel.ui;
 
+import no.ntnu.olekel.core.ArmyRegister;
+import no.ntnu.olekel.core.BattleRegister;
+
 import java.lang.module.Configuration;
 
 /**
@@ -12,6 +15,9 @@ import java.lang.module.Configuration;
 public class Facade {
     private static volatile Facade instance;
     private final Scenes scenes;
+    private BattleRegister battleRegister;
+    private ArmyRegister armyRegister;
+
 
     /**
      * Private constructor.
@@ -38,5 +44,13 @@ public class Facade {
 
     public Scenes getScenes() {
         return scenes;
+    }
+
+    public ArmyRegister getArmyRegister() {
+        return armyRegister;
+    }
+
+    public BattleRegister getBattleRegister() {
+        return battleRegister;
     }
 }

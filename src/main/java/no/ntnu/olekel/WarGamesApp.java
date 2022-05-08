@@ -43,18 +43,33 @@ public class WarGamesApp extends Application {
 
   @Override
   public void init() throws Exception {
-    String folderRootPath = System.getProperty(Constants.ROOT_DIRECTORY) + Constants.WARGAMES_FOLDER_PATH;
-    String armiesFolderPath = folderRootPath + Constants.ARMIES_FOLDER_PATH;
-    String battlesFolderPath = folderRootPath + Constants.BATTLES_FOLDER_PATH;
-    createFolder(new File(folderRootPath));
-    createFolder(new File(armiesFolderPath));
-    createFolder(new File(battlesFolderPath));
+
+
+    createFolder(new File(Constants.ROOT_FOLDER_PATH));
+    createFolder(new File(Constants.ARMIES_FOLDER_PATH));
+    createFolder(new File(Constants.BATTLES_FOLDER_PATH));
     //todo: additional methods that load file information into the registers.
+    createFile(new File(Constants.ARMIES_CSV_PATH));
+    createFile(new File(Constants.BATTLES_CSV_PATH));
   }
 
+  /**
+   * This method checks whether a folder exists or not. If it doesn't exist, it will
+   * create that folder.
+   *
+   * todo: consider moving createFolder and createFile into class FileHandler!
+   *
+   * @param folder The folder (File object) that will be created, or which already exists.
+   */
   private void createFolder(File folder) {
     if (!folder.exists()) {
       folder.mkdir();
+    }
+  }
+
+  private void createFile(File file) throws IOException {
+    if (!file.exists()) {
+      file.createNewFile();
     }
   }
 
