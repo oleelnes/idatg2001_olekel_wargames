@@ -26,15 +26,9 @@ public class ArmyRegister {
     this.armyRegister = new ArrayList<>();
   }
 
-  /**
-   *
-   * Todo: error handling for filename
-   * @param filename  The name of the file (should start with "/").
-   */
-  /*public void load(String filename) {
-    FileHandler.readArmyCSV(Path.of(System.getProperty(Constants.ROOT_DIRECTORY)
-        + Constants.WARGAMES_FOLDER_LOCATION + Constants.ARMIES_FOLDER_LOCATION + filename));
-  }*/
+  public List<Army> getArmyRegister() {
+    return armyRegister;
+  }
 
   /**
    * This method writes information about an army to a csv file.

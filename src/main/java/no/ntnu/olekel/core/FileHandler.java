@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Class that handles file writing and -reading with regards to the class Army.
+ * Class that handles file saving and loading.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
@@ -20,8 +20,9 @@ import java.util.logging.Logger;
 public class FileHandler {
   static Logger logger = Logger.getLogger("logger");
   private ArmyRegister armyRegister = Facade.getInstance().getArmyRegister();
+  private BattleRegister battleRegister = Facade.getInstance().getBattleRegister();
 
-  enum RegisterType {
+  public enum RegisterType {
     ARMIES,
     BATTLES
   }
@@ -34,9 +35,10 @@ public class FileHandler {
    */
   public void load(RegisterType registerType, Path path) {
     switch (registerType) {
-      case ARMIES -> armyRegister.loadArmyCSV(path);
-      case BATTLES -> System.out.println("placeholder");
-      default -> System.out.println("default");
+      //todo: loadArmyCSV doesn't have to return a list, it can simply add it to the list internally, fix this!
+      case ARMIES -> armyRegister.getArmyRegister().add(armyRegister.loadArmyCSV(path));
+      case BATTLES -> battleRegister.loadBattleCSV(path);
+      default -> logger.log(Level.WARNING, "Invalid enum type!");
     }
   }
 
