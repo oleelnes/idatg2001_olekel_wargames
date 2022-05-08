@@ -1,5 +1,7 @@
 package no.ntnu.olekel.ui;
 
+import java.lang.module.Configuration;
+
 /**
  * Facade class that implements the Design Pattern Singleton.
  * Holds objects that we only want one of.
