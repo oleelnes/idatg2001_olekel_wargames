@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import no.ntnu.olekel.core.units.CommanderUnit;
 import no.ntnu.olekel.core.units.InfantryUnit;
 import no.ntnu.olekel.core.units.RangedUnit;
@@ -25,17 +27,25 @@ public class Army {
   private List<Unit> units;
   private final Random random;
   private final Logger logger;
+  private IntegerProperty size = new SimpleIntegerProperty();
+  private IntegerProperty commanderSize = new SimpleIntegerProperty();
+  private IntegerProperty cavalrySize = new SimpleIntegerProperty();
+  private IntegerProperty infantrySize = new SimpleIntegerProperty();
+  private IntegerProperty rangedSize = new SimpleIntegerProperty();
+
+
 
   /**
    * Simplified constructor.
    *
    * @param name The name of the army.
    */
-  Army(String name) {
+  public Army(String name) {
     this.name = name;
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
     this.units = new ArrayList<>();
+    setSize();
   }
 
   /**
@@ -49,6 +59,7 @@ public class Army {
     this.units = units;
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
+    setSize();
   }
 
   /**
@@ -67,6 +78,7 @@ public class Army {
    */
   public void add(Unit unit) {
     units.add(unit);
+    setSize();
   }
 
   /**
@@ -76,6 +88,7 @@ public class Army {
    */
   public void addAll(List<Unit> units) {
     this.units.addAll(units);
+    setSize();
   }
 
   /**
@@ -85,6 +98,7 @@ public class Army {
    */
   public void remove(Unit unit) {
     units.remove(unit);
+    setSize();
   }
 
   /**
@@ -161,6 +175,35 @@ public class Army {
       logger.log(Level.WARNING, () -> "No units in this army. Error: " + e.getMessage());
       return null;
     }
+  }
+
+
+  public final Integer getSize(){
+    return this.size.get();
+  }
+
+  public int getCommanderSize() {
+    return commanderSize.get();
+  }
+
+  public int getCavalrySize() {
+    return cavalrySize.get();
+  }
+
+  public int getInfantrySize() {
+    return infantrySize.get();
+  }
+
+  public int getRangedSize() {
+    return rangedSize.get();
+  }
+
+  public final void setSize() {
+    this.size.set(units.size());
+    this.commanderSize.set(getCommanderUnits().size());
+    this.cavalrySize.set(getCavalryUnits().size());
+    this.infantrySize.set(getInfantryUnits().size());
+    this.rangedSize.set(getRangedUnits().size());
   }
 
   @Override
