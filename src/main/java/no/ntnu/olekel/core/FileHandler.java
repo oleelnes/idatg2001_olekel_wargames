@@ -68,6 +68,7 @@ public class FileHandler {
       List<File> files = Files.list(path)
           .map(Path::toFile)
           .filter(File::isFile)
+          .filter(f -> getFileExtension(f.toString()).equals("csv"))
           .collect(Collectors.toList());
       files.forEach(f -> load(registerType, f.toPath()));
     } catch (IOException e) {
@@ -76,5 +77,19 @@ public class FileHandler {
   }
 
 
+  /**
+   * Method that returns a file's type/extension. This method was found on the internet,
+   * but is altered to better fit this project's purpose, see source below.
+   *
+   * Source: https://stackoverflow.com/a/25299575
+   *
+   * @param filePathString  The path to the file as a String.
+   * @return                The file extension.
+   */
+  private String getFileExtension(String filePathString) {
+    String fileName = new File(filePathString).getName();
+    int dotIndex = fileName.lastIndexOf('.');
+    return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+  }
 
 }

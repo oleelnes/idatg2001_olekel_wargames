@@ -47,16 +47,16 @@ public class WarGamesApp extends Application {
   @Override
   public void init() throws Exception {
 
-
+    //Create folder if they don't already exist.
     createFolder(new File(Constants.ROOT_FOLDER_PATH));
     createFolder(new File(Constants.ARMIES_FOLDER_PATH));
     createFolder(new File(Constants.BATTLES_FOLDER_PATH));
-    //todo: additional methods that load file information into the registers.
+
+    //Create armies and battles files if they don't already exist.
+    //todo: consider removing these, or at least adding example armies/battles to the files.
     createFile(new File(Constants.ARMIES_CSV_PATH));
     createFile(new File(Constants.BATTLES_CSV_PATH));
 
-    //This try-catch adds all files in a given directory to the given register.
-    //todo: abstract
     Facade.getInstance().getFileHandler()
         .loadDirectory(Path.of(Constants.ARMIES_FOLDER_PATH), FileHandler.RegisterType.ARMIES);
   }
