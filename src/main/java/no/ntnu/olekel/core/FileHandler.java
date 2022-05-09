@@ -1,16 +1,20 @@
 package no.ntnu.olekel.core;
 
+import no.ntnu.olekel.constants.Constants;
 import no.ntnu.olekel.core.units.*;
 import no.ntnu.olekel.ui.Facade;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Class that handles file saving and loading.
@@ -48,9 +52,28 @@ public class FileHandler {
       case BATTLES -> battleRegister.loadBattleCSV(path);
       default -> logger.log(Level.WARNING, "Invalid enum type!");
     }
-
   }
 
+  /**
+   * This method iterates over all files in a given directory and adds the data
+   * to a register given by the register type. Data will not be added to a register
+   * if it doesn't match with the requirements.
+   * todo: check if this is true (the last sentence).
+   *
+   * @param path          The path to the directory from which files are to be loaded.
+   * @param registerType  The register type into which data from file will be loaded.
+   */
+  public void loadDirectory(Path path, RegisterType registerType) {
+    try {
+      List<File> files = Files.list(path)
+          .map(Path::toFile)
+          .filter(File::isFile)
+          .collect(Collectors.toList());
+      files.forEach(f -> load(registerType, f.toPath()));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 
 

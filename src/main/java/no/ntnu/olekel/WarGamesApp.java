@@ -54,18 +54,11 @@ public class WarGamesApp extends Application {
     //todo: additional methods that load file information into the registers.
     createFile(new File(Constants.ARMIES_CSV_PATH));
     createFile(new File(Constants.BATTLES_CSV_PATH));
-    //Facade.getInstance().getFileHandler().
-       //load(FileHandler.RegisterType.ARMIES, Path.of(Constants.ARMIES_CSV_PATH));
 
-    try {
-      List<File> files = Files.list(Path.of(Constants.ARMIES_FOLDER_PATH))
-          .map(Path::toFile)
-          .filter(File::isFile)
-          .collect(Collectors.toList());
-      files.forEach(f -> Facade.getInstance().getFileHandler().load(FileHandler.RegisterType.ARMIES, f.toPath()));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    //This try-catch adds all files in a given directory to the given register.
+    //todo: abstract
+    Facade.getInstance().getFileHandler()
+        .loadDirectory(Path.of(Constants.ARMIES_FOLDER_PATH), FileHandler.RegisterType.ARMIES);
   }
 
   /**
