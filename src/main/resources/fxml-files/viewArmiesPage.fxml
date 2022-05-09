@@ -12,11 +12,11 @@
             <TableView fx:id="tableView">
               <columns>
                   <TableColumn fx:id="armyNameColumn" prefWidth="200.0" text="Army Name" />
-                  <TableColumn minWidth="7.0" prefWidth="115.0" text="Commander Units" />
-                  <TableColumn minWidth="7.0" prefWidth="115.0" text="Ranged Units" />
-                  <TableColumn minWidth="0.0" prefWidth="115.0" text="Infantry Units" />
-                  <TableColumn minWidth="7.0" prefWidth="115.0" text="Cavalry Units" />
-                  <TableColumn minWidth="7.0" prefWidth="75.0" text="Health" />
+                  <TableColumn fx:id="commanderUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Commander Units" />
+                  <TableColumn fx:id="rangedUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Ranged Units" />
+                  <TableColumn fx:id="infantryUnitsColumn" minWidth="0.0" prefWidth="115.0" text="Infantry Units" />
+                  <TableColumn fx:id="cavalryUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Cavalry Units" />
+                  <TableColumn fx:id="healthColumn" minWidth="7.0" prefWidth="75.0" text="Health" />
               </columns>
             </TableView>
          </children>

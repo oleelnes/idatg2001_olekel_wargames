@@ -47,11 +47,10 @@ public class FileHandler {
    */
   public void load(RegisterType registerType, Path path) {
     switch (registerType) {
-      //todo: loadArmyCSV doesn't have to return a list, it can simply add it to the list internally, fix this!
       case ARMIES -> armyRegister.loadArmyCSV(path);
       case BATTLES -> battleRegister.loadBattleCSV(path);
       default -> logger.log(Level.WARNING, "Invalid enum type!");
-    }
+    } 
   }
 
   /**

@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.ui.Facade;
@@ -59,6 +60,9 @@ public class ViewArmiesController implements Initializable {
       armyNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
       armyNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
       //armyNameColumn.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).);
+
+      commanderUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("commanderSize"));
+      commanderUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
       tableView.setEditable(false);
     } catch(NullPointerException e) {

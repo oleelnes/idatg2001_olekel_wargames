@@ -40,7 +40,7 @@ public class Scenes {
             stage.setMinWidth(820);
             stage.show();
         } catch (NullPointerException e) {
-            System.out.println("whattafac");
+            System.out.println("scene could not load");
         }
     }
 

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class ArmyRegister {
   private List<Army> armyRegister;
+
   static Logger logger = Logger.getLogger("logger");
 
   public ArmyRegister() {
@@ -89,4 +90,6 @@ public class ArmyRegister {
       logger.log(Level.WARNING, e.getMessage());
     }
   }
+
+
 }
