@@ -1,10 +1,14 @@
 package no.ntnu.olekel.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.ui.Facade;
@@ -48,7 +52,18 @@ public class ViewArmiesController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    ObservableList<Army> armyObservableList = FXCollections.observableArrayList();
+    armyObservableList.addAll(Facade.getInstance().getArmyRegister().getArmyRegister());
+    try {
+      tableView.setItems(armyObservableList);
+      armyNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+      armyNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+      //armyNameColumn.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).);
 
+      tableView.setEditable(false);
+    } catch(NullPointerException e) {
+      System.err.println("Army list is empty"); //will improve exception handling later.
+    }
   }
 
   @FXML

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import no.ntnu.olekel.constants.Constants;
 import no.ntnu.olekel.core.*;
 import no.ntnu.olekel.core.units.*;
+import no.ntnu.olekel.ui.Facade;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,6 +52,8 @@ public class WarGamesApp extends Application {
     //todo: additional methods that load file information into the registers.
     createFile(new File(Constants.ARMIES_CSV_PATH));
     createFile(new File(Constants.BATTLES_CSV_PATH));
+    Facade.getInstance().getFileHandler().
+       load(FileHandler.RegisterType.ARMIES, Path.of(Constants.ARMIES_CSV_PATH));
   }
 
   /**

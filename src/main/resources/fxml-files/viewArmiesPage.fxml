@@ -9,9 +9,9 @@
    <center>
       <VBox alignment="CENTER">
          <children>
-            <TableView>
+            <TableView fx:id="tableView">
               <columns>
-                  <TableColumn prefWidth="200.0" text="Army Name" />
+                  <TableColumn fx:id="armyNameColumn" prefWidth="200.0" text="Army Name" />
                   <TableColumn minWidth="7.0" prefWidth="115.0" text="Commander Units" />
                   <TableColumn minWidth="7.0" prefWidth="115.0" text="Ranged Units" />
                   <TableColumn minWidth="0.0" prefWidth="115.0" text="Infantry Units" />

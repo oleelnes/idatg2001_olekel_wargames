@@ -67,7 +67,7 @@ public class ArmyRegister {
    * @param path  The path to the csv file to read
    * @return      An instance of the class Army
    */
-  public Army loadArmyCSV(Path path) {
+  public void loadArmyCSV(Path path) {
     Army armyFromFile;
 
     try (BufferedReader reader = Files.newBufferedReader(path)) {
@@ -84,10 +84,9 @@ public class ArmyRegister {
           default -> logger.log(Level.INFO, "Invalid type was attempted to be read");
         }
       }
-      return armyFromFile;
+      armyRegister.add(armyFromFile);
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
-      return null;
     }
   }
 }

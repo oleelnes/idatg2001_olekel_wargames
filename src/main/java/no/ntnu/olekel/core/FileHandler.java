@@ -19,8 +19,13 @@ import java.util.logging.Logger;
  */
 public class FileHandler {
   static Logger logger = Logger.getLogger("logger");
-  private ArmyRegister armyRegister = Facade.getInstance().getArmyRegister();
-  private BattleRegister battleRegister = Facade.getInstance().getBattleRegister();
+  private ArmyRegister armyRegister;
+  private BattleRegister battleRegister;
+
+  public FileHandler(ArmyRegister armyRegister, BattleRegister battleRegister) {
+    this.armyRegister = armyRegister;
+    this.battleRegister = battleRegister;
+  }
 
   public enum RegisterType {
     ARMIES,
@@ -36,11 +41,14 @@ public class FileHandler {
   public void load(RegisterType registerType, Path path) {
     switch (registerType) {
       //todo: loadArmyCSV doesn't have to return a list, it can simply add it to the list internally, fix this!
-      case ARMIES -> armyRegister.getArmyRegister().add(armyRegister.loadArmyCSV(path));
+      case ARMIES -> armyRegister.loadArmyCSV(path);
       case BATTLES -> battleRegister.loadBattleCSV(path);
       default -> logger.log(Level.WARNING, "Invalid enum type!");
     }
+
   }
+
+
 
 
 }

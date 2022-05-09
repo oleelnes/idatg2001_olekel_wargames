@@ -2,6 +2,7 @@ package no.ntnu.olekel.ui;
 
 import no.ntnu.olekel.core.ArmyRegister;
 import no.ntnu.olekel.core.BattleRegister;
+import no.ntnu.olekel.core.FileHandler;
 
 import java.lang.module.Configuration;
 
@@ -17,6 +18,7 @@ public class Facade {
     private final Scenes scenes;
     private BattleRegister battleRegister;
     private ArmyRegister armyRegister;
+    private FileHandler fileHandler;
 
 
     /**
@@ -25,6 +27,9 @@ public class Facade {
      */
     private Facade(){
         this.scenes = new Scenes();
+        this.armyRegister = new ArmyRegister();
+        this.battleRegister = new BattleRegister();
+        this.fileHandler = new FileHandler(armyRegister, battleRegister);
     }
 
     /**
@@ -52,5 +57,9 @@ public class Facade {
 
     public BattleRegister getBattleRegister() {
         return battleRegister;
+    }
+
+    public FileHandler getFileHandler(){
+        return fileHandler;
     }
 }
