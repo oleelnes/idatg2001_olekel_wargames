@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,8 @@ public class FileHandler {
   static Logger logger = Logger.getLogger("logger");
   private ArmyRegister armyRegister;
   private BattleRegister battleRegister;
+  private ArrayList<Path> armyPaths;
+  private ArrayList<Path> battlePaths;
 
   public FileHandler(ArmyRegister armyRegister, BattleRegister battleRegister) {
     this.armyRegister = armyRegister;

@@ -12,11 +12,13 @@ import no.ntnu.olekel.ui.Facade;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * The class WarGamesApp.
@@ -52,8 +54,18 @@ public class WarGamesApp extends Application {
     //todo: additional methods that load file information into the registers.
     createFile(new File(Constants.ARMIES_CSV_PATH));
     createFile(new File(Constants.BATTLES_CSV_PATH));
-    Facade.getInstance().getFileHandler().
-       load(FileHandler.RegisterType.ARMIES, Path.of(Constants.ARMIES_CSV_PATH));
+    //Facade.getInstance().getFileHandler().
+       //load(FileHandler.RegisterType.ARMIES, Path.of(Constants.ARMIES_CSV_PATH));
+
+    try {
+      List<File> files = Files.list(Path.of(Constants.ARMIES_FOLDER_PATH))
+          .map(Path::toFile)
+          .filter(File::isFile)
+          .collect(Collectors.toList());
+      files.forEach(f -> Facade.getInstance().getFileHandler().load(FileHandler.RegisterType.ARMIES, f.toPath()));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
