@@ -64,6 +64,15 @@ public class ViewArmiesController implements Initializable {
       commanderUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("commanderSize"));
       commanderUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
+      cavalryUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("cavalrySize"));
+      cavalryUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+      infantryUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("infantrySize"));
+      infantryUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+      rangedUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("rangedSize"));
+      rangedUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
       tableView.setEditable(false);
     } catch(NullPointerException e) {
       System.err.println("Army list is empty"); //will improve exception handling later.

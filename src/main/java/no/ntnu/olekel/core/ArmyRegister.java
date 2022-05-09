@@ -86,6 +86,7 @@ public class ArmyRegister {
         }
       }
       armyRegister.add(armyFromFile);
+      System.out.println(armyFromFile.getCavalryUnits().get(0).getName());
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
     }
