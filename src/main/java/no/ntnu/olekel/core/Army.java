@@ -2,15 +2,13 @@ package no.ntnu.olekel.core;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import no.ntnu.olekel.core.units.CommanderUnit;
-import no.ntnu.olekel.core.units.InfantryUnit;
-import no.ntnu.olekel.core.units.RangedUnit;
-import no.ntnu.olekel.core.units.Unit;
+import no.ntnu.olekel.core.units.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -27,11 +25,11 @@ public class Army {
   private List<Unit> units;
   private final Random random;
   private final Logger logger;
-  private IntegerProperty size = new SimpleIntegerProperty();
-  private IntegerProperty commanderSize = new SimpleIntegerProperty();
-  private IntegerProperty cavalrySize = new SimpleIntegerProperty();
-  private IntegerProperty infantrySize = new SimpleIntegerProperty();
-  private IntegerProperty rangedSize = new SimpleIntegerProperty();
+  private final IntegerProperty size = new SimpleIntegerProperty();
+  private final IntegerProperty commanderSize = new SimpleIntegerProperty();
+  private final IntegerProperty cavalrySize = new SimpleIntegerProperty();
+  private final IntegerProperty infantrySize = new SimpleIntegerProperty();
+  private final IntegerProperty rangedSize = new SimpleIntegerProperty();
 
 
 
@@ -140,8 +138,10 @@ public class Army {
    * instances of CavalryUnit
    */
   public List<Unit> getCavalryUnits(){
-    return units.stream().filter(u -> u.getClass().getName().equals("no.ntnu.olekel.CavalryUnit")).collect(Collectors.toList());
+    return units.stream().filter(CavalryUnit.class::isInstance)
+        .filter(u -> u.getClass() != CommanderUnit.class).collect(Collectors.toList());
   }
+
 
   /**
    * Method that returns a list sorted with only ranged units.
