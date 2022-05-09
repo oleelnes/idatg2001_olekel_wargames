@@ -1,16 +1,21 @@
 package no.ntnu.olekel.constants;
 
 /**
- *
+ * Class that contains vital constants.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
  */
 public final class Constants {
-  public static final String VERSION = "0.5";
+
+  private Constants() {
+    throw new IllegalStateException("Utility class");
+  }
+
+  public static final String VERSION = "0.5-SNAPSHOT";
 
   public static final String ROOT_DIRECTORY = "user.home";
-  public static final String WARGAMES_FOLDER_LOCATION = "/wargames_olekel"; //todo: make compliant (with config) later
+  public static final String WARGAMES_FOLDER_LOCATION = "/wargames_olekel";
   public static final String ARMIES_FOLDER_LOCATION = "/armies";
   public static final String BATTLES_FOLDER_LOCATION = "/battles";
 
