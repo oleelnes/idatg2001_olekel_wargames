@@ -92,5 +92,8 @@ public class ArmyRegister {
     }
   }
 
+  public void update(){
+    armyRegister.forEach(u -> u.updateHealth());
+  }
 
 }

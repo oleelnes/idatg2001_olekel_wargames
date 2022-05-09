@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
@@ -48,7 +49,7 @@ public class ViewArmiesController implements Initializable {
   private TableColumn<Army, Integer> cavalryUnitsColumn;
 
   @FXML
-  private TableColumn<Army, Integer> healthColumn;
+  private TableColumn<Army, String> healthColumn;
 
 
   @Override
@@ -72,6 +73,11 @@ public class ViewArmiesController implements Initializable {
 
       rangedUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("rangedSize"));
       rangedUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+      Facade.getInstance().getArmyRegister().update();
+
+      healthColumn.setCellValueFactory(new PropertyValueFactory<>("armyHealthPercentage"));
+      healthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
       tableView.setEditable(false);
     } catch(NullPointerException e) {

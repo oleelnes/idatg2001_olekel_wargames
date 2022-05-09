@@ -1,7 +1,6 @@
 package no.ntnu.olekel.core;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import no.ntnu.olekel.core.units.*;
 
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class Army {
   private final IntegerProperty cavalrySize = new SimpleIntegerProperty();
   private final IntegerProperty infantrySize = new SimpleIntegerProperty();
   private final IntegerProperty rangedSize = new SimpleIntegerProperty();
+  private final StringProperty armyHealthPercentage = new SimpleStringProperty();
 
 
 
@@ -177,6 +177,15 @@ public class Army {
     }
   }
 
+  /**
+   * Method that returns the overall health status for the army as a percentage.
+   *
+   * @return  A float that represents the army's health as a percentage.
+   */
+  public Integer getPercentHealthArmy(){
+    return units.stream().map(Unit::getPercentHealth).reduce(0, Integer::sum) / units.size();
+  }
+
 
   public final Integer getSize(){
     return this.size.get();
@@ -196,6 +205,15 @@ public class Army {
 
   public int getRangedSize() {
     return rangedSize.get();
+  }
+
+
+  public String getArmyHealthPercentage() {
+    return armyHealthPercentage.get();
+  }
+
+  public final void updateHealth(){
+    this.armyHealthPercentage.set(getPercentHealthArmy() + "%");
   }
 
   public final void setSize() {

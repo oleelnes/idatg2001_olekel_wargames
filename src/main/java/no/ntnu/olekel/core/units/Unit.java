@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public abstract class Unit {
   private String name;
   private int health;
+  private int initialHealth;
   private int attack;
   private int armor;
   private static final Logger logger = Logger.getLogger(Unit.class.toString());
@@ -28,6 +29,7 @@ public abstract class Unit {
     this.name = name;
     try {
       setHealth(health);
+      this.initialHealth = health;
     } catch (IllegalArgumentException e) {
       setHealth(10);
       logger.log(Level.SEVERE, "caught by setHealth in constructor: {0} ",  e.getMessage());
@@ -67,6 +69,16 @@ public abstract class Unit {
    */
   public int getHealth() {
     return this.health;
+  }
+
+  /**
+   * Returns a float that represents the percentage of health left compared
+   * to the initial value for health.
+   *
+   * @return  The float representing the percentage of health left.
+   */
+  public Integer getPercentHealth(){
+    return (health / initialHealth) * 100;
   }
 
   /**
