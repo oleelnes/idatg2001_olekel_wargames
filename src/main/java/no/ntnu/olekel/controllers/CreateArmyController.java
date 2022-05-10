@@ -98,6 +98,29 @@ public class CreateArmyController implements Initializable {
   @FXML
   private TextField armyNameInput;
 
+  @FXML
+  public void addCommanderUnitsAction(ActionEvent event) {
+
+  }
+
+  @FXML
+  public void addInfantryUnitsAction(ActionEvent event) {
+
+  }
+
+  @FXML
+  public void addRangedUnitsAction(ActionEvent event) {
+
+  }
+
+  @FXML
+  public void addCavalryUnitsAction(ActionEvent event) {
+
+  }
+
+  private boolean checkDigit(){
+    return true;
+  }
 
 
   public enum State {

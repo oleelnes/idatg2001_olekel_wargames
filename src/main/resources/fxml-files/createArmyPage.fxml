@@ -141,22 +141,22 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="310.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button fx:id="commanderUnitsButton" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="commanderUnitsButton" mnemonicParsing="false" onAction="#addCommanderUnitsAction" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="infantryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="infantryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" onAction="#addInfantryUnitsAction" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="rangedUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="rangedUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" onAction="#addRangedUnitsAction" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="cavalryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="cavalryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" onAction="#addCavalryUnitsAction" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
@@ -166,7 +166,7 @@
                            </children>
                         </HBox>
                      </children></VBox>
-                  <ListView prefHeight="200.0" prefWidth="300.0" />
+                  <ListView fx:id="existingUnitsListView" prefHeight="200.0" prefWidth="300.0" />
                </children>
             </HBox>
             <Separator prefWidth="200.0">
