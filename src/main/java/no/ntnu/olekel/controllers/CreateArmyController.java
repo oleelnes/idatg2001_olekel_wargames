@@ -7,11 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import no.ntnu.olekel.constants.ClassPaths;
+import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -83,6 +85,9 @@ public class CreateArmyController implements Initializable {
   @FXML
   private Button rangedUnitsButton;
 
+  @FXML
+  private TextField armyNameInput;
+
 
   /**
    * Method that loads the main page through the loadScene() method in Scenes.
@@ -97,10 +102,10 @@ public class CreateArmyController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    setCreateUnitVisibility(false);
+    setAddUnitsContentVisibility(false);
   }
 
-  private void setCreateUnitVisibility(boolean visibility){
+  private void setAddUnitsContentVisibility(boolean visibility){
     commanderUnitsAmountInput.setVisible(visibility);
     cavalryUnitsAmountInput.setVisible(visibility);
     infantryUnitsAmountInput.setVisible(visibility);
@@ -129,6 +134,16 @@ public class CreateArmyController implements Initializable {
 
   @FXML
   public void applyArmyNameAction(ActionEvent event) {
-    setCreateUnitVisibility(true);
+
+    if(Facade.getInstance().getArmyRegister().getArmyRegister().stream()
+        .map(Army::getName)
+        .noneMatch(armyNameInput.getText().toLowerCase(Locale.ROOT)::equals)
+        && !armyNameInput.getText().isEmpty()) {
+      setAddUnitsContentVisibility(true);
+    } else {
+      setAddUnitsContentVisibility(false);
+      //todo: give user information about what went wrong!
+    }
+
   }
 }

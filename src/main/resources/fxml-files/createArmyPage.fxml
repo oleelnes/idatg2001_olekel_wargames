@@ -23,7 +23,7 @@
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Label>
-                  <TextField>
+                  <TextField fx:id="armyNameInput">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
