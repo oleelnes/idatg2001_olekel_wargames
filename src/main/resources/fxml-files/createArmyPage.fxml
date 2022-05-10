@@ -25,9 +25,14 @@
                      </HBox.margin></Label>
                   <TextField>
                      <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
+                  <Button mnemonicParsing="false" onAction="#applyArmyNameAction" text="Apply">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Button>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="233.0" layoutY="10.0" minHeight="40.0" text="Alliance:">
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -64,30 +69,30 @@
                            <children>
                               <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label prefHeight="75.0" text="Commander Units" />
-                                    <Label layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Infantry Units" />
-                                    <Label layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Ranged Units" />
-                                    <Label layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Cavalry Units" />
+                                    <Label fx:id="commanderUnitsAmountLabel" prefHeight="75.0" text="Commander Units" />
+                                    <Label fx:id="infantryUnitsAmountLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Infantry Units" />
+                                    <Label fx:id="rangedUnitsAmountLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Ranged Units" />
+                                    <Label fx:id="cavalryUnitsAmountLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Cavalry Units" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <TextField maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="commanderUnitsAmountInput" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="infantryUnitsAmountInput" layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="110.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="rangedUnitsAmountInput" layoutX="23.0" layoutY="110.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="135.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="cavalryUnitsAmountInput" layoutX="23.0" layoutY="135.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
@@ -96,38 +101,38 @@
                               </VBox>
                               <VBox alignment="TOP_RIGHT" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label prefHeight="75.0" text="Health:">
+                                    <Label fx:id="commanderUnitsHealthLabel" prefHeight="75.0" text="Health:">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Health:">
+                                    <Label fx:id="infantryUnitsHealthLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Health:">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Health:" />
-                                    <Label layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Health:" />
+                                    <Label fx:id="rangedUnitsHealthLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Health:" />
+                                    <Label fx:id="cavalryUnitsHealthLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Health:" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <TextField maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="commanderUnitsHealthInput" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="infantryUnitsHealthInput" layoutX="23.0" layoutY="35.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="rangedUnitsHealthInput" layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
+                                    <TextField fx:id="cavalryUnitsHealthInput" layoutX="23.0" layoutY="60.0" maxWidth="75.0" prefWidth="10.0">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
@@ -136,22 +141,22 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="310.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="commanderUnitsButton" mnemonicParsing="false" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="infantryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="rangedUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
+                                    <Button fx:id="cavalryUnitsButton" layoutX="34.0" layoutY="10.0" mnemonicParsing="false" prefWidth="65.0" text="Add">
                                        <VBox.margin>
                                           <Insets top="50.0" />
                                        </VBox.margin>
