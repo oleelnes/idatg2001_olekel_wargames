@@ -207,7 +207,6 @@ public class Army {
     return rangedSize.get();
   }
 
-
   public String getArmyHealthPercentage() {
     return armyHealthPercentage.get();
   }
@@ -222,6 +221,10 @@ public class Army {
     this.cavalrySize.set(getCavalryUnits().size());
     this.infantrySize.set(getInfantryUnits().size());
     this.rangedSize.set(getRangedUnits().size());
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override

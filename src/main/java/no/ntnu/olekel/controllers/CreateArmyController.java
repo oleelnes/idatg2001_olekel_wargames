@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 public class CreateArmyController implements Initializable {
   Scenes scenes = Facade.getInstance().getScenes();
 
+  Army army;
+
   @FXML
   private TextField commanderUnitsAmountInput;
 
@@ -74,6 +76,9 @@ public class CreateArmyController implements Initializable {
   private Label rangedUnitsHealthLabel;
 
   @FXML
+  private Label addNewUnitsLabel;
+
+  @FXML
   private Button commanderUnitsButton;
 
   @FXML
@@ -103,6 +108,7 @@ public class CreateArmyController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     setAddUnitsContentVisibility(false);
+    army = new Army("Temporary");
   }
 
   private void setAddUnitsContentVisibility(boolean visibility){
@@ -132,16 +138,26 @@ public class CreateArmyController implements Initializable {
     rangedUnitsButton.setVisible(visibility);
   }
 
+  /**
+   * Method that checks whether user input for army name is valid/unique
+   * when "Apply" button in createArmyPage.fxml is clicked, and hides or shows
+   * content under "Add New Units" depending on validity of the input.
+   *
+   * @param event ActionEvent that is triggered when button is clicked.
+   */
   @FXML
   public void applyArmyNameAction(ActionEvent event) {
-
     if(Facade.getInstance().getArmyRegister().getArmyRegister().stream()
-        .map(Army::getName)
+        .map(a -> a.getName().toLowerCase(Locale.ROOT))
         .noneMatch(armyNameInput.getText().toLowerCase(Locale.ROOT)::equals)
-        && !armyNameInput.getText().isEmpty()) {
+        && !armyNameInput.getText().isEmpty() && armyNameInput.getText().length() < 30) {
       setAddUnitsContentVisibility(true);
+      army.setName(armyNameInput.getText());
+      armyNameInput.clear();
+      addNewUnitsLabel.setText("Add New Units to " + army.getName());
     } else {
       setAddUnitsContentVisibility(false);
+      addNewUnitsLabel.setText("Add New Units");
       //todo: give user information about what went wrong!
     }
 
