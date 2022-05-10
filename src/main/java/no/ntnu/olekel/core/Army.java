@@ -183,7 +183,10 @@ public class Army {
    * @return  A float that represents the army's health as a percentage.
    */
   public Integer getPercentHealthArmy(){
-    return units.stream().map(Unit::getPercentHealth).reduce(0, Integer::sum) / units.size();
+    if (!units.isEmpty())
+      return units.stream().map(Unit::getPercentHealth)
+          .reduce(0, Integer::sum) / units.size();
+    else return 0;
   }
 
 
@@ -216,11 +219,16 @@ public class Army {
   }
 
   public final void setSize() {
-    this.size.set(units.size());
-    this.commanderSize.set(getCommanderUnits().size());
-    this.cavalrySize.set(getCavalryUnits().size());
-    this.infantrySize.set(getInfantryUnits().size());
-    this.rangedSize.set(getRangedUnits().size());
+    if (!units.isEmpty()) this.size.set(units.size());
+    else this.size.set(0);
+    if (!getCommanderUnits().isEmpty()) this.commanderSize.set(getCommanderUnits().size());
+    else this.commanderSize.set(0);
+    if (!getCavalryUnits().isEmpty()) this.cavalrySize.set(getCavalryUnits().size());
+    else this.cavalrySize.set(0);
+    if (!getInfantryUnits().isEmpty()) this.infantrySize.set(getInfantryUnits().size());
+    else this.infantrySize.set(0);
+    if (!getRangedUnits().isEmpty()) this.rangedSize.set(getRangedUnits().size());
+    else this.rangedSize.set(0);
   }
 
   public void setName(String name) {

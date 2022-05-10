@@ -8,11 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.core.units.Unit;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,9 +26,11 @@ import java.util.ResourceBundle;
  * @author  Ole Kristian Elnæs
  */
 public class CreateArmyController implements Initializable {
-  Scenes scenes = Facade.getInstance().getScenes();
-
-  Army army;
+  private Scenes scenes = Facade.getInstance().getScenes();
+  private Army army = Facade.getInstance().getArmy();
+  private List<Unit> units;
+  String armyName;
+  State state;
 
   @FXML
   private TextField commanderUnitsAmountInput;
@@ -94,6 +99,13 @@ public class CreateArmyController implements Initializable {
   private TextField armyNameInput;
 
 
+
+  public enum State {
+    NEW,
+    EDIT;
+
+  }
+
   /**
    * Method that loads the main page through the loadScene() method in Scenes.
    *
@@ -108,7 +120,9 @@ public class CreateArmyController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     setAddUnitsContentVisibility(false);
-    army = new Army("Temporary");
+    armyName = ""; //this might work but take a closer look at it.
+    units = new ArrayList<>();
+    state = State.NEW;
   }
 
   private void setAddUnitsContentVisibility(boolean visibility){
@@ -152,14 +166,65 @@ public class CreateArmyController implements Initializable {
         .noneMatch(armyNameInput.getText().toLowerCase(Locale.ROOT)::equals)
         && !armyNameInput.getText().isEmpty() && armyNameInput.getText().length() < 30) {
       setAddUnitsContentVisibility(true);
-      army.setName(armyNameInput.getText());
+      armyName = armyNameInput.getText();
+      addNewUnitsLabel.setText("Add New Units to " + armyName);
       armyNameInput.clear();
-      addNewUnitsLabel.setText("Add New Units to " + army.getName());
-    } else {
+      if (state == State.EDIT) Facade.getInstance().getArmy().setName(armyName);
+    } else if (!armyName.equals("Temporary")) {
+      //dialog window opens!!!
+    }
+    else {
       setAddUnitsContentVisibility(false);
       addNewUnitsLabel.setText("Add New Units");
       //todo: give user information about what went wrong!
     }
-
   }
+
+  @FXML
+  public void saveArmyAction(ActionEvent event) {
+    switch(state) {
+      case NEW -> newArmy();
+      case EDIT -> editArmy();
+      default -> System.err.println("not valid input");
+    }
+  }
+
+  private void newArmy(){
+    if (!armyName.equals("")) {
+      Army newArmy = new Army(armyName);
+      units.clear();
+      newArmy.getAllUnits().addAll(units);
+      Facade.getInstance().getArmyRegister().getArmyRegister().add(newArmy);
+      Facade.getInstance().setArmy(newArmy);
+      setState(State.EDIT); //state is set to EDIT,
+      // as the army is now created and set to be the tournament present in the Facade
+    } else {
+      System.err.println("Please enter a name for the army!");
+      //todo: dialog window!
+    }
+    // in viewArmies, when edit is pressed, also set Facade army to be the selected army.
+  }
+
+  private void editArmy(){
+    if (Facade.getInstance().getArmyRegister().getArmyRegister().stream()
+        .map(a -> a.getName().toLowerCase(Locale.ROOT))
+        .anyMatch(army.getName().toLowerCase(Locale.ROOT)::equals)) {
+      Facade.getInstance().getArmyRegister().getArmyRegister().remove(army);
+    }
+    Facade.getInstance().getArmyRegister().getArmyRegister().add(army);
+  }
+
+  public void setState(State state) {
+    this.state = state;
+    updateName();
+  }
+
+  private void updateName(){
+    switch (state) {
+      case NEW -> armyName = "";
+      case EDIT -> armyName = Facade.getInstance().getArmy().getName();
+      default -> System.err.println("not valid input");
+    }
+  }
+
 }

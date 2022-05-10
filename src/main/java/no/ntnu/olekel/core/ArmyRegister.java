@@ -93,7 +93,7 @@ public class ArmyRegister {
   }
 
   public void update(){
-    armyRegister.forEach(u -> u.updateHealth());
+    if (!armyRegister.isEmpty()) armyRegister.forEach(Army::updateHealth);
   }
 
 }
