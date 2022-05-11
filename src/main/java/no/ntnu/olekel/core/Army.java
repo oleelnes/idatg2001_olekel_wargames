@@ -189,6 +189,16 @@ public class Army {
     else return 0;
   }
 
+  public void addUnit(Unit unit) {
+    this.units.add(unit);
+    setSize();
+  }
+
+  public void addUnitList(List<Unit> units) {
+    this.units.addAll(units);
+    setSize();
+  }
+
 
   public final Integer getSize(){
     return this.size.get();

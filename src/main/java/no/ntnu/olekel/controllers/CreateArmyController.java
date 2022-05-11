@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
 public class CreateArmyController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private Army army = Facade.getInstance().getArmy();
+  private Army newArmy;
   private List<Unit> units;
   private List<Text> listContent;
   private String armyName;
@@ -107,6 +108,11 @@ public class CreateArmyController implements Initializable {
   @FXML
   private ListView<Text> existingUnitsListView;
 
+  public enum State {
+    NEW,
+    EDIT;
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     setAddUnitsContentVisibility(false);
@@ -114,6 +120,7 @@ public class CreateArmyController implements Initializable {
     this.units = new ArrayList<>();
     this.state = State.NEW;
     this.listContent = new ArrayList<>();
+    this.newArmy = new Army("");
 
     ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
     existingUnitsListView.setItems(stringObservableList);
@@ -149,28 +156,24 @@ public class CreateArmyController implements Initializable {
   }
 
   private void addUnits(UnitFactory.Type unitType, int amount, int health){
-    army.getAllUnits()
-        .addAll(Facade.getInstance().getUnitFactory().createUnitList(unitType, "name", health, amount));
+    newArmy.addUnitList(Facade.getInstance().getUnitFactory().createUnitList(unitType, "name", health, amount));
     updateListContent();
   }
 
   private void updateListContent(){
     listContent.clear();
-    for (int i = 0; i < army.getAllUnits().size(); i++) {
-      Text text = new Text(army.getAllUnits().get(i).getType() + ": " + army.getAllUnits().get(i).toString());
+    if(state == State.EDIT) setListContent(army);
+    else setListContent(newArmy);
+    ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
+    existingUnitsListView.setItems(stringObservableList);
+  }
+
+  private void setListContent(Army listArmy){
+    for (int i = 0; i < listArmy.getAllUnits().size(); i++) {
+      Text text = new Text(listArmy.getAllUnits().get(i).getType() + ": " + listArmy.getAllUnits().get(i).toString());
       text.setWrappingWidth(existingUnitsListView.getWidth());
       listContent.add(text);
     }
-    ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
-    existingUnitsListView.setItems(stringObservableList);
-
-  }
-
-
-  public enum State {
-    NEW,
-    EDIT;
-
   }
 
   /**
@@ -256,11 +259,12 @@ public class CreateArmyController implements Initializable {
 
   private void newArmy(){
     if (!armyName.equals("")) {
-      Army newArmy = new Army(armyName);
+      newArmy.setName(armyName);
       units.clear();
-      newArmy.getAllUnits().addAll(units);
+      newArmy.addUnitList(units);
       Facade.getInstance().getArmyRegister().getArmyRegister().add(newArmy);
       Facade.getInstance().setArmy(newArmy);
+      army = Facade.getInstance().getArmy();
       setState(State.EDIT); //state is set to EDIT,
       // as the army is now created and set to be the tournament present in the Facade
     } else {
@@ -276,6 +280,7 @@ public class CreateArmyController implements Initializable {
         .anyMatch(army.getName().toLowerCase(Locale.ROOT)::equals)) {
       Facade.getInstance().getArmyRegister().getArmyRegister().remove(army);
     }
+    //army.addUnitList(newArmy.getAllUnits());
     Facade.getInstance().getArmyRegister().getArmyRegister().add(army);
   }
 
