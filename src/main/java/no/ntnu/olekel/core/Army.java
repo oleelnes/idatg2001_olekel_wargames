@@ -224,8 +224,16 @@ public class Army {
     return armyHealthPercentage.get();
   }
 
+  public int getHealth(){
+    return units.stream().map(Unit::getHealth).reduce(0, Integer::sum);
+  }
+
+  public int getMaxHealth(){
+    return units.stream().map(Unit::getInitialHealth).reduce(0, Integer::sum);
+  }
+
   public final void updateHealth(){
-    this.armyHealthPercentage.set(getPercentHealthArmy() + "%");
+    this.armyHealthPercentage.set(getHealth() + "/" + getMaxHealth() + " (" + getPercentHealthArmy() + "%)");
   }
 
   public final void setSize() {

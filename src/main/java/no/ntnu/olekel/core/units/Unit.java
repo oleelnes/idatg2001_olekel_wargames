@@ -99,6 +99,12 @@ public abstract class Unit {
     return this.armor;
   }
 
+
+  public int getInitialHealth() {
+    return initialHealth;
+  }
+
+
   /**
    * Sets the health of the unit. Checks whether the value sent to it is within bounds, if not,
    * an exception is thrown.

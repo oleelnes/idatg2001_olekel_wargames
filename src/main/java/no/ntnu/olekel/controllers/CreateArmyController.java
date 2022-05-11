@@ -188,11 +188,6 @@ public class CreateArmyController implements Initializable {
   }
 
 
-
-  private void setListView(){
-
-  }
-
   private void setAddUnitsContentVisibility(boolean visibility){
     commanderUnitsAmountInput.setVisible(visibility);
     cavalryUnitsAmountInput.setVisible(visibility);
