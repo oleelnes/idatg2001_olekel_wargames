@@ -4,6 +4,7 @@ import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
 import no.ntnu.olekel.core.BattleRegister;
 import no.ntnu.olekel.core.FileHandler;
+import no.ntnu.olekel.core.units.UnitFactory;
 
 import java.lang.module.Configuration;
 
@@ -17,9 +18,10 @@ import java.lang.module.Configuration;
 public class Facade {
     private static volatile Facade instance;
     private final Scenes scenes;
-    private BattleRegister battleRegister;
-    private ArmyRegister armyRegister;
-    private FileHandler fileHandler;
+    private final BattleRegister battleRegister;
+    private final ArmyRegister armyRegister;
+    private final FileHandler fileHandler;
+    private UnitFactory unitFactory;
     private Army army;
 
 
@@ -32,7 +34,8 @@ public class Facade {
         this.armyRegister = new ArmyRegister();
         this.battleRegister = new BattleRegister();
         this.fileHandler = new FileHandler(armyRegister, battleRegister);
-        army = new Army("Temporary");
+        this.unitFactory = new UnitFactory();
+        this.army = new Army("Temporary");
     }
 
     /**
@@ -68,6 +71,10 @@ public class Facade {
 
     public Army getArmy(){
         return army;
+    }
+
+    public UnitFactory getUnitFactory() {
+        return unitFactory;
     }
 
     public void setArmy(Army army) {
