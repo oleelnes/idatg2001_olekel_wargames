@@ -1,14 +1,19 @@
 package no.ntnu.olekel.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.units.Unit;
+import no.ntnu.olekel.core.units.UnitFactory;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
@@ -29,8 +34,9 @@ public class CreateArmyController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private Army army = Facade.getInstance().getArmy();
   private List<Unit> units;
-  String armyName;
-  State state;
+  private List<Text> listContent;
+  private String armyName;
+  private State state;
 
   @FXML
   private TextField commanderUnitsAmountInput;
@@ -99,27 +105,65 @@ public class CreateArmyController implements Initializable {
   private TextField armyNameInput;
 
   @FXML
-  public void addCommanderUnitsAction(ActionEvent event) {
+  private ListView<Text> existingUnitsListView;
 
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    setAddUnitsContentVisibility(false);
+    this.armyName = ""; //this might work but take a closer look at it.
+    this.units = new ArrayList<>();
+    this.state = State.NEW;
+    this.listContent = new ArrayList<>();
+
+    ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
+    existingUnitsListView.setItems(stringObservableList);
+    //updateListContent();
+  }
+
+  @FXML
+  public void addCommanderUnitsAction(ActionEvent event) {
+    addUnits(UnitFactory.Type.COMMANDER, Integer.parseInt(commanderUnitsAmountInput.getText()),
+        Integer.parseInt(commanderUnitsHealthInput.getText()));
   }
 
   @FXML
   public void addInfantryUnitsAction(ActionEvent event) {
-
+    addUnits(UnitFactory.Type.INFANTRY, Integer.parseInt(infantryUnitsAmountInput.getText()),
+        Integer.parseInt(infantryUnitsHealthInput.getText()));
   }
 
   @FXML
   public void addRangedUnitsAction(ActionEvent event) {
-
+    addUnits(UnitFactory.Type.RANGED, Integer.parseInt(rangedUnitsAmountInput.getText()),
+        Integer.parseInt(rangedUnitsHealthInput.getText()));
   }
 
   @FXML
   public void addCavalryUnitsAction(ActionEvent event) {
-
+    addUnits(UnitFactory.Type.CAVALRY, Integer.parseInt(cavalryUnitsAmountInput.getText()),
+        Integer.parseInt(cavalryUnitsHealthInput.getText()));
   }
 
   private boolean checkDigit(){
     return true;
+  }
+
+  private void addUnits(UnitFactory.Type unitType, int amount, int health){
+    army.getAllUnits()
+        .addAll(Facade.getInstance().getUnitFactory().createUnitList(unitType, "name", health, amount));
+    updateListContent();
+  }
+
+  private void updateListContent(){
+    listContent.clear();
+    for (int i = 0; i < army.getAllUnits().size(); i++) {
+      Text text = new Text(army.getAllUnits().get(i).getType() + ": " + army.getAllUnits().get(i).toString());
+      text.setWrappingWidth(existingUnitsListView.getWidth());
+      listContent.add(text);
+    }
+    ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
+    existingUnitsListView.setItems(stringObservableList);
+
   }
 
 
@@ -140,12 +184,10 @@ public class CreateArmyController implements Initializable {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    setAddUnitsContentVisibility(false);
-    armyName = ""; //this might work but take a closer look at it.
-    units = new ArrayList<>();
-    state = State.NEW;
+
+
+  private void setListView(){
+
   }
 
   private void setAddUnitsContentVisibility(boolean visibility){
