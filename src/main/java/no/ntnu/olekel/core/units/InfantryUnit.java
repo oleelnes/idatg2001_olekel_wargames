@@ -40,5 +40,9 @@ public class InfantryUnit extends Unit{
     return 1;
   }
 
+  @Override
+  public String getType() {
+    return "Infantry Unit";
+  }
 
 }

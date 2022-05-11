@@ -52,4 +52,9 @@ public class RangedUnit extends Unit {
     }
   }
 
+  @Override
+  public String getType() {
+    return "Ranged Unit";
+  }
+
 }

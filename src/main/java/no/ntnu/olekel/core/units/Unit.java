@@ -131,4 +131,6 @@ public abstract class Unit {
 
   protected abstract int getResistBonus();
 
+  public abstract String getType();
+
  }
