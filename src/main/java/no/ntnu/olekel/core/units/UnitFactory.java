@@ -15,29 +15,14 @@ import java.util.List;
  * @author Ole Kristian Elnæs
  */
 public class UnitFactory {
-  private static volatile UnitFactory instance;
 
   /**
-   * Private constructor.
+   * Constructor.
    */
-  private UnitFactory(){
+  public UnitFactory(){
 
   }
 
-  /**
-   * Method that checks whether an instance of the class exists or not,
-   * if not, it creates the instance. After this, it returns the instance.
-   *
-   * @return  The instance of the class.
-   */
-  public static UnitFactory getInstance() {
-    if(instance == null) {
-      synchronized (Facade.class) {
-        instance = new UnitFactory();
-      }
-    }
-    return instance;
-  }
 
   /**
    * Method that creates and returns a unit of a specified type.
@@ -48,14 +33,20 @@ public class UnitFactory {
    * @return          If unitType coincides with an existing unit type, it
    *                  returns a unit of that type, else it returns null.
    */
-  public Unit createUnit(String unitType, String name, int health) {
+  public Unit createUnit(Type unitType, String name, int health) {
     return switch (unitType) {
-      case "infantry" -> new InfantryUnit(name, health);
-      case "commander" -> new CommanderUnit(name, health);
-      case "cavalry" -> new CavalryUnit(name, health);
-      case "ranged" -> new RangedUnit(name, health);
-      default -> null;
+      case INFANTRY -> new InfantryUnit(name, health);
+      case COMMANDER -> new CommanderUnit(name, health);
+      case CAVALRY -> new CavalryUnit(name, health);
+      case RANGED -> new RangedUnit(name, health);
     };
+  }
+
+  public enum Type {
+    COMMANDER,
+    INFANTRY,
+    CAVALRY,
+    RANGED
   }
 
   /**
@@ -67,11 +58,14 @@ public class UnitFactory {
    * @param amount    The amount of units in the list to be returned.
    * @return          A list of units in the desired type. Returns null if invalid type.
    */
-  public List<Unit> createUnitList(String unitType, String name, int health, int amount) {
-    if (!checkCreateUnitListInput(unitType, name, health, amount)) return Collections.emptyList();
+  public List<Unit> createUnitList(Type unitType, String name, int health, int amount) {
+    if (!checkCreateUnitListInput(unitType, name, health, amount)) {
+      return Collections.emptyList();
+    }
     List<Unit> units = new ArrayList<>();
     for (int i = 0; i < amount; i++) {
       units.add(createUnit(unitType, name + " " + i, health));
+      System.out.println("unit " + i + " of type " + unitType + " has been created.");
     }
     return units;
   }
@@ -86,8 +80,8 @@ public class UnitFactory {
    * @param amount    The amount of units in the list to be returned.
    * @return          True if all input is valid, false if not.
    */
-  private boolean checkCreateUnitListInput(String unitType, String name, int health, int amount){
-    if (amount < 100000 && amount > 0) {
+  private boolean checkCreateUnitListInput(Type unitType, String name, int health, int amount){
+    if (amount > 100000 || amount < 0) {
       //logger error here/possibly trigger a dialog window?
       return false;
     }
