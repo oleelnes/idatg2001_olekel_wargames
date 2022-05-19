@@ -108,6 +108,11 @@ public class CreateArmyController implements Initializable {
   @FXML
   private ListView<Text> existingUnitsListView;
 
+  @FXML
+  public void loadFromFileAction(ActionEvent event) {
+    Facade.getInstance().getDialogsHandler().loadFromFileDialog();
+  }
+
   public enum State {
     NEW,
     EDIT;

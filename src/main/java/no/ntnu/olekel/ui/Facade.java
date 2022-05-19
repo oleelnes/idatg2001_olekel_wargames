@@ -1,5 +1,6 @@
 package no.ntnu.olekel.ui;
 
+import javafx.stage.Stage;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
 import no.ntnu.olekel.core.BattleRegister;
@@ -23,6 +24,8 @@ public class Facade {
     private final FileHandler fileHandler;
     private UnitFactory unitFactory;
     private Army army;
+    private Stage stage;
+    private DialogsHandler dialogs;
 
 
     /**
@@ -36,6 +39,7 @@ public class Facade {
         this.fileHandler = new FileHandler(armyRegister, battleRegister);
         this.unitFactory = new UnitFactory();
         this.army = new Army("Temporary");
+        this.dialogs = new DialogsHandler();
     }
 
     /**
@@ -80,4 +84,22 @@ public class Facade {
     public void setArmy(Army army) {
         this.army = army;
     }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage(){
+        try {
+            return stage;
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public DialogsHandler getDialogsHandler(){
+        return dialogs;
+    }
+
 }

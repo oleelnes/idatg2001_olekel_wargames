@@ -197,6 +197,11 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <Button alignment="CENTER" layoutX="307.0" layoutY="35.0" mnemonicParsing="false" onAction="#loadFromFileAction" text="Load from file">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#mainPageAction" text="Back to main page">
                <HBox.margin>
                   <Insets right="20.0" />
