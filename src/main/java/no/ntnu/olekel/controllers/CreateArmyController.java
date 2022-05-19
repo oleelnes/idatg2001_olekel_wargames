@@ -233,7 +233,7 @@ public class CreateArmyController implements Initializable {
       addNewUnitsLabel.setText("Add New Units to " + armyName);
       armyNameInput.clear();
       if (state == State.EDIT) Facade.getInstance().getArmy().setName(armyName);
-    } else if (!armyName.equals("Temporary")) {
+    } else if (!armyName.equals("Temporary")) { //?
       //dialog window opens!!!
     }
     else {

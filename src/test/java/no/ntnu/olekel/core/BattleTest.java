@@ -26,7 +26,7 @@ public class BattleTest {
    * Create armies and fill them with various units.
    */
   @BeforeEach
-  void createArmies() {
+  public void createArmies() {
     unitsA1 = new ArrayList<>();
     unitsA2 = new ArrayList<>();
 
@@ -54,7 +54,7 @@ public class BattleTest {
    * Simulate test.
    */
   @Test
-  void simulateTest() {
+  public void simulateTest() {
     Army winningArmy = battle.simulate();
     assertTrue(winningArmy.hasUnits());
   }

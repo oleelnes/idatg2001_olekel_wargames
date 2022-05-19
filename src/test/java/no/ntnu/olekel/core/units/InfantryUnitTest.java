@@ -1,6 +1,5 @@
-package no.ntnu.olekel.core;
+package no.ntnu.olekel.core.units;
 
-import no.ntnu.olekel.core.units.InfantryUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ public class InfantryUnitTest {
    * Create infantry unit.
    */
   @BeforeEach
-  void createInfantryUnit(){
+  public void createInfantryUnit(){
     infantryUnit = new InfantryUnit("infantry 1", 12);
   }
 
@@ -30,7 +29,7 @@ public class InfantryUnitTest {
    * Get name test.
    */
   @Test
-  void getNameTest(){
+  public void getNameTest(){
     assertEquals("infantry 1", infantryUnit.getName());
   }
 
@@ -38,7 +37,7 @@ public class InfantryUnitTest {
    * Get health test.
    */
   @Test
-  void getHealthTest(){
+  public void getHealthTest(){
     assertEquals(12, infantryUnit.getHealth());
   }
 
@@ -46,7 +45,7 @@ public class InfantryUnitTest {
    * Get armor test.
    */
   @Test
-  void getArmorTest(){
+  public void getArmorTest(){
     assertEquals(10, infantryUnit.getArmor());
   }
 
@@ -54,7 +53,7 @@ public class InfantryUnitTest {
    * Get attack test.
    */
   @Test
-  void getAttackTest(){
+  public void getAttackTest(){
     assertEquals(15, infantryUnit.getAttack());
   }
 
@@ -62,7 +61,7 @@ public class InfantryUnitTest {
    * Set health test.
    */
   @Test
-  void setHealthTest(){
+  public void setHealthTest(){
     infantryUnit.setHealth(100);
     assertEquals(100, infantryUnit.getHealth());
   }
@@ -72,7 +71,7 @@ public class InfantryUnitTest {
    */
   @Test
   @DisplayName("Testing the getAttackBonus method in the class InfantryUnit")
-  void getAttackBonusTest(){
+  public void getAttackBonusTest(){
     assertEquals(2, infantryUnit.getAttackBonus());
   }
 
@@ -80,7 +79,7 @@ public class InfantryUnitTest {
    * Get defender bonus test.
    */
   @Test
-  void getDefenderBonusTest(){
+  public void getDefenderBonusTest(){
     assertEquals(1, infantryUnit.getResistBonus());
   }
 
@@ -88,7 +87,7 @@ public class InfantryUnitTest {
    *
    */
   @Test
-  void attackTest(){
+  public void attackTest(){
     InfantryUnit attacker = new InfantryUnit("Attacker unit", 10);
     InfantryUnit defender = new InfantryUnit("Defender unit", 10);
     int beforeHealth = defender.getHealth();
@@ -100,7 +99,7 @@ public class InfantryUnitTest {
    *
    */
   @Test
-  void attackNegativeTest(){
+  public void attackNegativeTest(){
     InfantryUnit attacker = new InfantryUnit("Attacker unit", 10);
     InfantryUnit defender = new InfantryUnit("Defender unit", 10);
     while (defender.getHealth() > 0) {

@@ -1,6 +1,5 @@
-package no.ntnu.olekel.core;
+package no.ntnu.olekel.core.units;
 
-import no.ntnu.olekel.core.units.CommanderUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ public class CommanderUnitTest {
    * Constructs a commander unit before each test.
    */
   @BeforeEach
-  void constructCommanderUnit() {
+  public void constructCommanderUnit() {
     commanderUnit = new CommanderUnit("commander unit", 100);
   }
 
@@ -27,12 +26,12 @@ public class CommanderUnitTest {
    * getAttack method test.
    */
   @Test
-  void getAttackTest() {
+  public void getAttackTest() {
     assertEquals(20, commanderUnit.getAttack());
   }
 
   @Test
-  void getAttackBonusTest() {
+  public void getAttackBonusTest() {
     assertEquals(6, commanderUnit.getAttackBonus());
     assertEquals(2, commanderUnit.getAttackBonus());
   }
@@ -41,7 +40,7 @@ public class CommanderUnitTest {
    * getArmor method test.
    */
   @Test
-  void getArmorTest() {
+  public void getArmorTest() {
     assertEquals(12, commanderUnit.getArmor());
   }
 
@@ -49,7 +48,7 @@ public class CommanderUnitTest {
    * getArmor negative test.
    */
   @Test
-  void getArmorNegativeTest() {
+  public void getArmorNegativeTest() {
     assertNotEquals(100, commanderUnit.getArmor());
   }
 }

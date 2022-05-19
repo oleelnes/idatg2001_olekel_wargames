@@ -25,7 +25,7 @@ public class ArmyTest {
    * Create army before every test.
    */
   @BeforeEach
-  void createArmy() {
+  public void createArmy() {
     this.units = new ArrayList<Unit>();
     this.units.add(new InfantryUnit("Infantry 1", 12));
     this.units.add(new InfantryUnit("Infantry 2", 20));
@@ -47,7 +47,7 @@ public class ArmyTest {
    * Negative tests that tries to remove a unit that isn't part of the army.
    */
   @Test
-  void removeUnitNegativeTest() {
+  public void removeUnitNegativeTest() {
     int beforeSize = army.getAllUnits().size();
     InfantryUnit iUnit = new InfantryUnit("test unit", 10);
     army.remove(iUnit);
@@ -58,7 +58,7 @@ public class ArmyTest {
    * Get random unit test.
    */
   @Test
-  void getRandomUnitTest() {
+  public void getRandomUnitTest() {
     assertNotNull(army.getRandom());
   }
 
@@ -67,27 +67,27 @@ public class ArmyTest {
    * Get name test.
    */
   @Test
-  void getNameTest() {
+  public void getNameTest() {
     assertEquals(army.getName(), "test");
   }
 
   /**
    * Add all test.
    */
-  @Test
+  /*@Test
   void addAllTest() {
     ArrayList<Unit> newUnits = new ArrayList();
     newUnits.add(new InfantryUnit("3", 11));
     newUnits.add(new InfantryUnit("4", 23));
     army.addAll(newUnits);
     assertEquals(army.getAllUnits().size(), 4);
-  }
+  }*/
 
   /**
    * Checks whether army has units, testing the hasUnits() method.
    */
   @Test
-  void hasUnitsTest() {
+  public void hasUnitsTest() {
     assertTrue(army.hasUnits());
   }
 
@@ -96,7 +96,7 @@ public class ArmyTest {
    * Should return false.
    */
   @Test
-  void hasUnitsNegativeTest() {
+  public void hasUnitsNegativeTest() {
     Army emptyArmy = new Army("Empty army");
     assertFalse(emptyArmy.hasUnits());
   }
@@ -105,14 +105,14 @@ public class ArmyTest {
    * Get all units test.
    */
   @Test
-  void getAllUnitsTest() {
+  public void getAllUnitsTest() {
     ArrayList<Unit> getTest = new ArrayList<>();
     getTest.addAll(army.getAllUnits());
     assertEquals(getTest.size(), units.size());
   }
 
   @Test
-  void getInfantryUnitsTest() {
+  public void getInfantryUnitsTest() {
     List<Unit> sortedInfantryUnits = army.getInfantryUnits();
     //assertEquals();
   }
@@ -121,10 +121,9 @@ public class ArmyTest {
    * Test of the method add in Army class
    */
   @Test
-  void addTest() {
+  public void addTest() {
     InfantryUnit iUnit = new InfantryUnit("infantry unit test", 10);
     army.add(iUnit);
-    String name;
     assertEquals("infantry unit test", army.getAllUnits().get(army.getAllUnits().size() - 1).getName());
   }
 

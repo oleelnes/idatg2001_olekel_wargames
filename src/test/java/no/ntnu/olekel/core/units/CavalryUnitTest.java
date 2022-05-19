@@ -1,6 +1,5 @@
-package no.ntnu.olekel.core;
+package no.ntnu.olekel.core.units;
 
-import no.ntnu.olekel.core.units.CavalryUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,18 +9,18 @@ public class CavalryUnitTest {
   CavalryUnit cavalryUnit;
 
   @BeforeEach
-  void createCavalryUnit() {
+  public void createCavalryUnit() {
     cavalryUnit = new CavalryUnit("cavalry", 100);
   }
 
   @Test
-  void getAttackBonusTest() {
+  public void getAttackBonusTest() {
     assertEquals(cavalryUnit.getAttackBonus(), 6);
     assertEquals(cavalryUnit.getAttackBonus(), 2);
   }
 
   @Test
-  void getResistBonusTest() {
+  public void getResistBonusTest() {
     assertEquals(cavalryUnit.getResistBonus(), 1);
   }
 }
