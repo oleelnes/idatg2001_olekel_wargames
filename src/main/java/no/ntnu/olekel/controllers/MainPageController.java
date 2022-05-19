@@ -37,4 +37,9 @@ public class MainPageController {
   public void simpleWarSimulationAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
   }
+
+  @FXML
+  public void addArmyFromFileAction(ActionEvent event) throws IOException {
+    Facade.getInstance().getDialogsHandler().addArmyFromFileDialog(event);
+  }
 }

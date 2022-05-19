@@ -56,6 +56,11 @@
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font></Button>
+                  <Button layoutX="420.0" layoutY="35.0" mnemonicParsing="false" onAction="#addArmyFromFileAction" prefHeight="50.0" prefWidth="200.0" text="Add Army From File">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#viewArmies" prefHeight="50.0" prefWidth="150.0" text="View Armies">
                      <font>
                         <Font name="Times New Roman" size="20.0" />

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.core.FileHandler;
 import no.ntnu.olekel.core.units.Unit;
 import no.ntnu.olekel.core.units.UnitFactory;
 import no.ntnu.olekel.ui.Facade;
@@ -113,18 +114,18 @@ public class CreateArmyController implements Initializable {
         alert.close();
       } else if (result.get() == ButtonType.OK) {
         if(state == State.NEW)
-          Facade.getInstance().getDialogsHandler().loadFromFileDialog(newArmy);
+          Facade.getInstance().getDialogsHandler().loadUnitsFromFile(newArmy);
         else if (state == State.EDIT)
-          Facade.getInstance().getDialogsHandler().loadFromFileDialog(army);
+          Facade.getInstance().getDialogsHandler().loadUnitsFromFile(army);
         updateListContent();
       } else if (result.get() == ButtonType.CANCEL) {
         alert.close();
       }
     } else {
       if(state == State.NEW)
-        Facade.getInstance().getDialogsHandler().loadFromFileDialog(newArmy);
+        Facade.getInstance().getDialogsHandler().loadUnitsFromFile(newArmy);
       else if (state == State.EDIT)
-        Facade.getInstance().getDialogsHandler().loadFromFileDialog(army);
+        Facade.getInstance().getDialogsHandler().loadUnitsFromFile(army);
       updateListContent();
     }
 
