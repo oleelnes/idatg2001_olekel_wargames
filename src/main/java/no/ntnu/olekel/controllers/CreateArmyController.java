@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
@@ -19,10 +16,7 @@ import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  *
@@ -110,7 +104,30 @@ public class CreateArmyController implements Initializable {
 
   @FXML
   public void loadFromFileAction(ActionEvent event) {
-    Facade.getInstance().getDialogsHandler().loadFromFileDialog();
+    if (!army.getAllUnits().isEmpty()) {
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+          "The units of the army file selected will be added to this army");
+      alert.setTitle("Please confirm");
+      Optional<ButtonType> result = alert.showAndWait();
+      if (result.isEmpty()){
+        alert.close();
+      } else if (result.get() == ButtonType.OK) {
+        if(state == State.NEW)
+          Facade.getInstance().getDialogsHandler().loadFromFileDialog(newArmy);
+        else if (state == State.EDIT)
+          Facade.getInstance().getDialogsHandler().loadFromFileDialog(army);
+        updateListContent();
+      } else if (result.get() == ButtonType.CANCEL) {
+        alert.close();
+      }
+    } else {
+      if(state == State.NEW)
+        Facade.getInstance().getDialogsHandler().loadFromFileDialog(newArmy);
+      else if (state == State.EDIT)
+        Facade.getInstance().getDialogsHandler().loadFromFileDialog(army);
+      updateListContent();
+    }
+
   }
 
   public enum State {

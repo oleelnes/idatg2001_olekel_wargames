@@ -36,6 +36,7 @@ public class FileHandler {
 
   public enum RegisterType {
     ARMIES,
+    EDIT_ARMY,
     BATTLES
   }
 
@@ -47,11 +48,19 @@ public class FileHandler {
    */
   public void load(RegisterType registerType, Path path) {
     switch (registerType) {
-      case ARMIES -> armyRegister.loadArmyCSV(path);
+      case ARMIES -> armyRegister.loadArmyToRegister(path);
       case BATTLES -> battleRegister.loadBattleCSV(path);
       default -> logger.log(Level.WARNING, "Invalid enum type!");
     } 
   }
+
+  public void loadIntoArmy(RegisterType registerType, Path path, Army army) {
+    switch (registerType) {
+      case EDIT_ARMY -> armyRegister.loadArmyFileContentToArmy(army, path);
+      default -> logger.log(Level.WARNING, "Invalid enum type!");
+    }
+  }
+
 
   /**
    * This method iterates over all files in a given directory and adds the data

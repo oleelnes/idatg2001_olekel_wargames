@@ -68,7 +68,7 @@ public class ArmyRegister {
    * @param path  The path to the csv file to read
    * @return      An instance of the class Army
    */
-  public void loadArmyCSV(Path path) {
+  public Army loadArmyCSV(Path path) {
     Army armyFromFile;
 
     try (BufferedReader reader = Files.newBufferedReader(path)) {
@@ -85,10 +85,32 @@ public class ArmyRegister {
           default -> logger.log(Level.INFO, "Invalid type was attempted to be read");
         }
       }
-      armyRegister.add(armyFromFile);
-      System.out.println(armyFromFile.getCavalryUnits().get(0).getName());
+      //armyRegister.add(armyFromFile);
+      //System.out.println(armyFromFile.getCavalryUnits().get(0).getName());
+      return armyFromFile;
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
+      return null;
+    }
+  }
+
+  public boolean loadArmyToRegister(Path path) {
+    Army newArmy = loadArmyCSV(path);
+    if (newArmy != null) {
+      armyRegister.add(newArmy);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean loadArmyFileContentToArmy(Army army, Path path) {
+    Army newArmy = loadArmyCSV(path);
+    if (newArmy != null) {
+      army.getAllUnits().addAll(newArmy.getAllUnits());
+      return true;
+    } else {
+      return false;
     }
   }
 
