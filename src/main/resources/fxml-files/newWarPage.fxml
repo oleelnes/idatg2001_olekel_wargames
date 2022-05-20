@@ -35,7 +35,7 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ComboBox prefWidth="150.0" promptText="select">
+                        <ComboBox fx:id="comboBoxTerrain" prefWidth="150.0" promptText="select">
                            <VBox.margin>
                               <Insets left="5.0" right="10.0" />
                            </VBox.margin></ComboBox>
@@ -298,15 +298,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Create army" />
-                  <Button mnemonicParsing="false" text="Select army from list" />
-                  <Button mnemonicParsing="false" text="Edit army" />
-                  <Button mnemonicParsing="false" text="Start war" />
-               </children></HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mainPageAction" text="Back to main page" />
-                  <Button mnemonicParsing="false" text="Exit" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mainPageAction" text="Back to main page">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" text="Discard and start over" />
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Start war">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin></Button>
                </children></HBox>
          </children>
       </VBox>
