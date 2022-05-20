@@ -18,7 +18,6 @@ import java.util.logging.Logger;
  */
 public class BattleHandler {
   private final Logger logger;
-  private final Random random;
   private BattleState battleState;
   private Battle battle;
   private Army armyOne;
@@ -27,7 +26,6 @@ public class BattleHandler {
   public BattleHandler(){
     this.battleState = BattleState.NO_ARMIES;
     this.logger = Logger.getLogger(this.getClass().toString());
-    this.random = new Random();
   }
 
   /**
@@ -65,9 +63,7 @@ public class BattleHandler {
    *
    */
   /*public void discardBattle(){
-    battleState = BattleState.NO_ARMIES;
-    this.armyOne = new Army("Placeholder Army 1");
-    this.armyTwo = new Army("Placeholder Army 2");
+
   }*/
 
 
