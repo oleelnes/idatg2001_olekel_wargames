@@ -268,7 +268,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Appoint army">
+                  <Button mnemonicParsing="false" onAction="#appointArmyOneAction" text="Appoint army">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>

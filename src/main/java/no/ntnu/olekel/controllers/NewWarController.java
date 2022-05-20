@@ -23,4 +23,7 @@ public class NewWarController {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
+  public void appointArmyOneAction(ActionEvent event) {
+
+  }
 }

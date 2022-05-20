@@ -20,6 +20,7 @@ public class Battle {
   private final Logger logger;
   private final Random random;
 
+
   /**
    * Instantiates a new Battle.
    *
@@ -32,6 +33,7 @@ public class Battle {
     this.logger = Logger.getLogger(this.getClass().toString());
     this.random = new Random();
   }
+
 
   /**
    * This method simulates a battle between two armies.
@@ -85,10 +87,10 @@ public class Battle {
   @Override
   public String toString() {
     return "Battle{" +
-            "armyOne=" + armyOne +
-            ", armyTwo=" + armyTwo +
-            ", random=" + random +
-            '}';
+        "armyOne=" + armyOne +
+        ", armyTwo=" + armyTwo +
+        ", random=" + random +
+        '}';
   }
 
   @Override

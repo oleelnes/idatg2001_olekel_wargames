@@ -1,5 +1,6 @@
 package no.ntnu.olekel.core;
 
+import javafx.scene.control.Alert;
 import no.ntnu.olekel.core.units.*;
 
 import java.io.BufferedReader;
@@ -90,6 +91,9 @@ public class ArmyRegister {
       return armyFromFile;
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
+      Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load file!");
+      alert.setTitle("ERROR");
+      alert.showAndWait();
       return null;
     }
   }

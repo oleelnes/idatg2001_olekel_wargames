@@ -51,7 +51,6 @@ public class DialogsHandler {
       } else if (result.get() == ButtonType.CANCEL) {
         alert.close();
       }
-
     }
     else {
       System.out.println("yuck!");

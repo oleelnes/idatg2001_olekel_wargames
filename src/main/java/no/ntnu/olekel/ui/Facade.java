@@ -1,13 +1,8 @@
 package no.ntnu.olekel.ui;
 
 import javafx.stage.Stage;
-import no.ntnu.olekel.core.Army;
-import no.ntnu.olekel.core.ArmyRegister;
-import no.ntnu.olekel.core.BattleRegister;
-import no.ntnu.olekel.core.FileHandler;
+import no.ntnu.olekel.core.*;
 import no.ntnu.olekel.core.units.UnitFactory;
-
-import java.lang.module.Configuration;
 
 /**
  * Facade class that implements the Design Pattern Singleton.
@@ -26,6 +21,8 @@ public class Facade {
     private Army army;
     private Stage stage;
     private DialogsHandler dialogs;
+    private BattleHandler battleHandler;
+    private Battle battle;
 
 
     /**
@@ -40,6 +37,7 @@ public class Facade {
         this.unitFactory = new UnitFactory();
         this.army = new Army("Temporary");
         this.dialogs = new DialogsHandler();
+        this.battleHandler = new BattleHandler();
     }
 
     /**
@@ -81,14 +79,6 @@ public class Facade {
         return unitFactory;
     }
 
-    public void setArmy(Army army) {
-        this.army = army;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     public Stage getStage(){
         try {
             return stage;
@@ -100,6 +90,30 @@ public class Facade {
 
     public DialogsHandler getDialogsHandler(){
         return dialogs;
+    }
+
+    public BattleHandler getBattleHandler(){
+        return battleHandler;
+    }
+
+    public void setArmy(Army army) {
+        this.army = army;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void setBattle(Battle battle) {
+        this.battle = battle;
+    }
+
+    public Battle getBattle(){
+        try {
+            return this.battle;
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
 }
