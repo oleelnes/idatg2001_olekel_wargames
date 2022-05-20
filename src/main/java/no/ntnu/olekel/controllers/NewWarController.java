@@ -27,10 +27,20 @@ public class NewWarController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private List<String> terrain;
 
+  /**
+   * Combobox for selection of terrain for the battle simulation.
+   */
   @FXML
   private ComboBox<String> comboBoxTerrain;
 
 
+  /**
+   * This method initializes the necessary fields and other content
+   * when the newWarPage.fxml is loaded.
+   *
+   * @param url             url
+   * @param resourceBundle  url
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     this.terrain = new ArrayList<>();
@@ -40,6 +50,11 @@ public class NewWarController implements Initializable {
     comboBoxTerrain.setItems(terrainTypes);
   }
 
+  /**
+   * This method returns a list with the selectable terrain types.
+   *
+   * @return  A list containing the various terrain types.
+   */
   private List<String> getTerrainTypes(){
     List<String> terrainTypes = new ArrayList<>();
     terrainTypes.add("Forest");
@@ -48,7 +63,13 @@ public class NewWarController implements Initializable {
     return  terrainTypes;
   }
 
-
+  /**
+   * This method is triggered when the "back to main page" button is pressed, and changes
+   * the displayed scene to the main page.
+   *
+   * @param event         Actionevent: when main page button is clicked
+   * @throws IOException  Input/output exception
+   */
   @FXML
   public void mainPageAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.mainPageURL);
