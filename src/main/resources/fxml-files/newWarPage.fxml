@@ -303,7 +303,7 @@
                         <Insets right="20.0" />
                      </HBox.margin></Button>
                   <Button mnemonicParsing="false" text="Discard and start over" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Start war">
+                  <Button mnemonicParsing="false" onAction="#startWarAction" prefHeight="50.0" prefWidth="100.0" text="Start war">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin></Button>

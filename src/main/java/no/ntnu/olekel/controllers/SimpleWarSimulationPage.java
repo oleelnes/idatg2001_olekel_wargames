@@ -11,8 +11,7 @@ import java.io.IOException;
 public class SimpleWarSimulationPage {
   Scenes scenes = Facade.getInstance().getScenes();
 
-  @FXML
-  public void mainPageAction(ActionEvent event) throws IOException {
+  public void backToMainPageAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 }

@@ -93,28 +93,41 @@ public class NewWarController implements Initializable {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
-  public void appointArmyOneAction(ActionEvent event) throws IOException {
-    Army returnedArmy = Facade.getInstance().getDialogsHandler().appointArmyDialog(true);
+  @FXML
+  public void appointArmyOneAction(ActionEvent event)  {
+    Army returnedArmy = dialogs.appointArmyDialog(true);
     if (returnedArmy != null) {
-      if (returnedArmy == Facade.getInstance().getBattleHandler().getArmyTwo()) {
+      if (returnedArmy == battleHandler.getArmyTwo()) {
         dialogs.errorAlert("The opposing armies cannot be the same!");
       } else {
-        Facade.getInstance().getBattleHandler().setArmyOne(returnedArmy);
-        armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
+        battleHandler.setArmyOne(returnedArmy);
+        armyOneName.setText(battleHandler.getArmyOne().getName());
       }
     }
   }
 
-  public void appointArmyTwoAction(ActionEvent event) throws IOException {
-    Army returnedArmy = Facade.getInstance().getDialogsHandler().appointArmyDialog(false);
+  @FXML
+  public void appointArmyTwoAction(ActionEvent event) {
+    Army returnedArmy = dialogs.appointArmyDialog(false);
     if (returnedArmy != null) {
-      if (returnedArmy == Facade.getInstance().getBattleHandler().getArmyOne()) {
+      if (returnedArmy == battleHandler.getArmyOne()) {
         dialogs.errorAlert("The opposing armies cannot be the same!");
       } else {
-        Facade.getInstance().getBattleHandler().setArmyTwo(returnedArmy);
-        armyTwoName.setText(Facade.getInstance().getBattleHandler().getArmyTwo().getName());
+        battleHandler.setArmyTwo(returnedArmy);
+        armyTwoName.setText(battleHandler.getArmyTwo().getName());
       }
     }
   }
 
+  @FXML
+  public void startWarAction(ActionEvent event) throws IOException {
+    if (battleHandler.getBattleState() == BattleHandler.BattleState.READY) {
+      battleHandler.createBattle();
+      scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
+    } else {
+      dialogs.errorAlert("Battle cannot be started.");
+    }
+
+
+  }
 }

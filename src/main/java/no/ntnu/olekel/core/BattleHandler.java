@@ -77,8 +77,7 @@ public class BattleHandler {
 
   public void setArmyOne(Army armyOne) {
     if (battleState == BattleState.NO_ARMIES) battleState = BattleState.ONE_ARMY;
-    else if (battleState == BattleState.ONE_ARMY) battleState = BattleState.READY;
-    else battleState = BattleState.READY;
+    else if (armyTwo != null) battleState = BattleState.READY;
     this.armyOne = armyOne;
   }
 
@@ -92,9 +91,12 @@ public class BattleHandler {
 
   public void setArmyTwo(Army armyTwo) {
     if (battleState == BattleState.NO_ARMIES) battleState = BattleState.ONE_ARMY;
-    else if (battleState == BattleState.ONE_ARMY) battleState = BattleState.READY;
-    else battleState = BattleState.READY;
+    else if (armyOne != null) battleState = BattleState.READY;
     this.armyTwo = armyTwo;
+  }
+
+  public BattleState getBattleState(){
+    return battleState;
   }
 
 
