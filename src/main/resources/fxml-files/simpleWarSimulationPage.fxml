@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.SimpleWarSimulationPage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.SimpleWarSimulationPage">
    <left>
       <VBox alignment="TOP_CENTER" minWidth="250.0" prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +19,12 @@
                </VBox.margin>
                <children>
                   <Label text="Units extinguished: n/a" />
-                  <Label text="Units lost: n/a" />
+                  <HBox>
+                     <children>
+                        <Label fx:id="armyOneUnitsLost1" layoutX="10.0" layoutY="10.0" text="Units lost: " />
+                        <Label fx:id="armyOneUnitsLost" />
+                     </children>
+                  </HBox>
                   <Label text="Attacks dealt:  n/a" />
                   <Label text="Total damage dealt: n/a" />
                   <Label layoutX="10.0" layoutY="61.0" text="Avg. health of remaining units: n/a" />
@@ -130,7 +134,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#backToMainPageAction" text="Back to main page" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#startWarAction" text="Start war" />
          </children></HBox>
    </bottom>
 </BorderPane>

@@ -40,7 +40,7 @@ public class Battle {
    *
    * @return the winning army.
    */
-  public Army simulate() {
+  public Army automaticSimulation() {
     int rounds = 0;
     logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
             " and " + armyTwo.getName() + " is about to start!");
@@ -57,6 +57,7 @@ public class Battle {
       else attackUnit(unitA2, unitA1, armyOne);
 
       rounds++;
+      //SimpleWarSimulationPage.getInstance().update();
     }
     logger.log(Level.INFO, "rounds: {0}", rounds);
 
@@ -67,6 +68,23 @@ public class Battle {
       logger.log(Level.INFO, () -> armyOne.getName() + " won");
       return armyOne;
     }
+  }
+
+
+  public boolean simulateOneRound() {
+    //This is the main loop which runs as long as both of the armies still have armies left.
+    if (armyOne.hasUnits() && armyTwo.hasUnits()) {
+      boolean attacker = random.nextBoolean();
+      Unit unitA1 = armyOne.getRandom();
+      Unit unitA2 = armyTwo.getRandom();
+
+      //This if-else statement decides which army and unit gets to attack
+      //depending on the random int attacker.
+      if (attacker) attackUnit(unitA1, unitA2, armyTwo);
+      else attackUnit(unitA2, unitA1, armyOne);
+    }
+
+    return armyOne.hasUnits() && armyTwo.hasUnits();
   }
 
   /**
@@ -82,6 +100,14 @@ public class Battle {
   private void attackUnit(Unit attacker, Unit defender, Army defenderArmy) {
     attacker.attack(defender);
     if (defender.getHealth() <= 0) defenderArmy.remove(defender);
+  }
+
+  public Army getArmyOne(){
+    return armyOne;
+  }
+
+  public Army getArmyTwo(){
+    return armyTwo;
   }
 
   @Override

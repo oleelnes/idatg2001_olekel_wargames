@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.constants.Constants;
+import no.ntnu.olekel.controllers.SimpleWarSimulationPage;
 import no.ntnu.olekel.core.*;
 import no.ntnu.olekel.core.units.*;
 import no.ntnu.olekel.ui.Facade;
@@ -33,6 +35,11 @@ public class WarGamesApp extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     Facade.getInstance().setStage(stage);
+
+
+
+
+
     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml-files/mainPage.fxml")));
     //Scene scene = new Scene(root, 800, 600);
     Scene scene = new Scene(root);

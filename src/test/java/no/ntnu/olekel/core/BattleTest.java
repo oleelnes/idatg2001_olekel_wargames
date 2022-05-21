@@ -55,7 +55,7 @@ public class BattleTest {
    */
   @Test
   public void simulateTest() {
-    Army winningArmy = battle.simulate();
+    Army winningArmy = battle.automaticSimulation();
     assertTrue(winningArmy.hasUnits());
   }
 

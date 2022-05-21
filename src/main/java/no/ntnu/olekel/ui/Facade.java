@@ -1,6 +1,9 @@
 package no.ntnu.olekel.ui;
 
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import no.ntnu.olekel.constants.ClassPaths;
+import no.ntnu.olekel.controllers.SimpleWarSimulationPage;
 import no.ntnu.olekel.core.*;
 import no.ntnu.olekel.core.units.UnitFactory;
 
@@ -53,6 +56,10 @@ public class Facade {
             }
         }
         return instance;
+    }
+
+    public void update(){
+        //simulationPage.update();
     }
 
     public Scenes getScenes() {
