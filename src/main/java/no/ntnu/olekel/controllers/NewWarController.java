@@ -12,6 +12,7 @@ import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
 import no.ntnu.olekel.core.BattleHandler;
+import no.ntnu.olekel.core.units.Unit;
 import no.ntnu.olekel.ui.DialogsHandler;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
@@ -31,10 +32,10 @@ import java.util.ResourceBundle;
  */
 public class NewWarController implements Initializable {
 
-  private Scenes scenes = Facade.getInstance().getScenes();
+  private final Scenes scenes = Facade.getInstance().getScenes();
   private List<String> terrain;
   private BattleHandler battleHandler;
-  private DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
+  private final DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
   /**
    * Combobox for selection of terrain for the battle simulation.
@@ -42,11 +43,77 @@ public class NewWarController implements Initializable {
   @FXML
   private ComboBox<String> comboBoxTerrain;
 
+  /**
+   * Name of army one.
+   */
   @FXML
   private Label armyOneName;
 
+  /**
+   * Name of army two.
+   */
   @FXML
   private Label armyTwoName;
+
+  @FXML
+  private Label commanderUnitsAmountA1;
+
+  @FXML
+  private Label commanderUnitsAmountA2;
+
+  @FXML
+  private Label infantryUnitsAmountA1;
+
+  @FXML
+  private Label infantryUnitsAmountA2;
+
+  @FXML
+  private Label rangedUnitsAmountA1;
+
+  @FXML
+  private Label rangedUnitsAmountA2;
+
+  @FXML
+  private Label cavalryUnitsAmountA1;
+
+  @FXML
+  private Label cavalryUnitsAmountA2;
+
+  @FXML
+  private Label totalUnitAmountA1;
+
+  @FXML
+  private Label totalUnitAmountA2;
+
+  @FXML
+  private Label commanderUnitsHealthA1;
+
+  @FXML
+  private Label commanderUnitsHealthA2;
+
+  @FXML
+  private Label infantryUnitsHealthA1;
+
+  @FXML
+  private Label infantryUnitsHealthA2;
+
+  @FXML
+  private Label rangedUnitsHealthA1;
+
+  @FXML
+  private Label rangedUnitsHealthA2;
+
+  @FXML
+  private Label cavalryUnitsHealthA1;
+
+  @FXML
+  private Label cavalryUnitsHealthA2;
+
+  @FXML
+  private Label totalUnitHealthA1;
+
+  @FXML
+  private Label totalUnitHealthA2;
 
 
   /**
@@ -61,8 +128,8 @@ public class NewWarController implements Initializable {
     this.terrain = new ArrayList<>();
     this.terrain.addAll(getTerrainTypes());
     this.battleHandler = Facade.getInstance().getBattleHandler();
-    if (battleHandler.getArmyOne() != null) System.out.println("e");
-    if (battleHandler.getArmyTwo() != null) System.out.println("ee"); //call a method that sets the fields there.
+    if (battleHandler.getArmyOne() != null) armyOneInit();
+    if (battleHandler.getArmyTwo() != null) armyTwoInit();
     ObservableList<String> terrainTypes = FXCollections.observableArrayList();
     terrainTypes.addAll(terrain);
     comboBoxTerrain.setItems(terrainTypes);
@@ -93,6 +160,12 @@ public class NewWarController implements Initializable {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
+  /**
+   * Method that lets the user select which army to appoint to the first army in the war
+   * through a dialog window.
+   *
+   * @param event When appoint army button is pressed.
+   */
   @FXML
   public void appointArmyOneAction(ActionEvent event)  {
     Army returnedArmy = dialogs.appointArmyDialog(true);
@@ -101,11 +174,18 @@ public class NewWarController implements Initializable {
         dialogs.errorAlert("The opposing armies cannot be the same!");
       } else {
         battleHandler.setArmyOne(returnedArmy);
-        armyOneName.setText(battleHandler.getArmyOne().getName());
+        armyOneInit();
+        //armyOneName.setText(battleHandler.getArmyOne().getName());
       }
     }
   }
 
+  /**
+   * Method that lets the user select which army to appoint to the second army in the war
+   * through a dialog window.
+   *
+   * @param event When appoint army button is pressed.
+   */
   @FXML
   public void appointArmyTwoAction(ActionEvent event) {
     Army returnedArmy = dialogs.appointArmyDialog(false);
@@ -114,11 +194,18 @@ public class NewWarController implements Initializable {
         dialogs.errorAlert("The opposing armies cannot be the same!");
       } else {
         battleHandler.setArmyTwo(returnedArmy);
-        armyTwoName.setText(battleHandler.getArmyTwo().getName());
+        //armyTwoName.setText(battleHandler.getArmyTwo().getName());
+        armyTwoInit();
       }
     }
   }
 
+  /**
+   * Method that takes the user to the war simulation page IF two armies are appointed.
+   *
+   * @param event         When start war button is clicked
+   * @throws IOException  Input output exception.
+   */
   @FXML
   public void startWarAction(ActionEvent event) throws IOException {
     if (battleHandler.getBattleState() == BattleHandler.BattleState.READY) {
@@ -127,7 +214,54 @@ public class NewWarController implements Initializable {
     } else {
       dialogs.errorAlert("Battle cannot be started.");
     }
-
-
   }
+
+  /**
+   * Method that initializes the fields for army one in the scene.
+   */
+  private void armyOneInit(){
+    armyOneName.setText(battleHandler.getArmyOne().getName());
+
+    commanderUnitsAmountA1.setText(String.valueOf(battleHandler.getArmyOne().getCommanderUnits().size()));
+    infantryUnitsAmountA1.setText(String.valueOf(battleHandler.getArmyOne().getInfantryUnits().size()));
+    rangedUnitsAmountA1.setText(String.valueOf(battleHandler.getArmyOne().getRangedUnits().size()));
+    cavalryUnitsAmountA1.setText(String.valueOf(battleHandler.getArmyOne().getCavalryUnits().size()));
+    totalUnitAmountA1.setText(String.valueOf(battleHandler.getArmyOne().getAllUnits().size()));
+
+    commanderUnitsHealthA1.setText(String.valueOf(battleHandler.getArmyOne().
+        getCommanderUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    infantryUnitsHealthA1.setText(String.valueOf(battleHandler.getArmyOne().
+        getInfantryUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    rangedUnitsHealthA1.setText(String.valueOf(battleHandler.getArmyOne().
+        getRangedUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    cavalryUnitsHealthA1.setText(String.valueOf(battleHandler.getArmyOne().
+        getCavalryUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    totalUnitHealthA1.setText(String.valueOf(battleHandler.getArmyOne().
+        getAllUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+  }
+
+  /**
+   * Method that initializes the fields for army two in the scene.
+   */
+  private void armyTwoInit(){
+    armyTwoName.setText(battleHandler.getArmyTwo().getName());
+
+    commanderUnitsAmountA2.setText(String.valueOf(battleHandler.getArmyTwo().getCommanderUnits().size()));
+    infantryUnitsAmountA2.setText(String.valueOf(battleHandler.getArmyTwo().getInfantryUnits().size()));
+    rangedUnitsAmountA2.setText(String.valueOf(battleHandler.getArmyTwo().getRangedUnits().size()));
+    cavalryUnitsAmountA2.setText(String.valueOf(battleHandler.getArmyTwo().getCavalryUnits().size()));
+    totalUnitAmountA2.setText(String.valueOf(battleHandler.getArmyTwo().getAllUnits().size()));
+
+    commanderUnitsHealthA2.setText(String.valueOf(battleHandler.getArmyTwo().
+        getCommanderUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    infantryUnitsHealthA2.setText(String.valueOf(battleHandler.getArmyTwo().
+        getInfantryUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    rangedUnitsHealthA2.setText(String.valueOf(battleHandler.getArmyTwo().
+        getRangedUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    cavalryUnitsHealthA2.setText(String.valueOf(battleHandler.getArmyTwo().
+        getCavalryUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+    totalUnitHealthA2.setText(String.valueOf(battleHandler.getArmyTwo().
+        getAllUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
+  }
+
 }
