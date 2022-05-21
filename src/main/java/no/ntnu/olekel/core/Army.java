@@ -255,11 +255,10 @@ public class Army {
 
   @Override
   public String toString() {
-    return "Army{" +
-            "name='" + name + '\'' +
-            ", units=" + units +
-            ", random=" + random +
-            '}';
+    return "Army" +
+            " name: '" + name +
+        ", units: " + units.size() +
+        ", health: " + getPercentHealthArmy() + "%";
   }
 
   @Override

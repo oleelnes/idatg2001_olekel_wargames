@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
-import no.ntnu.olekel.core.FileHandler;
 import no.ntnu.olekel.core.units.Unit;
 import no.ntnu.olekel.core.units.UnitFactory;
 import no.ntnu.olekel.ui.Facade;
@@ -362,7 +361,7 @@ public class CreateArmyController implements Initializable {
       // as the army is now created and set to be the tournament present in the Facade
     } else {
       System.err.println("Please enter a name for the army!");
-      //todo: dialog window!
+      //todo: alert window!
     }
     // in viewArmies, when edit is pressed, also set Facade army to be the selected army.
   }

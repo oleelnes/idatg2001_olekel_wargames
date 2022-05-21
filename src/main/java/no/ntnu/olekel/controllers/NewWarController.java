@@ -5,8 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import no.ntnu.olekel.constants.ClassPaths;
+import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.core.ArmyRegister;
+import no.ntnu.olekel.core.BattleHandler;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
@@ -14,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -26,12 +32,16 @@ public class NewWarController implements Initializable {
 
   private Scenes scenes = Facade.getInstance().getScenes();
   private List<String> terrain;
+  private BattleHandler battleHandler;
 
   /**
    * Combobox for selection of terrain for the battle simulation.
    */
   @FXML
   private ComboBox<String> comboBoxTerrain;
+
+  @FXML
+  private Label armyOneName;
 
 
   /**
@@ -45,6 +55,9 @@ public class NewWarController implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     this.terrain = new ArrayList<>();
     this.terrain.addAll(getTerrainTypes());
+    this.battleHandler = Facade.getInstance().getBattleHandler();
+    if (battleHandler.getArmyOne() != null) System.out.println("e");
+    if (battleHandler.getArmyTwo() != null) System.out.println("ee"); //call a method that sets the fields there.
     ObservableList<String> terrainTypes = FXCollections.observableArrayList();
     terrainTypes.addAll(terrain);
     comboBoxTerrain.setItems(terrainTypes);
@@ -75,7 +88,16 @@ public class NewWarController implements Initializable {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
-  public void appointArmyOneAction(ActionEvent event) {
+  public void appointArmyOneAction(ActionEvent event) throws IOException {
 
+    ChoiceDialog<Army> armyChoiceDialog = new ChoiceDialog<>(Facade.getInstance().getArmyRegister().getArmyRegister().get(0),
+        Facade.getInstance().getArmyRegister().getArmyRegister());
+    armyChoiceDialog.setTitle("Army selection");
+    armyChoiceDialog.setHeaderText("Select army to appoint!");
+    Optional<Army> result = armyChoiceDialog.showAndWait();
+    if (result.isPresent()) {
+      Facade.getInstance().getBattleHandler().setArmyOne(armyChoiceDialog.getSelectedItem());
+      armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
+    } else armyChoiceDialog.close();
   }
 }
