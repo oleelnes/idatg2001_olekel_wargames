@@ -12,6 +12,7 @@ import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
 import no.ntnu.olekel.core.BattleHandler;
+import no.ntnu.olekel.ui.DialogsHandler;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
@@ -33,6 +34,7 @@ public class NewWarController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private List<String> terrain;
   private BattleHandler battleHandler;
+  private DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
   /**
    * Combobox for selection of terrain for the battle simulation.
@@ -42,6 +44,9 @@ public class NewWarController implements Initializable {
 
   @FXML
   private Label armyOneName;
+
+  @FXML
+  private Label armyTwoName;
 
 
   /**
@@ -89,15 +94,27 @@ public class NewWarController implements Initializable {
   }
 
   public void appointArmyOneAction(ActionEvent event) throws IOException {
-
-    ChoiceDialog<Army> armyChoiceDialog = new ChoiceDialog<>(Facade.getInstance().getArmyRegister().getArmyRegister().get(0),
-        Facade.getInstance().getArmyRegister().getArmyRegister());
-    armyChoiceDialog.setTitle("Army selection");
-    armyChoiceDialog.setHeaderText("Select army to appoint!");
-    Optional<Army> result = armyChoiceDialog.showAndWait();
-    if (result.isPresent()) {
-      Facade.getInstance().getBattleHandler().setArmyOne(armyChoiceDialog.getSelectedItem());
-      armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
-    } else armyChoiceDialog.close();
+    Army returnedArmy = Facade.getInstance().getDialogsHandler().appointArmyDialog(true);
+    if (returnedArmy != null) {
+      if (returnedArmy == Facade.getInstance().getBattleHandler().getArmyTwo()) {
+        dialogs.errorAlert("The opposing armies cannot be the same!");
+      } else {
+        Facade.getInstance().getBattleHandler().setArmyOne(returnedArmy);
+        armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
+      }
+    }
   }
+
+  public void appointArmyTwoAction(ActionEvent event) throws IOException {
+    Army returnedArmy = Facade.getInstance().getDialogsHandler().appointArmyDialog(false);
+    if (returnedArmy != null) {
+      if (returnedArmy == Facade.getInstance().getBattleHandler().getArmyOne()) {
+        dialogs.errorAlert("The opposing armies cannot be the same!");
+      } else {
+        Facade.getInstance().getBattleHandler().setArmyTwo(returnedArmy);
+        armyTwoName.setText(Facade.getInstance().getBattleHandler().getArmyTwo().getName());
+      }
+    }
+  }
+
 }

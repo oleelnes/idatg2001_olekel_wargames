@@ -3,6 +3,7 @@ package no.ntnu.olekel.ui;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.stage.FileChooser;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.controllers.CreateArmyController;
@@ -55,6 +56,28 @@ public class DialogsHandler {
     else {
       System.out.println("yuck!");
     }
+  }
+
+  public Army appointArmyDialog(boolean armyOne) {
+    ChoiceDialog<Army> armyChoiceDialog = new ChoiceDialog<>(Facade.getInstance().getArmyRegister().getArmyRegister().get(0),
+        Facade.getInstance().getArmyRegister().getArmyRegister());
+    armyChoiceDialog.setTitle("Army selection");
+    armyChoiceDialog.setHeaderText("Select army to appoint!");
+    Optional<Army> result = armyChoiceDialog.showAndWait();
+    if (result.isPresent()) {
+      return armyChoiceDialog.getSelectedItem();
+     // Facade.getInstance().getBattleHandler().setArmyOne(armyChoiceDialog.getSelectedItem());
+      //armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
+    } else {
+      armyChoiceDialog.close();
+      return null;
+    }
+  }
+
+  public void errorAlert(String errorText) {
+    Alert alert = new Alert(Alert.AlertType.ERROR, errorText);
+    alert.setTitle("ERROR");
+    alert.showAndWait();
   }
 
 }

@@ -2,6 +2,8 @@ package no.ntnu.olekel.core;
 
 import javafx.scene.control.Alert;
 import no.ntnu.olekel.core.units.*;
+import no.ntnu.olekel.ui.DialogsHandler;
+import no.ntnu.olekel.ui.Facade;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,12 +23,12 @@ import java.util.logging.Logger;
  */
 public class ArmyRegister {
   private List<Army> armyRegister;
-
   static Logger logger = Logger.getLogger("logger");
 
   public ArmyRegister() {
     this.armyRegister = new ArrayList<>();
   }
+
 
   public List<Army> getArmyRegister() {
     return armyRegister;
@@ -86,14 +88,15 @@ public class ArmyRegister {
           default -> logger.log(Level.INFO, "Invalid type was attempted to be read");
         }
       }
-      //armyRegister.add(armyFromFile);
-      //System.out.println(armyFromFile.getCavalryUnits().get(0).getName());
-      return armyFromFile;
+      if (!armyFromFile.getAllUnits().isEmpty())
+        return armyFromFile;
+      else {
+        Facade.getInstance().getDialogsHandler().errorAlert("Could not load file!");
+        return null;
+      }
     } catch (IOException e) {
       logger.log(Level.WARNING, e.getMessage());
-      Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load file!");
-      alert.setTitle("ERROR");
-      alert.showAndWait();
+      Facade.getInstance().getDialogsHandler().errorAlert("Could not load file!");
       return null;
     }
   }

@@ -327,7 +327,7 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0">
                      <children>
-                        <Label alignment="CENTER" text="NO ARMY SELECTED">
+                        <Label fx:id="armyTwoName" alignment="CENTER" text="NO ARMY SELECTED">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -510,7 +510,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Appoint army">
+                  <Button mnemonicParsing="false" onAction="#appointArmyTwoAction" text="Appoint army">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
