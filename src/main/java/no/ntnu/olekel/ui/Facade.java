@@ -25,6 +25,7 @@ public class Facade {
     private DialogsHandler dialogs;
     private BattleHandler battleHandler;
     private Battle battle;
+    private EnumHandler.State state;
 
 
     /**
@@ -39,6 +40,7 @@ public class Facade {
         this.army = new Army("Temporary");
         this.dialogs = new DialogsHandler();
         this.battleHandler = new BattleHandler();
+        this.state = EnumHandler.State.NEW;
     }
 
     /**
@@ -117,4 +119,11 @@ public class Facade {
         }
     }
 
+    public void setState(EnumHandler.State state) {
+        this.state = state;
+    }
+
+    public EnumHandler.State getState(){
+        return state;
+    }
 }

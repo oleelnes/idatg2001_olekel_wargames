@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.core.EnumHandler;
+import no.ntnu.olekel.core.FileHandler;
 import no.ntnu.olekel.core.units.Unit;
 import no.ntnu.olekel.core.units.UnitFactory;
 import no.ntnu.olekel.ui.Facade;
@@ -32,7 +34,7 @@ public class CreateArmyController implements Initializable {
   private List<Unit> units;
   private List<Text> listContent;
   private String armyName;
-  private State state;
+  private EnumHandler.State state;
 
   @FXML
   private TextField commanderUnitsAmountInput;
@@ -103,6 +105,9 @@ public class CreateArmyController implements Initializable {
   @FXML
   private ListView<Text> existingUnitsListView;
 
+  @FXML
+  private Label mainLabel;
+
   /**
    * This method initializes the necessary fields and other content
    * when the createArmyPage.fxml is loaded.
@@ -112,15 +117,24 @@ public class CreateArmyController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    setAddUnitsContentVisibility(false);
-    this.armyName = ""; //this might work but take a closer look at it.
-    this.units = new ArrayList<>();
-    this.state = State.NEW;
     this.listContent = new ArrayList<>();
-    this.newArmy = new Army("");
-
+    this.units = new ArrayList<>();
+    if(Facade.getInstance().getState() == EnumHandler.State.NEW) {
+      setAddUnitsContentVisibility(false);
+      this.newArmy = new Army("");
+      this.units = new ArrayList<>();
+      this.state = EnumHandler.State.NEW;
+    } else {
+      setAddUnitsContentVisibility(true);
+      this.newArmy = army;
+      this.armyName = army.getName(); //this might work but take a closer look at it.
+      this.state = EnumHandler.State.EDIT;
+      addNewUnitsLabel.setText("Add New Units to " + armyName);
+      mainLabel.setText("Edit Army");
+    }
     ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
     existingUnitsListView.setItems(stringObservableList);
+    updateListContent();
   }
 
   /**
@@ -140,32 +154,25 @@ public class CreateArmyController implements Initializable {
       if (result.isEmpty()){
         alert.close();
       } else if (result.get() == ButtonType.OK) {
-        if(state == State.NEW)
+        if(state == EnumHandler.State.NEW)
           Facade.getInstance().getDialogsHandler().loadUnitsFromFile(newArmy);
-        else if (state == State.EDIT)
+        else if (state == EnumHandler.State.EDIT)
           Facade.getInstance().getDialogsHandler().loadUnitsFromFile(army);
         updateListContent();
       } else if (result.get() == ButtonType.CANCEL) {
         alert.close();
       }
     } else {
-      if(state == State.NEW)
+      if(state == EnumHandler.State.NEW)
         Facade.getInstance().getDialogsHandler().loadUnitsFromFile(newArmy);
-      else if (state == State.EDIT)
+      else if (state == EnumHandler.State.EDIT)
         Facade.getInstance().getDialogsHandler().loadUnitsFromFile(army);
       updateListContent();
     }
 
   }
 
-  /**
-   * The state of the army that is being created. It is "NEW" if it has not been
-   * added to the register yet; it is "EDIT" if it has.
-   */
-  public enum State {
-    NEW,
-    EDIT;
-  }
+
 
   /**
    * Method that adds units to the army being created according to user input.
@@ -238,7 +245,7 @@ public class CreateArmyController implements Initializable {
    */
   private void updateListContent(){
     listContent.clear();
-    if(state == State.EDIT) setListContent(army);
+    if(state == EnumHandler.State.EDIT) setListContent(army);
     else setListContent(newArmy);
     ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
     existingUnitsListView.setItems(stringObservableList);
@@ -321,7 +328,7 @@ public class CreateArmyController implements Initializable {
       armyName = armyNameInput.getText();
       addNewUnitsLabel.setText("Add New Units to " + armyName);
       armyNameInput.clear();
-      if (state == State.EDIT) Facade.getInstance().getArmy().setName(armyName);
+      if (state == EnumHandler.State.EDIT) Facade.getInstance().getArmy().setName(armyName);
     } else if (!armyName.equals("Temporary")) { //?
       //dialog window opens!!!
     }
@@ -358,7 +365,7 @@ public class CreateArmyController implements Initializable {
       Facade.getInstance().getArmyRegister().getArmyRegister().add(newArmy);
       Facade.getInstance().setArmy(newArmy);
       army = Facade.getInstance().getArmy();
-      setState(State.EDIT); //state is set to EDIT,
+      setState(EnumHandler.State.EDIT); //state is set to EDIT,
       // as the army is now created and set to be the tournament present in the Facade
     } else {
       System.err.println("Please enter a name for the army!");
@@ -387,7 +394,7 @@ public class CreateArmyController implements Initializable {
    *
    * @param state The state of the army being created ("NEW" or "EDIT")
    */
-  public void setState(State state) {
+  public void setState(EnumHandler.State state) {
     this.state = state;
     updateName();
   }

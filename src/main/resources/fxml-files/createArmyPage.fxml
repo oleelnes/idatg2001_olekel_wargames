@@ -9,7 +9,7 @@
    <top>
       <VBox alignment="TOP_CENTER" minHeight="125.0" prefHeight="150.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="40.0" text="Create New Army">
+            <Label fx:id="mainLabel" prefHeight="40.0" text="Create New Army">
                <font>
                   <Font name="Times New Roman" size="30.0" />
                </font>

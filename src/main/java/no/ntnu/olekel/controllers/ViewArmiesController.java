@@ -13,11 +13,14 @@ import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
+import no.ntnu.olekel.core.EnumHandler;
+import no.ntnu.olekel.ui.DialogsHandler;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -28,7 +31,8 @@ import java.util.ResourceBundle;
  */
 public class ViewArmiesController implements Initializable {
 
-  Scenes scenes = Facade.getInstance().getScenes();
+  private Scenes scenes = Facade.getInstance().getScenes();
+  private DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
   @FXML
   private TableView<Army> tableView;
@@ -101,4 +105,14 @@ public class ViewArmiesController implements Initializable {
     scenes.loadScene(event, ClassPaths.mainPageURL);
   }
 
+  public void editArmyAction(ActionEvent event) throws IOException {
+    Army selectedArmy = tableView.getSelectionModel().getSelectedItem();
+    if (selectedArmy != null) {
+      Facade.getInstance().setArmy(selectedArmy);
+      Facade.getInstance().setState(EnumHandler.State.EDIT);
+      scenes.loadScene(event, ClassPaths.createArmyPageURL);
+    } else {
+      dialogs.errorAlert("No army selected!");
+    }
+  }
 }
