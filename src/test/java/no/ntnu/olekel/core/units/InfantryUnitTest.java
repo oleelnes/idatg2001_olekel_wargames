@@ -1,5 +1,6 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,11 +76,47 @@ public class InfantryUnitTest {
     assertEquals(2, infantryUnit.getAttackBonus());
   }
 
+  @Test
+  public void getAttackBonusInForestTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.FOREST);
+    assertEquals(4, infantryUnit.getAttackBonus());
+  }
+
+  @Test
+  public void getAttackBonusInHillsTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.HILLS);
+    assertEquals(2, infantryUnit.getAttackBonus());
+  }
+
+  @Test
+  public void getAttackBonusOnPlainsTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.PLAINS);
+    assertEquals(2, infantryUnit.getAttackBonus());
+  }
+
+  @Test
+  public void getResistBonusInForestTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.FOREST);
+    assertEquals(3, infantryUnit.getResistBonus());
+  }
+
+  @Test
+  public void getResistBonusInHillsTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.HILLS);
+    assertEquals(1, infantryUnit.getResistBonus());
+  }
+
+  @Test
+  public void getResistBonusOnPlainsTest(){
+    infantryUnit.setTerrain(EnumHandler.TerrainTypes.PLAINS);
+    assertEquals(1, infantryUnit.getResistBonus());
+  }
+
   /**
    * Get defender bonus test.
    */
   @Test
-  public void getDefenderBonusTest(){
+  public void getResistBonusTest(){
     assertEquals(1, infantryUnit.getResistBonus());
   }
 

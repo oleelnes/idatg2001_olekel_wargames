@@ -72,7 +72,7 @@ public class CavalryUnit extends Unit {
   @Override
   public void setTerrain(EnumHandler.TerrainTypes terrain){
     switch (terrain) {
-      case PLAINS -> attackManipulator = 2;
+      case PLAINS -> attackManipulator = 3;
       case FOREST -> {
         resistManipulator = 0;
         attackManipulator = 0;
