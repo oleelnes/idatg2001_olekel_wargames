@@ -108,7 +108,43 @@
                      </BorderPane.margin>
                      <children>
                         <Label text="Army 1 name" />
-                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(0, 100, 0, 0.25);" />
+                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(0, 100, 0, 0.25);">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Total units left: ">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="92.0" layoutY="10.0" text="Commander units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="64.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Infantry units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="82.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Ranged units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Cavalry units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                           </children></VBox>
                      </children>
                   </VBox>
                </left>
@@ -119,7 +155,43 @@
                      </BorderPane.margin>
                      <children>
                         <Label text="Army 2 name" />
-                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(100, 0, 0, 0.25);" />
+                        <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(100, 0, 0, 0.25);">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Total units left: ">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="92.0" layoutY="10.0" text="Commander units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Infantry units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Ranged units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Cavalry units left: " />
+                                    <Label text="Label" />
+                                 </children>
+                              </HBox>
+                           </children></VBox>
                      </children>
                   </VBox>
                </right>

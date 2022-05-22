@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
@@ -33,25 +34,24 @@ import java.util.ResourceBundle;
 public class NewWarController implements Initializable {
 
   private final Scenes scenes = Facade.getInstance().getScenes();
-  private List<String> terrain;
+  private String terrain;
+  private String simulationMode;
   private BattleHandler battleHandler;
   private final DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
-  /**
-   * Combobox for selection of terrain for the battle simulation.
-   */
+
   @FXML
   private ComboBox<String> comboBoxTerrain;
 
-  /**
-   * Name of army one.
-   */
+  @FXML
+  private ComboBox<String> comboBoxSimulationMode;
+
+  @FXML
+  private Slider simulationSpeedSlider;
+
   @FXML
   private Label armyOneName;
 
-  /**
-   * Name of army two.
-   */
   @FXML
   private Label armyTwoName;
 
@@ -125,14 +125,19 @@ public class NewWarController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    this.terrain = new ArrayList<>();
-    this.terrain.addAll(getTerrainTypes());
+    this.terrain = getTerrainTypes().get(0); //none
+    this.simulationMode = getSimulationModes().get(0); //real-time simulation
     this.battleHandler = Facade.getInstance().getBattleHandler();
     if (battleHandler.getArmyOne() != null) armyOneInit();
     if (battleHandler.getArmyTwo() != null) armyTwoInit();
+
     ObservableList<String> terrainTypes = FXCollections.observableArrayList();
-    terrainTypes.addAll(terrain);
+    terrainTypes.addAll(getTerrainTypes());
     comboBoxTerrain.setItems(terrainTypes);
+
+    ObservableList<String> simulationModes = FXCollections.observableArrayList();
+    simulationModes.addAll(getSimulationModes());
+    comboBoxSimulationMode.setItems(simulationModes);
   }
 
   /**
@@ -142,10 +147,25 @@ public class NewWarController implements Initializable {
    */
   private List<String> getTerrainTypes(){
     List<String> terrainTypes = new ArrayList<>();
-    terrainTypes.add("Forest");
-    terrainTypes.add("Hills");
-    terrainTypes.add("Plains");
-    return  terrainTypes;
+    terrainTypes.add("none");
+    terrainTypes.add("forest");
+    terrainTypes.add("hills");
+    terrainTypes.add("plains");
+    terrainTypes.add("random");
+    return terrainTypes;
+  }
+
+  /**
+   * This method returns a list with the selectable simulation modes.
+   *
+   * @return  A list with simulation modes.
+   */
+  private List<String> getSimulationModes(){
+    List<String> simulationModes = new ArrayList<>();
+    simulationModes.add("real-time simulation");
+    simulationModes.add("instant");
+    simulationModes.add("step-by-step");
+    return simulationModes;
   }
 
   /**
@@ -264,4 +284,24 @@ public class NewWarController implements Initializable {
         getAllUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
   }
 
+  public void updateBattleSettingsAction(ActionEvent event) {
+    updateBattleSettings();
+  }
+
+  /**+
+   * Updates the settings for the simulation (to-be-generated).
+   */
+  private void updateBattleSettings() {
+    String selectedTerrain = comboBoxTerrain.getSelectionModel().getSelectedItem();
+    String selectedSimulationMode = comboBoxSimulationMode.getSelectionModel().getSelectedItem();
+    if (selectedTerrain != null) {
+      this.terrain = selectedTerrain;
+    } else {
+
+    }
+    if (selectedSimulationMode != null) {
+      this.simulationMode = selectedSimulationMode;
+
+    }
+  }
 }
