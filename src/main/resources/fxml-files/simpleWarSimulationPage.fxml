@@ -46,6 +46,14 @@
                <VBox.margin>
                   <Insets left="15.0" right="15.0" />
                </VBox.margin>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="winningArmyLabel" text="Winning army" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+               </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -117,31 +125,31 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="totalUnitsLeftA1" layoutX="10.0" layoutY="10.0" text="Label" />
+                                    <Label fx:id="totalUnitsLeftA1" layoutX="10.0" layoutY="10.0" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label layoutX="92.0" layoutY="10.0" text="Commander units left: " />
-                                    <Label fx:id="commanderUnitsLeftA1" text="Label" />
+                                    <Label fx:id="commanderUnitsLeftA1" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="64.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Infantry units left: " />
-                                    <Label fx:id="infantryUnitsLeftA1" text="Label" />
+                                    <Label fx:id="infantryUnitsLeftA1" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="82.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Ranged units left: " />
-                                    <Label fx:id="rangedUnitsLeftA1" text="Label" />
+                                    <Label fx:id="rangedUnitsLeftA1" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Cavalry units left: " />
-                                    <Label fx:id="cavalryUnitsLeftA1" text="Label" />
+                                    <Label fx:id="cavalryUnitsLeftA1" />
                                  </children>
                               </HBox>
                            </children></VBox>
@@ -164,31 +172,31 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="10.0" text="Label" />
+                                    <Label fx:id="totalUnitsLeftA2" layoutX="10.0" layoutY="10.0" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label layoutX="92.0" layoutY="10.0" text="Commander units left: " />
-                                    <Label text="Label" />
+                                    <Label fx:id="commanderUnitsLeftA2" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Infantry units left: " />
-                                    <Label text="Label" />
+                                    <Label fx:id="infantryUnitsLeftA2" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Ranged units left: " />
-                                    <Label text="Label" />
+                                    <Label fx:id="rangedUnitsLeftA2" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Cavalry units left: " />
-                                    <Label text="Label" />
+                                    <Label fx:id="cavalryUnitsLeftA2" />
                                  </children>
                               </HBox>
                            </children></VBox>

@@ -4,6 +4,8 @@ package no.ntnu.olekel.controllers;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +42,13 @@ public class SimpleWarSimulationPage implements Initializable {
   private IntegerProperty rangedUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getRangedUnits().size());
   private IntegerProperty cavalryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCavalryUnits().size());
 
+  private IntegerProperty unitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getAllUnits().size());
+  private IntegerProperty commanderUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCommanderUnits().size());
+  private IntegerProperty infantryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getInfantryUnits().size());
+  private IntegerProperty rangedUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getRangedUnits().size());
+  private IntegerProperty cavalryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCavalryUnits().size());
+
+  private StringProperty winningArmyString = new SimpleStringProperty(battle.getWinningArmy());
 
   @FXML
   private Label armyOneUnitsLost;
@@ -58,6 +67,24 @@ public class SimpleWarSimulationPage implements Initializable {
 
   @FXML
   private Label cavalryUnitsLeftA1;
+
+  @FXML
+  private Label totalUnitsLeftA2;
+
+  @FXML
+  private Label commanderUnitsLeftA2;
+
+  @FXML
+  private Label infantryUnitsLeftA2;
+
+  @FXML
+  private Label rangedUnitsLeftA2;
+
+  @FXML
+  private Label cavalryUnitsLeftA2;
+
+  @FXML
+  private Label winningArmyLabel;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -104,6 +131,14 @@ public class SimpleWarSimulationPage implements Initializable {
             Platform.runLater(() -> rangedUnitsLeftA1Value.setValue(battle.getArmyOne().getRangedUnits().size()));
             Platform.runLater(() -> cavalryUnitsLeftA1Value.setValue(battle.getArmyOne().getCavalryUnits().size()));
 
+            Platform.runLater(() -> unitsLeftA2Value.setValue(battle.getArmyTwo().getAllUnits().size()));
+            Platform.runLater(() -> commanderUnitsLeftA2Value.setValue(battle.getArmyTwo().getCommanderUnits().size()));
+            Platform.runLater(() -> infantryUnitsLeftA2Value.setValue(battle.getArmyTwo().getInfantryUnits().size()));
+            Platform.runLater(() -> rangedUnitsLeftA2Value.setValue(battle.getArmyTwo().getRangedUnits().size()));
+            Platform.runLater(() -> cavalryUnitsLeftA2Value.setValue(battle.getArmyTwo().getCavalryUnits().size()));
+
+            Platform.runLater(() -> winningArmyString.setValue(battle.getWinningArmy()));
+
           }
           return null;
         }
@@ -120,6 +155,14 @@ public class SimpleWarSimulationPage implements Initializable {
       infantryUnitsLeftA1.textProperty().bind(infantryUnitsLeftA1Value.asString());
       rangedUnitsLeftA1.textProperty().bind(rangedUnitsLeftA1Value.asString());
       cavalryUnitsLeftA1.textProperty().bind(cavalryUnitsLeftA1Value.asString());
+
+      totalUnitsLeftA2.textProperty().bind(unitsLeftA2Value.asString());
+      commanderUnitsLeftA2.textProperty().bind(commanderUnitsLeftA2Value.asString());
+      infantryUnitsLeftA2.textProperty().bind(infantryUnitsLeftA2Value.asString());
+      rangedUnitsLeftA2.textProperty().bind(rangedUnitsLeftA2Value.asString());
+      cavalryUnitsLeftA2.textProperty().bind(cavalryUnitsLeftA2Value.asString());
+
+      winningArmyLabel.textProperty().bind(winningArmyString);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -164,5 +207,7 @@ public class SimpleWarSimulationPage implements Initializable {
       ie.printStackTrace();
     }
   }
+
+
 
 }

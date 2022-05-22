@@ -149,6 +149,14 @@ public class Battle {
     this.simulationMode = simulationMode;
   }
 
+  public String getWinningArmy(){
+    if (getArmyOne().getHealth() > getArmyTwo().getHealth()) {
+      return getArmyOne().getName() + " is winning";
+    } else if (getArmyOne().getHealth() < getArmyTwo().getHealth()) {
+      return getArmyTwo().getName() + " is winning";
+    } else return "The armies are tied!";
+  }
+
   @Override
   public String toString() {
     return "Battle{" +
