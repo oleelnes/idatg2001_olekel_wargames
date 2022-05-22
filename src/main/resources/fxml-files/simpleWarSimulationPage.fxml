@@ -9,7 +9,7 @@
    <left>
       <VBox alignment="TOP_CENTER" minWidth="250.0" prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Army 1 unit name">
+            <Label fx:id="unitArmyOneName" text="Army 1 unit name">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin></Label>
@@ -18,17 +18,30 @@
                   <Insets left="25.0" />
                </VBox.margin>
                <children>
-                  <Label text="Units extinguished: n/a" />
-                  <HBox>
+                  <HBox alignment="CENTER_LEFT" minHeight="50.0">
                      <children>
-                        <Label fx:id="armyOneUnitsLost1" layoutX="10.0" layoutY="10.0" text="Units lost: " />
-                        <Label fx:id="armyOneUnitsLost" />
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit type: " />
+                        <Label fx:id="unitTypeA1" />
                      </children>
                   </HBox>
-                  <Label text="Attacks dealt:  n/a" />
-                  <Label text="Total damage dealt: n/a" />
-                  <Label layoutX="10.0" layoutY="61.0" text="Avg. health of remaining units: n/a" />
-                  <Label layoutX="10.0" layoutY="78.0" text="Avg. health total: n/a" />
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" minHeight="40.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit health: " />
+                        <Label fx:id="unitHealthA1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" minHeight="40.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit attack bonus: " />
+                        <Label fx:id="unitAttackBonusA1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" minHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Unit resist bonus: " />
+                        <Label fx:id="unitResistBonusA1" />
+                     </children>
+                  </HBox>
                </children></VBox>
          </children>
          <BorderPane.margin>
@@ -38,7 +51,7 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Battle">
+            <Label fx:id="battleName" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" text="Battle">
                <font>
                   <Font size="19.0" />
                </font></Label>
@@ -47,12 +60,30 @@
                   <Insets left="15.0" right="15.0" />
                </VBox.margin>
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" minHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="winningArmyLabel" text="Winning army" />
+                        <Label fx:id="winningArmyLabel" text="Winning army">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" minHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Attacking army: " />
+                        <Label fx:id="attackingArmyLabel" layoutX="10.0" layoutY="10.0" text="Label" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Terrain: " />
+                        <Label fx:id="terrainLabel" text="Label" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" minHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Round: " />
+                        <Label fx:id="roundLabel" layoutX="131.0" layoutY="22.0" text="Label" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -62,17 +93,16 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Slider value="25.0" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="25.0" text="25" />
+                  <Slider fx:id="simulationSpeedSlider" value="25.0" />
+                  <Label fx:id="simulationSpeedLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="25.0" text="25" />
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ToggleButton mnemonicParsing="false" text="Simulation mode" />
-                  <Label text="Automatic">
+                  <Button fx:id="pauseButtonID" mnemonicParsing="false" onAction="#pauseButtonAction" text="Pause">
                      <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
+                        <Insets right="20.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="startWarButtonID" mnemonicParsing="false" onAction="#startWarAction" text="Start war" />
                </children></HBox>
          </children>
          <BorderPane.margin>
@@ -82,7 +112,7 @@
    <right>
       <VBox alignment="TOP_CENTER" minWidth="250.0" prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Army 2 unit name">
+            <Label fx:id="unitArmyTwoName" text="Army 2 unit name">
                <VBox.margin>
                   <Insets right="25.0" />
                </VBox.margin></Label>
@@ -90,6 +120,32 @@
                <VBox.margin>
                   <Insets right="25.0" />
                </VBox.margin>
+               <children>
+                  <HBox alignment="CENTER_LEFT" minHeight="50.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit type: " />
+                        <Label fx:id="unitTypeA2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" minHeight="40.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit health: " />
+                        <Label fx:id="unitHealthA2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" minHeight="40.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Unit attack bonus: " />
+                        <Label fx:id="unitAttackBonusA2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" minHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Unit resist bonus: " />
+                        <Label fx:id="unitResistBonusA2" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
          </children>
          <BorderPane.margin>
@@ -115,7 +171,7 @@
                         <Insets left="25.0" />
                      </BorderPane.margin>
                      <children>
-                        <Label text="Army 1 name" />
+                        <Label fx:id="armyOneName" text="Army 1 name" />
                         <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(0, 100, 0, 0.25);">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
@@ -162,7 +218,7 @@
                         <Insets right="25.0" />
                      </BorderPane.margin>
                      <children>
-                        <Label text="Army 2 name" />
+                        <Label fx:id="armyTwoName" text="Army 2 name" />
                         <VBox minWidth="350.0" prefHeight="200.0" style="-fx-background-color: rgba(100, 0, 0, 0.25);">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
@@ -214,7 +270,6 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#backToMainPageAction" text="Back to main page" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#startWarAction" text="Start war" />
          </children></HBox>
    </bottom>
 </BorderPane>

@@ -139,9 +139,9 @@ public abstract class Unit {
             ", armor: " + getArmor());
   }
 
-  protected abstract int getAttackBonus();
+  public abstract int getAttackBonus();
 
-  protected abstract int getResistBonus();
+  public abstract int getResistBonus();
 
   public abstract void setTerrain(EnumHandler.TerrainTypes terrain);
 

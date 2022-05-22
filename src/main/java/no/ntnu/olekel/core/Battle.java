@@ -19,11 +19,14 @@ public class Battle {
   private Army armyTwo;
   private final Logger logger;
   private final Random random;
-
-
+  private int rounds;
   private String terrain;
   private String simulationMode;
   private int simulationSpeed;
+  private Army attackingArmy;
+  private Unit armyOneUnit;
+  private Unit armyTwoUnit;
+  private String name;
 
 
   /**
@@ -40,6 +43,8 @@ public class Battle {
     this.terrain = "";
     this.simulationMode = "";
     this.simulationSpeed = 1000;
+    this.rounds = 0;
+    this.name = "Battle";
   }
 
 
@@ -49,7 +54,7 @@ public class Battle {
    * @return the winning army.
    */
   public Army simulateAllRounds() {
-    int rounds = 0;
+    rounds = 0;
     logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
             " and " + armyTwo.getName() + " is about to start!");
 
@@ -83,20 +88,29 @@ public class Battle {
    *
    * @return  Boolean todo:
    */
-  public boolean simulateOneRound() {
+  public void simulateOneRound() {
     //This is the main loop which runs as long as both of the armies still have armies left.
     if (armyOne.hasUnits() && armyTwo.hasUnits()) {
       boolean attacker = random.nextBoolean();
       Unit unitA1 = armyOne.getRandom();
+      armyOneUnit = unitA1;
       Unit unitA2 = armyTwo.getRandom();
+      armyTwoUnit = unitA2;
 
       //This if-else statement decides which army and unit gets to attack
       //depending on the random int attacker.
-      if (attacker) attackUnit(unitA1, unitA2, armyTwo);
-      else attackUnit(unitA2, unitA1, armyOne);
+      if (attacker) {
+        attackingArmy = armyOne;
+        attackUnit(unitA1, unitA2, armyTwo);
+      }
+      else {
+        attackingArmy = armyTwo;
+        attackUnit(unitA2, unitA1, armyOne);
+      }
+      rounds++;
     }
 
-    return armyOne.hasUnits() && armyTwo.hasUnits();
+
   }
 
   /**
@@ -156,6 +170,35 @@ public class Battle {
       return getArmyTwo().getName() + " is winning";
     } else return "The armies are tied!";
   }
+
+  public int getRounds(){
+    return rounds;
+  }
+
+  public Army getAttackingArmy() {
+    if (attackingArmy != null) return attackingArmy;
+    else return null;
+  }
+
+  public Unit getArmyOneUnit() {
+    if (armyOneUnit != null) return armyOneUnit;
+    else return null;
+  }
+
+  public Unit getArmyTwoUnit() {
+    if (armyTwoUnit != null) return armyTwoUnit;
+    else return null;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
 
   @Override
   public String toString() {
