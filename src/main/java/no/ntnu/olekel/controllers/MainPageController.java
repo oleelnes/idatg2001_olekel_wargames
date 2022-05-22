@@ -64,7 +64,8 @@ public class MainPageController {
    */
   @FXML
   public void simpleWarSimulationAction(ActionEvent event) throws IOException {
-    scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
+    //scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
+    Facade.getInstance().getDialogsHandler().errorAlert("Not implemented");
   }
 
   /**

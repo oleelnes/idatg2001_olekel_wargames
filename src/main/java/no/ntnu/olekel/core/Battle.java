@@ -21,6 +21,11 @@ public class Battle {
   private final Random random;
 
 
+  private String terrain;
+  private String simulationMode;
+  private int simulationSpeed;
+
+
   /**
    * Instantiates a new Battle.
    *
@@ -32,6 +37,9 @@ public class Battle {
     this.armyTwo = armyTwo;
     this.logger = Logger.getLogger(this.getClass().toString());
     this.random = new Random();
+    this.terrain = "";
+    this.simulationMode = "";
+    this.simulationSpeed = 1000;
   }
 
 
@@ -40,7 +48,7 @@ public class Battle {
    *
    * @return the winning army.
    */
-  public Army automaticSimulation() {
+  public Army simulateAllRounds() {
     int rounds = 0;
     logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
             " and " + armyTwo.getName() + " is about to start!");
@@ -70,7 +78,11 @@ public class Battle {
     }
   }
 
-
+  /**
+   * This method simulates one round of a battle betweeen two armies.
+   *
+   * @return  Boolean todo:
+   */
   public boolean simulateOneRound() {
     //This is the main loop which runs as long as both of the armies still have armies left.
     if (armyOne.hasUnits() && armyTwo.hasUnits()) {
@@ -108,6 +120,33 @@ public class Battle {
 
   public Army getArmyTwo(){
     return armyTwo;
+  }
+
+  public void setSimulationSpeed(int simulationSpeed) {
+    if (simulationSpeed > 0 && simulationSpeed <= 100)
+      this.simulationSpeed = 1000 / simulationSpeed;
+    else this.simulationSpeed = 1000;
+  }
+
+  public int getSimulationSpeed(){
+    return simulationSpeed;
+  }
+
+
+  public String getTerrain() {
+    return terrain;
+  }
+
+  public void setTerrain(String terrain) {
+    this.terrain = terrain;
+  }
+
+  public String getSimulationMode() {
+    return simulationMode;
+  }
+
+  public void setSimulationMode(String simulationMode) {
+    this.simulationMode = simulationMode;
   }
 
   @Override

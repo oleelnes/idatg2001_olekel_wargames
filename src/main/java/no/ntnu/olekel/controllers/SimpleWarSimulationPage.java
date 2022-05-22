@@ -34,11 +34,30 @@ public class SimpleWarSimulationPage implements Initializable {
   private boolean simulationRunning = false;
   private int delay;
 
-
   private IntegerProperty unitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getAllUnits().size());
+  private IntegerProperty commanderUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCommanderUnits().size());
+  private IntegerProperty infantryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getInfantryUnits().size());
+  private IntegerProperty rangedUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getRangedUnits().size());
+  private IntegerProperty cavalryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCavalryUnits().size());
+
 
   @FXML
   private Label armyOneUnitsLost;
+
+  @FXML
+  private Label totalUnitsLeftA1;
+
+  @FXML
+  private Label commanderUnitsLeftA1;
+
+  @FXML
+  private Label infantryUnitsLeftA1;
+
+  @FXML
+  private Label rangedUnitsLeftA1;
+
+  @FXML
+  private Label cavalryUnitsLeftA1;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,13 +92,17 @@ public class SimpleWarSimulationPage implements Initializable {
           while (battle.getArmyOne().hasUnits() && battle.getArmyTwo().hasUnits()) {
 
             //sets the delay
-            delay(delay);
+            delay(battle.getSimulationSpeed());
 
             //Simulate one round.
             Platform.runLater(() -> battle.simulateOneRound());
 
             //tasks to be done by the GUI in-between delays.
             Platform.runLater(() -> unitsLeftA1Value.setValue(battle.getArmyOne().getAllUnits().size()));
+            Platform.runLater(() -> commanderUnitsLeftA1Value.setValue(battle.getArmyOne().getCommanderUnits().size()));
+            Platform.runLater(() -> infantryUnitsLeftA1Value.setValue(battle.getArmyOne().getInfantryUnits().size()));
+            Platform.runLater(() -> rangedUnitsLeftA1Value.setValue(battle.getArmyOne().getRangedUnits().size()));
+            Platform.runLater(() -> cavalryUnitsLeftA1Value.setValue(battle.getArmyOne().getCavalryUnits().size()));
 
           }
           return null;
@@ -92,7 +115,11 @@ public class SimpleWarSimulationPage implements Initializable {
       th.start();
 
       //Binding values as set inside the while-loop and the Task to their appropriate labels/fields.
-      armyOneUnitsLost.textProperty().bind(unitsLeftA1Value.asString());
+      totalUnitsLeftA1.textProperty().bind(unitsLeftA1Value.asString());
+      commanderUnitsLeftA1.textProperty().bind(commanderUnitsLeftA1Value.asString());
+      infantryUnitsLeftA1.textProperty().bind(infantryUnitsLeftA1Value.asString());
+      rangedUnitsLeftA1.textProperty().bind(rangedUnitsLeftA1Value.asString());
+      cavalryUnitsLeftA1.textProperty().bind(cavalryUnitsLeftA1Value.asString());
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -136,11 +163,6 @@ public class SimpleWarSimulationPage implements Initializable {
     } catch (InterruptedException ie) {
       ie.printStackTrace();
     }
-  }
-
-
-  private void setDelay(int delay){
-    this.delay = delay;
   }
 
 }

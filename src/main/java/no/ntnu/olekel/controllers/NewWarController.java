@@ -149,7 +149,6 @@ public class NewWarController implements Initializable {
 
     simulationSpeedSlider.valueProperty().addListener((observableValue, number, t1) -> {
       simulationSpeed = (int)simulationSpeedSlider.getValue();
-      System.out.println(simulationSpeedSlider.getValue());
       simulationSpeedLabel.setText(String.valueOf(simulationSpeed));
     });
   }
@@ -244,6 +243,9 @@ public class NewWarController implements Initializable {
   public void startWarAction(ActionEvent event) throws IOException {
     if (battleHandler.getBattleState() == BattleHandler.BattleState.READY) {
       battleHandler.createBattle();
+      Facade.getInstance().getBattle().setSimulationSpeed(simulationSpeed);
+      Facade.getInstance().getBattle().setTerrain(terrain);
+      Facade.getInstance().getBattle().setSimulationMode(simulationMode);
       scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
     } else {
       dialogs.errorAlert("Battle cannot be started.");
@@ -316,12 +318,9 @@ public class NewWarController implements Initializable {
     String selectedSimulationMode = comboBoxSimulationMode.getSelectionModel().getSelectedItem();
     if (selectedTerrain != null) {
       this.terrain = selectedTerrain;
-    } else {
-
     }
     if (selectedSimulationMode != null) {
       this.simulationMode = selectedSimulationMode;
-
     }
   }
 
