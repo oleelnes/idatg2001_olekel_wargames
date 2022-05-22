@@ -1,5 +1,7 @@
 package no.ntnu.olekel.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.DragEvent;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.ArmyRegister;
@@ -26,7 +29,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- *
+ * The controller class for the newWarPage.fxml scene.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
@@ -37,6 +40,7 @@ public class NewWarController implements Initializable {
   private String terrain;
   private String simulationMode;
   private BattleHandler battleHandler;
+  private int simulationSpeed;
   private final DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
 
@@ -115,6 +119,9 @@ public class NewWarController implements Initializable {
   @FXML
   private Label totalUnitHealthA2;
 
+  @FXML
+  private Label simulationSpeedLabel;
+
 
   /**
    * This method initializes the necessary fields and other content
@@ -125,6 +132,7 @@ public class NewWarController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    this.simulationSpeed = 25;
     this.terrain = getTerrainTypes().get(0); //none
     this.simulationMode = getSimulationModes().get(0); //real-time simulation
     this.battleHandler = Facade.getInstance().getBattleHandler();
@@ -138,6 +146,12 @@ public class NewWarController implements Initializable {
     ObservableList<String> simulationModes = FXCollections.observableArrayList();
     simulationModes.addAll(getSimulationModes());
     comboBoxSimulationMode.setItems(simulationModes);
+
+    simulationSpeedSlider.valueProperty().addListener((observableValue, number, t1) -> {
+      simulationSpeed = (int)simulationSpeedSlider.getValue();
+      System.out.println(simulationSpeedSlider.getValue());
+      simulationSpeedLabel.setText(String.valueOf(simulationSpeed));
+    });
   }
 
   /**
@@ -284,6 +298,12 @@ public class NewWarController implements Initializable {
         getAllUnits().stream().map(Unit::getHealth).reduce(0, Integer::sum)));
   }
 
+  /**
+   * This method handles what happens when the "update" button is pressed
+   * --> updates battle settings fields.
+   *
+   * @param event When "update" button is pressed.
+   */
   public void updateBattleSettingsAction(ActionEvent event) {
     updateBattleSettings();
   }
@@ -304,4 +324,6 @@ public class NewWarController implements Initializable {
 
     }
   }
+
+
 }

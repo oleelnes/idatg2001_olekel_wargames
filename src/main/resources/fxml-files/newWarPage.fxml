@@ -78,7 +78,7 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="25" />
+                        <Label fx:id="simulationSpeedLabel" text="25" />
                         <Slider fx:id="simulationSpeedSlider" value="25.0">
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
