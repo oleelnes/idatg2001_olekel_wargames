@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
+
 /**
  * The class for the cavalry unit, a subclass of Unit, and defines the
  * abstract classes from Unit
@@ -23,7 +25,9 @@ public class CavalryUnit extends Unit {
    */
   public CavalryUnit(String name, int health, int attack, int armor){
     super(name, health, attack, armor);
-    timesAttacking = 0;
+    this.timesAttacking = 0;
+    this.attackManipulator = 0;
+    this.resistManipulator = 1;
   }
 
   /**
@@ -34,7 +38,9 @@ public class CavalryUnit extends Unit {
    */
   public CavalryUnit(String name, int health){
     super(name, health, 20, 12);
-    timesAttacking = 0;
+    this.timesAttacking = 0;
+    this.attackManipulator = 0;
+    this.resistManipulator = 1;
   }
 
   /**
@@ -46,10 +52,10 @@ public class CavalryUnit extends Unit {
   public int getAttackBonus() {
     if (timesAttacking == 0) {
       timesAttacking++;
-      return CHARGE_BONUS + MELEE_BONUS;
+      return CHARGE_BONUS + MELEE_BONUS + attackManipulator;
     } else {
       timesAttacking++;
-      return MELEE_BONUS;
+      return MELEE_BONUS + attackManipulator;
     }
   }
 
@@ -60,7 +66,22 @@ public class CavalryUnit extends Unit {
    */
   @Override
   public int getResistBonus() {
-    return RESIST_BONUS;
+    return RESIST_BONUS * resistManipulator;
+  }
+
+  @Override
+  public void setTerrain(EnumHandler.TerrainTypes terrain){
+    switch (terrain) {
+      case PLAINS -> attackManipulator = 2;
+      case FOREST -> {
+        resistManipulator = 0;
+        attackManipulator = 0;
+      }
+      default -> {
+        resistManipulator = 1;
+        attackManipulator = 0;
+      }
+    }
   }
 
   @Override

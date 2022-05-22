@@ -27,6 +27,7 @@ import java.util.*;
 public class CreateArmyController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private Army army = Facade.getInstance().getArmy();
+  private UnitFactory unitFactory = new UnitFactory();
   private Army newArmy;
   private List<Unit> units;
   private List<Text> listContent;
@@ -227,7 +228,7 @@ public class CreateArmyController implements Initializable {
    * @param health    The health of the units to add.
    */
   private void addUnits(UnitFactory.Type unitType, int amount, int health){
-    newArmy.addUnitList(Facade.getInstance().getUnitFactory().createUnitList(unitType, "name", health, amount));
+    newArmy.addUnitList(unitFactory.createUnitList(unitType, "name", health, amount));
     updateListContent();
   }
 

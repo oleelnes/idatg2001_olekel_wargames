@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
+
 /**
  * The class Infantry unit.
  *
@@ -7,6 +9,7 @@ package no.ntnu.olekel.core.units;
  * @author Ole Kristian Elnæs
  */
 public class InfantryUnit extends Unit{
+
 
   /**
    * Instantiates a new Infantry unit.
@@ -18,6 +21,8 @@ public class InfantryUnit extends Unit{
    */
   public InfantryUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
+    attackManipulator = 0;
+    resistManipulator = 0;
   }
 
   /**
@@ -28,16 +33,30 @@ public class InfantryUnit extends Unit{
    */
   public InfantryUnit(String name, int health){
     super(name, health, 15, 10);
+    attackManipulator = 0;
+    resistManipulator = 0;
+
   }
 
   @Override
   public int getAttackBonus() {
-    return 2;
+    return 2 + attackManipulator;
   }
 
   @Override
   public int getResistBonus() {
-    return 1;
+    return 1 + resistManipulator;
+  }
+
+  @Override
+  public void setTerrain(EnumHandler.TerrainTypes terrain){
+    if (terrain == EnumHandler.TerrainTypes.FOREST) {
+      attackManipulator = 2;
+      resistManipulator = 2;
+    } else {
+      attackManipulator = 0;
+      resistManipulator = 0;
+    }
   }
 
   @Override

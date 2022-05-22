@@ -1,5 +1,7 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +17,10 @@ public abstract class Unit {
   private int initialHealth;
   private int attack;
   private int armor;
+  protected int resistManipulator;
+  protected int attackManipulator;
   private static final Logger logger = Logger.getLogger(Unit.class.toString());
+
 
   /**
    * Construct new Unit.
@@ -37,6 +42,7 @@ public abstract class Unit {
     this.attack = attack;
     this.armor = armor;
   }
+
 
   /**
    * Method whose content is an equation that calculates the damage
@@ -137,6 +143,8 @@ public abstract class Unit {
 
   protected abstract int getResistBonus();
 
+  public abstract void setTerrain(EnumHandler.TerrainTypes terrain);
+
   public abstract String getType();
 
- }
+}

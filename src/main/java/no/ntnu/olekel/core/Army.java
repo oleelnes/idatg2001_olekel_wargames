@@ -30,7 +30,7 @@ public class Army {
   private final IntegerProperty infantrySize = new SimpleIntegerProperty();
   private final IntegerProperty rangedSize = new SimpleIntegerProperty();
   private final StringProperty armyHealthPercentage = new SimpleStringProperty();
-
+  private EnumHandler.TerrainTypes terrain;
 
 
   /**
@@ -43,6 +43,7 @@ public class Army {
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
     this.units = new ArrayList<>();
+    this.terrain = EnumHandler.TerrainTypes.NONE;
     setSize();
   }
 
@@ -57,6 +58,7 @@ public class Army {
     this.units = units;
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
+    this.terrain = EnumHandler.TerrainTypes.NONE;
     setSize();
   }
 
@@ -253,6 +255,10 @@ public class Army {
     this.name = name;
   }
 
+  public void setTerrain(EnumHandler.TerrainTypes terrain){
+    getAllUnits().forEach(unit -> unit.setTerrain(terrain));
+  }
+
   @Override
   public String toString() {
     return "Army" +
@@ -276,4 +282,5 @@ public class Army {
   public int hashCode() {
     return Objects.hash(name, units, random, logger);
   }
+
 }
