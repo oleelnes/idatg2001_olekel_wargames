@@ -75,8 +75,10 @@ public class SimpleWarSimulationPage implements Initializable {
             //sets the delay
             delay(delay);
 
-            //tasks to be done by the GUI in-between delays
+            //Simulate one round.
             Platform.runLater(() -> battle.simulateOneRound());
+
+            //tasks to be done by the GUI in-between delays.
             Platform.runLater(() -> unitsLeftA1Value.setValue(battle.getArmyOne().getAllUnits().size()));
 
           }

@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 public class ArmyRegister {
   private List<Army> armyRegister;
   static Logger logger = Logger.getLogger("logger");
+  private final UnitFactory unitFactory = new UnitFactory();
 
   public ArmyRegister() {
     this.armyRegister = new ArrayList<>();
@@ -81,10 +82,10 @@ public class ArmyRegister {
       while ((lineOfText = reader.readLine()) != null) {
         String[] words = lineOfText.split(",");
         switch (words[0]) {
-          case "Infantry Unit" -> armyFromFile.add(new InfantryUnit(words[1], Integer.parseInt(words[2])));
-          case "Cavalry Unit" -> armyFromFile.add(new CavalryUnit(words[1], Integer.parseInt(words[2])));
-          case "Commander Unit" -> armyFromFile.add(new CommanderUnit(words[1], Integer.parseInt(words[2])));
-          case "Ranged Unit" -> armyFromFile.add(new RangedUnit(words[1], Integer.parseInt(words[2])));
+          case "Infantry Unit" -> armyFromFile.add(unitFactory.createUnit(UnitFactory.Type.INFANTRY, words[1], Integer.parseInt(words[2])));
+          case "Cavalry Unit" -> armyFromFile.add(unitFactory.createUnit(UnitFactory.Type.CAVALRY, words[1], Integer.parseInt(words[2])));
+          case "Commander Unit" -> armyFromFile.add(unitFactory.createUnit(UnitFactory.Type.COMMANDER, words[1], Integer.parseInt(words[2])));
+          case "Ranged Unit" -> armyFromFile.add(unitFactory.createUnit(UnitFactory.Type.RANGED, words[1], Integer.parseInt(words[2])));
           default -> logger.log(Level.INFO, "Invalid type was attempted to be read");
         }
       }

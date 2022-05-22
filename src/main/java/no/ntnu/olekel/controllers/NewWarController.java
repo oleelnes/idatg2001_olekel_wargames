@@ -144,7 +144,7 @@ public class NewWarController implements Initializable {
     List<String> terrainTypes = new ArrayList<>();
     terrainTypes.add("Forest");
     terrainTypes.add("Hills");
-    terrainTypes.add("Plains"); //todo: more terrains?
+    terrainTypes.add("Plains");
     return  terrainTypes;
   }
 

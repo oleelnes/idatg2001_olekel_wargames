@@ -20,7 +20,6 @@ public class Facade {
     private final BattleRegister battleRegister;
     private final ArmyRegister armyRegister;
     private final FileHandler fileHandler;
-    private UnitFactory unitFactory;
     private Army army;
     private Stage stage;
     private DialogsHandler dialogs;
@@ -37,7 +36,6 @@ public class Facade {
         this.armyRegister = new ArmyRegister();
         this.battleRegister = new BattleRegister();
         this.fileHandler = new FileHandler(armyRegister, battleRegister);
-        this.unitFactory = new UnitFactory();
         this.army = new Army("Temporary");
         this.dialogs = new DialogsHandler();
         this.battleHandler = new BattleHandler();
@@ -80,10 +78,6 @@ public class Facade {
 
     public Army getArmy(){
         return army;
-    }
-
-    public UnitFactory getUnitFactory() {
-        return unitFactory;
     }
 
     public Stage getStage(){
