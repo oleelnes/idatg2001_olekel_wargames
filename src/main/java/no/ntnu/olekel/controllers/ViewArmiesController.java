@@ -51,6 +51,12 @@ public class ViewArmiesController implements Initializable {
   @FXML
   private TableColumn<Army, String> healthColumn;
 
+  @FXML
+  private TableColumn<Army, String> filePathColumn;
+
+  @FXML
+  private TableColumn<Army, Integer> totalUnitsColumn;
+
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,7 +66,6 @@ public class ViewArmiesController implements Initializable {
       tableView.setItems(armyObservableList);
       armyNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
       armyNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-      //armyNameColumn.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).);
 
       commanderUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("commanderSize"));
       commanderUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -74,10 +79,16 @@ public class ViewArmiesController implements Initializable {
       rangedUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("rangedSize"));
       rangedUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
+      totalUnitsColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
+      totalUnitsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
       Facade.getInstance().getArmyRegister().update();
 
       healthColumn.setCellValueFactory(new PropertyValueFactory<>("armyHealthPercentage"));
       healthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+      filePathColumn.setCellValueFactory(new PropertyValueFactory<>("filePath"));
+      filePathColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
       tableView.setEditable(false);
     } catch(NullPointerException e) {

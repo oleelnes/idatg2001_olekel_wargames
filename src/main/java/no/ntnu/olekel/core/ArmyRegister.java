@@ -106,6 +106,7 @@ public class ArmyRegister {
     Army newArmy = loadArmyCSV(path);
     if (newArmy != null) {
       armyRegister.add(newArmy);
+      newArmy.setFilePath(path.toString());
       return true;
     } else {
       return false;

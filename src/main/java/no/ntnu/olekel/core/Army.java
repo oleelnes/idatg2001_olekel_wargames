@@ -30,6 +30,7 @@ public class Army {
   private final IntegerProperty infantrySize = new SimpleIntegerProperty();
   private final IntegerProperty rangedSize = new SimpleIntegerProperty();
   private final StringProperty armyHealthPercentage = new SimpleStringProperty();
+  private String filePath;
   private EnumHandler.TerrainTypes terrain;
 
 
@@ -44,6 +45,7 @@ public class Army {
     this.logger = Logger.getLogger(this.getClass().toString());
     this.units = new ArrayList<>();
     this.terrain = EnumHandler.TerrainTypes.NONE;
+    this.filePath = "No file path";
     setSize();
   }
 
@@ -59,6 +61,7 @@ public class Army {
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
     this.terrain = EnumHandler.TerrainTypes.NONE;
+    this.filePath = "No file path";
     setSize();
   }
 
@@ -238,6 +241,10 @@ public class Army {
     this.armyHealthPercentage.set(getHealth() + "/" + getMaxHealth() + " (" + getPercentHealthArmy() + "%)");
   }
 
+  /**
+   * This method sets the size of the IntegerProperty instances that are used in
+   * the tableView in viewArmies.
+   */
   public final void setSize() {
     if (!units.isEmpty()) this.size.set(units.size());
     else this.size.set(0);
@@ -257,6 +264,14 @@ public class Army {
 
   public void setTerrain(EnumHandler.TerrainTypes terrain){
     getAllUnits().forEach(unit -> unit.setTerrain(terrain));
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
+  public String getFilePath() {
+    return filePath;
   }
 
   @Override

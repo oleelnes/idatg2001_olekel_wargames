@@ -11,12 +11,14 @@
          <children>
             <TableView fx:id="tableView">
               <columns>
-                  <TableColumn fx:id="armyNameColumn" prefWidth="200.0" text="Army Name" />
-                  <TableColumn fx:id="commanderUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Commander Units" />
-                  <TableColumn fx:id="rangedUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Ranged Units" />
-                  <TableColumn fx:id="infantryUnitsColumn" minWidth="0.0" prefWidth="115.0" text="Infantry Units" />
-                  <TableColumn fx:id="cavalryUnitsColumn" minWidth="7.0" prefWidth="115.0" text="Cavalry Units" />
-                  <TableColumn fx:id="healthColumn" minWidth="7.0" prefWidth="75.0" text="Health" />
+                  <TableColumn fx:id="armyNameColumn" maxWidth="250.0" minWidth="100.0" prefWidth="150.0" text="Army Name" />
+                  <TableColumn fx:id="totalUnitsColumn" maxWidth="100.0" minWidth="40.0" prefWidth="50.0" text="Total&#10;units&#10;" />
+                  <TableColumn fx:id="commanderUnitsColumn" maxWidth="100.0" minWidth="70.0" prefWidth="90.0" text="Commander&#10;units&#10;" />
+                  <TableColumn fx:id="rangedUnitsColumn" maxWidth="100.0" minWidth="70.0" prefWidth="70.0" text="Ranged&#10;units" />
+                  <TableColumn fx:id="infantryUnitsColumn" maxWidth="100.0" minWidth="70.0" prefWidth="70.0" text="Infantry &#10;units" />
+                  <TableColumn fx:id="cavalryUnitsColumn" maxWidth="100.0" minWidth="70.0" prefWidth="70.0" text="Cavalry &#10;units" />
+                  <TableColumn fx:id="healthColumn" maxWidth="150.0" minWidth="70.0" prefWidth="100.0" text="Health" />
+                  <TableColumn fx:id="filePathColumn" maxWidth="400.0" minWidth="100.0" prefWidth="300.0" text="Path" />
               </columns>
             </TableView>
          </children>
