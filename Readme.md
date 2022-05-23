@@ -1,19 +1,18 @@
 
-# WarGames Project 
+# WarGames README 
 #### by Ole Kristian Elnæs
 
-## Table of contents
-1. [Introduction](#Introduction)
-2. [Requirements Specification](#Requirements Specification)
-3. [Design](#Design)
-4. [Implementation](#Implementation)
-5. [Process](#Process)
-6. [Reflection](#Reflection)
-7. [Conclusion](#Conclusion)
+## The project report
+The project report is located in documents/project_report folder.
 
-## How to run
+## How to run (in IntelliJ)
 
-### With IntelliJ
+### Run with javafx
+1. Navigate to the maven tab on the right.
+2. Click javafx.
+3. Click javafx:run. This should run the program
+
+### Create jar
 1. Navigate to the maven tab on the right.
 2. Click lifecycle, then (in this order):
    1. Clean
@@ -22,18 +21,12 @@
 3. This should create a shaded-jar file in the target folder of this repository.
 4. Navigate to said folder and run the jar-file.
 
-## Introduction
-This 
+
+### Run tests
+1. Navigate to the maven tab on the right.
+2. Click lifecycle, then (in this order):
+   1. Clean
+   2. Tests
+3. This will run the tests, and you will get a response in the terminal regarding how the tests went.
 
 
-## Requirements Specification
-
-## Design
-
-## Implementation
-
-## Process
-
-## Reflection
-
-## Conclusion

@@ -55,4 +55,5 @@ public class RangedUnitTest {
     rangedUnit.setTerrain(EnumHandler.TerrainTypes.HILLS);
     assertEquals(5, rangedUnit.getAttackBonus());
   }
+
 }

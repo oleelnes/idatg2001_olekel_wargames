@@ -46,6 +46,7 @@ public class Army {
     this.terrain = EnumHandler.TerrainTypes.NONE;
     this.filePath = "No file path";
     setSize();
+
   }
 
   /**

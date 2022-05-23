@@ -19,9 +19,7 @@ public class FileHandlerTest {
   BattleRegister battleRegister;
   FileHandler fileHandler;
   UnitFactory unitFactory;
-  List<Unit> units;
   Army army;
-  File file;
 
   @BeforeEach
   public void beforeEach() {
@@ -30,9 +28,7 @@ public class FileHandlerTest {
     fileHandler = new FileHandler(armyRegister, battleRegister);
     unitFactory = new UnitFactory();
     army = new Army("The army");
-
     army.addAll(unitFactory.createUnitList(UnitFactory.Type.INFANTRY, 12, 12));
-
   }
 
   @Test
