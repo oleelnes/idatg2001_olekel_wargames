@@ -4,24 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.constants.Constants;
-import no.ntnu.olekel.controllers.SimpleWarSimulationPage;
 import no.ntnu.olekel.core.*;
-import no.ntnu.olekel.core.units.*;
 import no.ntnu.olekel.ui.Facade;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * The class WarGamesApp.
@@ -36,19 +28,14 @@ public class WarGamesApp extends Application {
   public void start(Stage stage) throws IOException {
     Facade.getInstance().setStage(stage);
 
-
+    //Create folder if they don't already exist.
     Facade.getInstance().getFileHandler().createFolder(new File(Constants.ROOT_FOLDER_PATH));
     Facade.getInstance().getFileHandler().createFolder(new File(Constants.ARMIES_FOLDER_PATH));
     Facade.getInstance().getFileHandler().createFolder(new File(Constants.BATTLES_FOLDER_PATH));
 
     //Create armies and battles files if they don't already exist.
-    //todo: consider removing these, or at least adding example armies/battles to the files.
-    Facade.getInstance().getFileHandler().createFile(new File(Constants.ARMIES_CSV_PATH));
-    Facade.getInstance().getFileHandler().createFile(new File(Constants.BATTLES_CSV_PATH));
     Facade.getInstance().getFileHandler()
         .loadDirectory(Path.of(Constants.ARMIES_FOLDER_PATH), FileHandler.RegisterType.ARMIES);
-
-
 
     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml-files/mainPage.fxml")));
     //Scene scene = new Scene(root, 800, 600);
@@ -67,7 +54,6 @@ public class WarGamesApp extends Application {
   @Override
   public void init() throws Exception {
 
-    //Create folder if they don't already exist.
 
 
 

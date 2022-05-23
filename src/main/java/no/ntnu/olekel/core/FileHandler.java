@@ -61,14 +61,14 @@ public class FileHandler {
    * @param path  The path to the army where it is stored.
    * @return      The replenished army.
    */
-  public Army replenishArmy(Army army, Path path) {
+  public void replenishArmy(Army army, Path path) {
     Army armyFromFile = armyRegister.loadArmyCSV(path);
     if (armyFromFile != null) {
       armyFromFile.setFilePath(army.getFilePath());
-      return armyFromFile;
+      armyRegister.getArmyRegister().remove(army);
+      armyRegister.getArmyRegister().add(armyFromFile);
     } else {
       Facade.getInstance().getDialogsHandler().errorAlert("No filepath.");
-      return null;
     }
   }
 
@@ -115,8 +115,6 @@ public class FileHandler {
       files.forEach(f -> load(registerType, f.toPath()));
     } catch (IOException e) {
       e.printStackTrace();
-    } catch(IllegalStateException ise) {
-      Facade.getInstance().getDialogsHandler().errorAlert("No armies.");
     }
   }
 
@@ -150,6 +148,11 @@ public class FileHandler {
     }
   }
 
+  /**
+   *
+   * @param file
+   * @throws IOException
+   */
   public void createFile(File file) throws IOException {
     if (!file.exists()) {
       file.createNewFile();
