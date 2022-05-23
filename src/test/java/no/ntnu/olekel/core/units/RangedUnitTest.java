@@ -1,5 +1,6 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,32 +13,46 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 16.02.2022.
  */
 class RangedUnitTest {
-  RangedUnit rangedUnit;
+  Unit rangedUnit;
+  UnitFactory unitFactory;
 
   /**
    * Creates a ranged unit.
    */
-  /*@BeforeEach
+  @BeforeEach
   public void createRangedUnit() {
-    rangedUnit = new RangedUnit("ranged", 100);
-  }*/
+    unitFactory = new UnitFactory();
+    rangedUnit = unitFactory.createUnit(UnitFactory.Type.RANGED, "Name", 10);
+  }
 
   /**
    * Get resist bonus test.
    */
-  /*@Test
+  @Test
   public void getResistBonusTest() {
-    assertEquals(rangedUnit.getResistBonus(), 6);
-    assertEquals(rangedUnit.getResistBonus(), 4);
+    assertEquals(6, rangedUnit.getResistBonus());
+    assertEquals(4, rangedUnit.getResistBonus());
     rangedUnit.getResistBonus();
-    assertEquals(rangedUnit.getResistBonus(), 2);
-  }*/
+    assertEquals(2, rangedUnit.getResistBonus());
+  }
 
   /**
    * Get attack bonus test.
    */
-  /*@Test
+  @Test
   public void getAttackBonusTest() {
-    assertEquals(rangedUnit.getAttackBonus(), 3);
-  }*/
+    assertEquals(3, rangedUnit.getAttackBonus());
+  }
+
+  @Test
+  public void getAttackBonusInForestTest(){
+    rangedUnit.setTerrain(EnumHandler.TerrainTypes.FOREST);
+    assertEquals(4, rangedUnit.getAttackBonus());
+  }
+
+  @Test
+  public void getAttackBonusInHillsTest(){
+    rangedUnit.setTerrain(EnumHandler.TerrainTypes.HILLS);
+    assertEquals(5, rangedUnit.getAttackBonus());
+  }
 }

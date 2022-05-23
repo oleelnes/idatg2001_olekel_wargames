@@ -16,14 +16,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 16.02.2022
  */
 public class InfantryUnitTest {
-  InfantryUnit infantryUnit;
+  UnitFactory unitFactory;
+  Unit infantryUnit;
 
   /**
    * Create infantry unit.
    */
   @BeforeEach
   public void createInfantryUnit(){
-    infantryUnit = new InfantryUnit("infantry 1", 12);
+    unitFactory = new UnitFactory();
+    infantryUnit = unitFactory.createUnit(UnitFactory.Type.INFANTRY, "name", 12);
   }
 
   /**
@@ -31,7 +33,7 @@ public class InfantryUnitTest {
    */
   @Test
   public void getNameTest(){
-    assertEquals("infantry 1", infantryUnit.getName());
+    assertEquals("name", infantryUnit.getName());
   }
 
   /**

@@ -1,16 +1,19 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.core.EnumHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CavalryUnitTest {
-  CavalryUnit cavalryUnit;
+  UnitFactory unitFactory;
+  Unit cavalryUnit;
 
   @BeforeEach
   public void createCavalryUnit() {
-    cavalryUnit = new CavalryUnit("cavalry", 100);
+    unitFactory = new UnitFactory();
+    cavalryUnit = unitFactory.createUnit(UnitFactory.Type.CAVALRY, "name", 100);
   }
 
   @Test
@@ -22,5 +25,12 @@ public class CavalryUnitTest {
   @Test
   public void getResistBonusTest() {
     assertEquals(cavalryUnit.getResistBonus(), 1);
+  }
+
+  @Test
+  public void getAttackBonusOnPlainsTest(){
+    cavalryUnit.setTerrain(EnumHandler.TerrainTypes.PLAINS);
+    assertEquals(9, cavalryUnit.getAttackBonus());
+    assertEquals(5, cavalryUnit.getAttackBonus());
   }
 }

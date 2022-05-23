@@ -12,14 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 01.03.2022
  */
 public class CommanderUnitTest {
-  CommanderUnit commanderUnit;
+  UnitFactory unitFactory;
+  Unit commanderUnit;
 
   /**
    * Constructs a commander unit before each test.
    */
   @BeforeEach
   public void constructCommanderUnit() {
-    commanderUnit = new CommanderUnit("commander unit", 100);
+    unitFactory = new UnitFactory();
+    commanderUnit = unitFactory.createUnit(UnitFactory.Type.COMMANDER, "name", 100);
   }
 
   /**

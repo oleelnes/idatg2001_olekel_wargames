@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.*;
 
 /**
- *
+ * The controller class for the createArmyPage.fxml scene.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author  Ole Kristian Elnæs
@@ -268,8 +268,8 @@ public class CreateArmyController implements Initializable {
    * @param health    The health of the units to add.
    */
   private void addUnits(UnitFactory.Type unitType, int amount, int health){
-    List<Unit> units = unitFactory.createUnitList(unitType, health, amount);
-    if (!units.isEmpty()) {
+    List<Unit> newUnits = unitFactory.createUnitList(unitType, health, amount);
+    if (!newUnits.isEmpty()) {
       newArmy.addUnitList(unitFactory.createUnitList(unitType, health, amount));
       updateListContent();
       updateStatistics();
@@ -373,10 +373,12 @@ public class CreateArmyController implements Initializable {
       else {
         setAddUnitsContentVisibility(false);
         addNewUnitsLabel.setText("Add New Units");
-        //todo: give user information about what went wrong!
+        Facade.getInstance().getDialogsHandler().
+            errorAlert("An army with that name already exists, try another!");
       }
     } catch (Exception e) {
-      Facade.getInstance().getDialogsHandler().errorAlert("Error in string format.");
+      Facade.getInstance().getDialogsHandler()
+          .errorAlert("Error in string format.");
     }
   }
 
@@ -424,7 +426,6 @@ public class CreateArmyController implements Initializable {
         .anyMatch(army.getName().toLowerCase(Locale.ROOT)::equals)) {
       Facade.getInstance().getArmyRegister().getArmyRegister().remove(army);
     }
-    //army.addUnitList(newArmy.getAllUnits());
     Facade.getInstance().getArmyRegister().getArmyRegister().add(army);
     saveArmyToFile();
   }
@@ -464,7 +465,6 @@ public class CreateArmyController implements Initializable {
 
   /**
    * Method that updates the stastics tab.
-   *
    */
   private void updateStatistics() {
     Army currentArmy;
