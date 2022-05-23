@@ -93,7 +93,7 @@ public class ArmyRegister {
       if (!armyFromFile.getAllUnits().isEmpty())
         return armyFromFile;
       else {
-        Facade.getInstance().getDialogsHandler().errorAlert("Could not load file!");
+        Facade.getInstance().getDialogsHandler().errorAlert("Could not load file!!");
         return null;
       }
     } catch (IOException e) {

@@ -110,6 +110,26 @@ public class CreateArmyController implements Initializable {
   @FXML
   private Label mainLabel;
 
+  @FXML
+  private Label totalHealth;
+
+  @FXML
+  private Label totalUnits;
+
+  @FXML
+  private Label commanderUnits;
+
+  @FXML
+  private Label infantryUnits;
+
+  @FXML
+  private Label cavalryUnits;
+
+  @FXML
+  private Label rangedUnits;
+
+
+
   /**
    * This method initializes the necessary fields and other content
    * when the createArmyPage.fxml is loaded.
@@ -133,10 +153,12 @@ public class CreateArmyController implements Initializable {
       this.state = EnumHandler.State.EDIT;
       addNewUnitsLabel.setText("Add New Units to " + armyName);
       mainLabel.setText("Edit Army");
+      updateStatistics();
     }
     ObservableList<Text> stringObservableList = FXCollections.observableArrayList(listContent);
     existingUnitsListView.setItems(stringObservableList);
     updateListContent();
+
   }
 
   /**
@@ -250,6 +272,7 @@ public class CreateArmyController implements Initializable {
     if (!units.isEmpty()) {
       newArmy.addUnitList(unitFactory.createUnitList(unitType, health, amount));
       updateListContent();
+      updateStatistics();
     } else Facade.getInstance().getDialogsHandler().errorAlert("Could not add.");
   }
 
@@ -275,7 +298,7 @@ public class CreateArmyController implements Initializable {
   private void setListContent(Army listArmy){
     for (int i = 0; i < listArmy.getAllUnits().size(); i++) {
       Text text = new Text(listArmy.getAllUnits().get(i).getType() + ": " + listArmy.getAllUnits().get(i).toString());
-      text.setWrappingWidth(existingUnitsListView.getWidth());
+      //text.setWrappingWidth(existingUnitsListView.getWidth() - 10);
       listContent.add(text);
     }
   }
@@ -437,6 +460,22 @@ public class CreateArmyController implements Initializable {
     } catch (Exception e) {
       Facade.getInstance().getDialogsHandler().errorAlert("Could not save army into file!");
     }
+  }
+
+  /**
+   * Method that updates the stastics tab.
+   *
+   */
+  private void updateStatistics() {
+    Army currentArmy;
+    if (state == EnumHandler.State.NEW) currentArmy = newArmy;
+    else currentArmy = army;
+    totalHealth.setText(String.valueOf(currentArmy.getHealth()));
+    totalUnits.setText(String.valueOf(currentArmy.getAllUnits().size()));
+    commanderUnits.setText(String.valueOf(currentArmy.getCommanderUnits().size()));
+    infantryUnits.setText(String.valueOf(currentArmy.getInfantryUnits().size()));
+    cavalryUnits.setText(String.valueOf(currentArmy.getCavalryUnits().size()));
+    rangedUnits.setText(String.valueOf(currentArmy.getRangedUnits().size()));
   }
 
 }

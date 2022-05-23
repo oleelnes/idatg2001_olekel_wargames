@@ -33,15 +33,6 @@
                         <Insets right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="233.0" layoutY="10.0" minHeight="40.0" text="Alliance:">
-                     <HBox.margin>
-                        <Insets right="15.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ComboBox prefWidth="150.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin></ComboBox>
                </children>
                <VBox.margin>
                   <Insets />
@@ -52,7 +43,7 @@
       </VBox>
    </top>
    <left>
-      <VBox minHeight="200.0" minWidth="500.0" BorderPane.alignment="CENTER">
+      <VBox maxWidth="400.0" minHeight="200.0" minWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="addNewUnitsLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="500.0" text="Add New Units">
                <font>
@@ -64,10 +55,10 @@
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="commanderUnitsAmountLabel" prefHeight="75.0" text="Commander Units" />
-                        <Label fx:id="infantryUnitsAmountLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Infantry Units" />
-                        <Label fx:id="rangedUnitsAmountLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Ranged Units" />
-                        <Label fx:id="cavalryUnitsAmountLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Cavalry Units" />
+                        <Label fx:id="commanderUnitsAmountLabel" minWidth="100.0" prefHeight="75.0" text="Commander Units" />
+                        <Label fx:id="infantryUnitsAmountLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Infantry Units " />
+                        <Label fx:id="rangedUnitsAmountLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Ranged Units " />
+                        <Label fx:id="cavalryUnitsAmountLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Cavalry Units " />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -96,18 +87,18 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="commanderUnitsHealthLabel" prefHeight="75.0" text="Health:">
+                        <Label fx:id="commanderUnitsHealthLabel" prefHeight="75.0" text="Health ">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="infantryUnitsHealthLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Health:">
+                        <Label fx:id="infantryUnitsHealthLabel" layoutX="46.0" layoutY="10.0" prefHeight="75.0" text="Health ">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="rangedUnitsHealthLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Health:" />
-                        <Label fx:id="cavalryUnitsHealthLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Health:" />
+                        <Label fx:id="rangedUnitsHealthLabel" layoutX="46.0" layoutY="27.0" prefHeight="75.0" text="Health " />
+                        <Label fx:id="cavalryUnitsHealthLabel" layoutX="46.0" layoutY="44.0" prefHeight="75.0" text="Health " />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -164,22 +155,67 @@
       </VBox>
    </left>
    <right>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox minWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="300.0" text="Units">
+            <Label alignment="CENTER" contentDisplay="CENTER" minWidth="400.0" text="Units">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>
             </Label>
             <HBox minHeight="200.0" minWidth="300.0">
                <children>
-                  <TabPane minHeight="350.0" minWidth="300.0">
+                  <TabPane minHeight="350.0" minWidth="400.0">
                      <tabs>
                         <Tab closable="false" text="Simple stats">
                            <content>
                               <VBox>
-
-                              </VBox>
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Total health: ">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></Label>
+                                          <Label fx:id="totalHealth" text="0" ><font>
+                                             <Font name="System Bold" size="12.0" />
+                                          </font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Total units: " ><font>
+                                             <Font name="System Bold" size="12.0" />
+                                          </font></Label>
+                                          <Label fx:id="totalUnits" text="0" ><font>
+                                             <Font name="System Bold" size="12.0" />
+                                          </font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Commander units: "/>
+                                          <Label fx:id="commanderUnits" text="0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Infantry units: " />
+                                          <Label fx:id="infantryUnits" text="0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Cavalry units: " />
+                                          <Label fx:id="cavalryUnits" text="0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="254.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Ranged units: " />
+                                          <Label fx:id="rangedUnits" text="0" />
+                                       </children>
+                                    </HBox>
+                                 </children></VBox>
                            </content>
                         </Tab>
                         <Tab closable="false" text="Existing units">

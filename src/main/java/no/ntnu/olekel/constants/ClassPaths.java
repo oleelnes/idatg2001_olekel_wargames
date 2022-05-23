@@ -23,7 +23,7 @@ public final class ClassPaths {
   private static final String NEW_WAR_PAGE_PATH = "fxml-files/newWarPage.fxml";
   private static final String VIEW_ARMIES_PAGE_PATH = "fxml-files/viewArmiesPage.fxml";
   private static final String CREATE_ARMY_PAGE_PATH = "fxml-files/createArmyPage.fxml";
-  private static final String SIMPLE_WAR_SIMULATION_PAGE_PATH = "fxml-files/simpleWarSimulationPage.fxml";
+  private static final String SIMPLE_WAR_SIMULATION_PAGE_PATH = "fxml-files/warSimulationPage.fxml";
 
   /**
    * URLs to all the fxml files.

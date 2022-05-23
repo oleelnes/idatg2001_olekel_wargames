@@ -1,12 +1,8 @@
 package no.ntnu.olekel.ui;
 
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.constants.UnitNames;
-import no.ntnu.olekel.controllers.SimpleWarSimulationPage;
 import no.ntnu.olekel.core.*;
-import no.ntnu.olekel.core.units.UnitFactory;
 
 /**
  * Facade class that implements the Design Pattern Singleton.
