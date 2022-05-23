@@ -22,6 +22,7 @@ import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 /**
@@ -340,9 +341,15 @@ public class SimpleWarSimulationPage implements Initializable {
    *
    * @param event When the pause button is pressed.
    */
+  @FXML
   public void pauseButtonAction(ActionEvent event) {
     pause = !pause;
     if (pause) pauseButtonID.setText("Play");
     else pauseButtonID.setText("Pause");
+  }
+
+  @FXML
+  public void replenishArmyAction(ActionEvent event) {
+    battle.setArmyOne(Facade.getInstance().getFileHandler().replenishArmy(battle.getArmyOne(), Path.of(battle.getArmyOne().getFilePath())));
   }
 }

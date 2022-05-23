@@ -60,7 +60,6 @@ public class Army {
     this.random = new Random();
     this.logger = Logger.getLogger(this.getClass().toString());
     this.terrain = EnumHandler.TerrainTypes.NONE;
-    this.filePath = "No file path";
     setSize();
   }
 

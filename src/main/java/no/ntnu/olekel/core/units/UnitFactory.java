@@ -1,5 +1,6 @@
 package no.ntnu.olekel.core.units;
 
+import no.ntnu.olekel.constants.UnitNames;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
 
@@ -20,7 +21,6 @@ public class UnitFactory {
    * Constructor.
    */
   public UnitFactory(){
-
   }
 
 
@@ -53,18 +53,18 @@ public class UnitFactory {
    * Method that returns a list of units in the desired unit type.
    *
    * @param unitType  The type of the unit.
-   * @param name      The name of the unit. Naming convention: name + index (ex: "name 1", "name 2")
    * @param health    The health of the unit.
    * @param amount    The amount of units in the list to be returned.
    * @return          A list of units in the desired type. Returns null if invalid type.
    */
-  public List<Unit> createUnitList(Type unitType, String name, int health, int amount) {
-    if (!checkCreateUnitListInput(unitType, name, health, amount)) {
-      return Collections.emptyList();
-    }
+  public List<Unit> createUnitList(Type unitType, int health, int amount) {
     List<Unit> units = new ArrayList<>();
     for (int i = 0; i < amount; i++) {
-      units.add(createUnit(unitType, name + " " + i, health));
+      String name = Facade.getInstance().getUnitNames().createUnitName();
+      //checks whether the input is valid or not
+      if (!checkCreateUnitListInput(unitType, name, health, amount))
+        return Collections.emptyList();
+      units.add(createUnit(unitType, name, health));
       System.out.println("unit " + i + " of type " + unitType + " has been created.");
     }
     return units;

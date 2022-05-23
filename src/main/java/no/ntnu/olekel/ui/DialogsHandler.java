@@ -30,7 +30,7 @@ public class DialogsHandler {
       Facade.getInstance().getFileHandler().loadIntoArmy(FileHandler.RegisterType.EDIT_ARMY, file.toPath(), army);
     }
     else {
-      System.out.println("yuck!");
+      errorAlert("Could not load units from this file.");
     }
   }
 

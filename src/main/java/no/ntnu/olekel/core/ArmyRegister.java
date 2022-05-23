@@ -1,6 +1,7 @@
 package no.ntnu.olekel.core;
 
 import javafx.scene.control.Alert;
+import no.ntnu.olekel.constants.UnitNames;
 import no.ntnu.olekel.core.units.*;
 import no.ntnu.olekel.ui.DialogsHandler;
 import no.ntnu.olekel.ui.Facade;
@@ -41,7 +42,7 @@ public class ArmyRegister {
    * @param army  The army whose information that will be written to file.
    * @param path  The path of the csv file to which information will be written.
    */
-  public static void writeArmyCSV(Army army, Path path) {
+  public void writeArmyCSV(Army army, Path path) {
     try (BufferedWriter writer = Files.newBufferedWriter(path)) {
       writer.write(army.getName() + "\n");
       for (Unit unit : army.getInfantryUnits()) {

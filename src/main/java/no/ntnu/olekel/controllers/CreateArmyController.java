@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.olekel.constants.ClassPaths;
+
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.EnumHandler;
 import no.ntnu.olekel.core.FileHandler;
@@ -30,6 +31,7 @@ public class CreateArmyController implements Initializable {
   private Scenes scenes = Facade.getInstance().getScenes();
   private Army army = Facade.getInstance().getArmy();
   private UnitFactory unitFactory = new UnitFactory();
+  private FileHandler fileHandler = Facade.getInstance().getFileHandler();
   private Army newArmy;
   private List<Unit> units;
   private List<Text> listContent;
@@ -181,8 +183,12 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   public void addCommanderUnitsAction(ActionEvent event) {
-    addUnits(UnitFactory.Type.COMMANDER, Integer.parseInt(commanderUnitsAmountInput.getText()),
-        Integer.parseInt(commanderUnitsHealthInput.getText()));
+    try {
+      addUnits(UnitFactory.Type.COMMANDER, Integer.parseInt(commanderUnitsAmountInput.getText()),
+          Integer.parseInt(commanderUnitsHealthInput.getText()));
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Error in number format.");
+    }
   }
 
   /**
@@ -192,8 +198,12 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   public void addInfantryUnitsAction(ActionEvent event) {
-    addUnits(UnitFactory.Type.INFANTRY, Integer.parseInt(infantryUnitsAmountInput.getText()),
-        Integer.parseInt(infantryUnitsHealthInput.getText()));
+    try {
+      addUnits(UnitFactory.Type.INFANTRY, Integer.parseInt(infantryUnitsAmountInput.getText()),
+          Integer.parseInt(infantryUnitsHealthInput.getText()));
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Error in number format.");
+    }
   }
 
   /**
@@ -203,8 +213,12 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   public void addRangedUnitsAction(ActionEvent event) {
-    addUnits(UnitFactory.Type.RANGED, Integer.parseInt(rangedUnitsAmountInput.getText()),
-        Integer.parseInt(rangedUnitsHealthInput.getText()));
+    try {
+      addUnits(UnitFactory.Type.RANGED, Integer.parseInt(rangedUnitsAmountInput.getText()),
+          Integer.parseInt(rangedUnitsHealthInput.getText()));
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Error in number format.");
+    }
   }
 
   /**
@@ -214,17 +228,14 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   public void addCavalryUnitsAction(ActionEvent event) {
-    addUnits(UnitFactory.Type.CAVALRY, Integer.parseInt(cavalryUnitsAmountInput.getText()),
-        Integer.parseInt(cavalryUnitsHealthInput.getText()));
+    try {
+      addUnits(UnitFactory.Type.CAVALRY, Integer.parseInt(cavalryUnitsAmountInput.getText()),
+          Integer.parseInt(cavalryUnitsHealthInput.getText()));
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Error in number format.");
+    }
   }
 
-  /**
-   * TODO:
-   * @return true or false depending on whether the input is valid.
-   */
-  private boolean checkDigit(){
-    return true;
-  }
 
   /**
    * This method adds units to the army that is being created, depending on
@@ -235,8 +246,11 @@ public class CreateArmyController implements Initializable {
    * @param health    The health of the units to add.
    */
   private void addUnits(UnitFactory.Type unitType, int amount, int health){
-    newArmy.addUnitList(unitFactory.createUnitList(unitType, "name", health, amount));
-    updateListContent();
+    List<Unit> units = unitFactory.createUnitList(unitType, health, amount);
+    if (!units.isEmpty()) {
+      newArmy.addUnitList(unitFactory.createUnitList(unitType, health, amount));
+      updateListContent();
+    } else Facade.getInstance().getDialogsHandler().errorAlert("Could not add.");
   }
 
   /**
@@ -320,22 +334,26 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   public void applyArmyNameAction(ActionEvent event) {
-    if(Facade.getInstance().getArmyRegister().getArmyRegister().stream()
-        .map(a -> a.getName().toLowerCase(Locale.ROOT))
-        .noneMatch(armyNameInput.getText().toLowerCase(Locale.ROOT)::equals)
-        && !armyNameInput.getText().isEmpty() && armyNameInput.getText().length() < 30) {
-      setAddUnitsContentVisibility(true);
-      armyName = armyNameInput.getText();
-      addNewUnitsLabel.setText("Add New Units to " + armyName);
-      armyNameInput.clear();
-      if (state == EnumHandler.State.EDIT) Facade.getInstance().getArmy().setName(armyName);
-    } else if (!armyName.equals("Temporary")) { //?
-      //dialog window opens!!!
-    }
-    else {
-      setAddUnitsContentVisibility(false);
-      addNewUnitsLabel.setText("Add New Units");
-      //todo: give user information about what went wrong!
+    try {
+      if(Facade.getInstance().getArmyRegister().getArmyRegister().stream()
+          .map(a -> a.getName().toLowerCase(Locale.ROOT))
+          .noneMatch(armyNameInput.getText().toLowerCase(Locale.ROOT)::equals)
+          && !armyNameInput.getText().isEmpty() && armyNameInput.getText().length() < 30) {
+        setAddUnitsContentVisibility(true);
+        armyName = armyNameInput.getText();
+        addNewUnitsLabel.setText("Add New Units to " + armyName);
+        armyNameInput.clear();
+        if (state == EnumHandler.State.EDIT) Facade.getInstance().getArmy().setName(armyName);
+      } else if (!armyName.equals("Temporary")) { //?
+        //dialog window opens!!!
+      }
+      else {
+        setAddUnitsContentVisibility(false);
+        addNewUnitsLabel.setText("Add New Units");
+        //todo: give user information about what went wrong!
+      }
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Error in string format.");
     }
   }
 
@@ -357,7 +375,7 @@ public class CreateArmyController implements Initializable {
    * This method saves an army that has not yet been saved to the
    * facade (ui/Facade.java) to the facade and the army register.
    */
-  private void newArmy(){
+  private void newArmy()  {
     if (!armyName.equals("")) {
       newArmy.setName(armyName);
       units.clear();
@@ -367,11 +385,10 @@ public class CreateArmyController implements Initializable {
       army = Facade.getInstance().getArmy();
       setState(EnumHandler.State.EDIT); //state is set to EDIT,
       // as the army is now created and set to be the tournament present in the Facade
+      saveArmyToFile();
     } else {
-      System.err.println("Please enter a name for the army!");
-      //todo: alert window!
+      Facade.getInstance().getDialogsHandler().errorAlert("Please enter a name for the army!");
     }
-    // in viewArmies, when edit is pressed, also set Facade army to be the selected army.
   }
 
   /**
@@ -386,6 +403,7 @@ public class CreateArmyController implements Initializable {
     }
     //army.addUnitList(newArmy.getAllUnits());
     Facade.getInstance().getArmyRegister().getArmyRegister().add(army);
+    saveArmyToFile();
   }
 
   /**
@@ -407,6 +425,17 @@ public class CreateArmyController implements Initializable {
       case NEW -> armyName = "";
       case EDIT -> armyName = Facade.getInstance().getArmy().getName();
       default -> System.err.println("not valid input"); //todo: logger.
+    }
+  }
+
+  /**
+   * This method saves the army being created/edited to the file directory.
+   */
+  private void saveArmyToFile()  {
+    try {
+      fileHandler.saveArmyToFile(army);
+    } catch (Exception e) {
+      Facade.getInstance().getDialogsHandler().errorAlert("Could not save army into file!");
     }
   }
 

@@ -54,7 +54,6 @@ public class Battle {
    * @return the winning army.
    */
   public Army simulateAllRounds() {
-    rounds = 0;
     logger.log(Level.INFO, () -> "A battle between the two armies " + armyOne.getName() +
             " and " + armyTwo.getName() + " is about to start!");
 
@@ -70,7 +69,6 @@ public class Battle {
       else attackUnit(unitA2, unitA1, armyOne);
 
       rounds++;
-      //SimpleWarSimulationPage.getInstance().update();
     }
     logger.log(Level.INFO, "rounds: {0}", rounds);
 
@@ -84,9 +82,8 @@ public class Battle {
   }
 
   /**
-   * This method simulates one round of a battle betweeen two armies.
+   * This method simulates one round of a battle between two armies.
    *
-   * @return  Boolean todo:
    */
   public void simulateOneRound() {
     //This is the main loop which runs as long as both of the armies still have armies left.
@@ -130,6 +127,10 @@ public class Battle {
 
   public Army getArmyOne(){
     return armyOne;
+  }
+
+  public void setArmyOne(Army armyOne) {
+    this.armyOne = armyOne;
   }
 
   public Army getArmyTwo(){

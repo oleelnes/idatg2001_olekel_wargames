@@ -42,6 +42,11 @@
                         <Label fx:id="unitResistBonusA1" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#replenishArmyAction" text="Replenish army" />
+                     </children>
+                  </HBox>
                </children></VBox>
          </children>
          <BorderPane.margin>

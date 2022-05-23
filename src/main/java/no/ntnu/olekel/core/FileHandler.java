@@ -54,11 +54,45 @@ public class FileHandler {
     } 
   }
 
+  /**
+   * TODO:
+   *
+   * @param army  The army to be replenished/reset.
+   * @param path  The path to the army where it is stored.
+   * @return      The replenished army.
+   */
+  public Army replenishArmy(Army army, Path path) {
+    Army armyFromFile = armyRegister.loadArmyCSV(path);
+    if (armyFromFile != null) {
+      armyFromFile.setFilePath(army.getFilePath());
+      return armyFromFile;
+    } else {
+      Facade.getInstance().getDialogsHandler().errorAlert("No filepath.");
+      return null;
+    }
+  }
+
   public void loadIntoArmy(RegisterType registerType, Path path, Army army) {
     switch (registerType) {
       case EDIT_ARMY -> armyRegister.loadArmyFileContentToArmy(army, path);
       default -> logger.log(Level.WARNING, "Invalid enum type!");
     }
+  }
+
+  /**
+   * This method saves the army to file.
+   *
+   * @param army        The army to be written to file.
+   * @throws Exception  Exception.
+   */
+  public void saveArmyToFile(Army army) throws Exception {
+    String pathString = Constants.ARMIES_FOLDER_PATH + "/" + army.getName() + ".csv";
+    // Creates a folder if one doesn't already exist.
+    createFile(new File(pathString));
+    // Writes army to the file.
+    armyRegister.writeArmyCSV(army, Path.of(pathString));
+    // Setting the path of the file to the army.
+    army.setFilePath(pathString);
   }
 
 
@@ -81,6 +115,8 @@ public class FileHandler {
       files.forEach(f -> load(registerType, f.toPath()));
     } catch (IOException e) {
       e.printStackTrace();
+    } catch(IllegalStateException ise) {
+      Facade.getInstance().getDialogsHandler().errorAlert("No armies.");
     }
   }
 
@@ -98,6 +134,26 @@ public class FileHandler {
     String fileName = new File(filePathString).getName();
     int dotIndex = fileName.lastIndexOf('.');
     return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+  }
+
+  /**
+   * This method checks whether a folder exists or not. If it doesn't exist, it will
+   * create that folder.
+   *
+   * todo: consider moving createFolder and createFile into class FileHandler!
+   *
+   * @param folder The folder (File object) that will be created, or which already exists.
+   */
+  public void createFolder(File folder) {
+    if (!folder.exists()) {
+      folder.mkdir();
+    }
+  }
+
+  public void createFile(File file) throws IOException {
+    if (!file.exists()) {
+      file.createNewFile();
+    }
   }
 
 }

@@ -3,6 +3,7 @@ package no.ntnu.olekel.ui;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import no.ntnu.olekel.constants.ClassPaths;
+import no.ntnu.olekel.constants.UnitNames;
 import no.ntnu.olekel.controllers.SimpleWarSimulationPage;
 import no.ntnu.olekel.core.*;
 import no.ntnu.olekel.core.units.UnitFactory;
@@ -20,6 +21,7 @@ public class Facade {
     private final BattleRegister battleRegister;
     private final ArmyRegister armyRegister;
     private final FileHandler fileHandler;
+    private UnitNames unitNames;
     private Army army;
     private Stage stage;
     private DialogsHandler dialogs;
@@ -41,6 +43,7 @@ public class Facade {
         this.dialogs = new DialogsHandler();
         this.battleHandler = new BattleHandler();
         this.state = EnumHandler.State.NEW;
+        unitNames = new UnitNames();
     }
 
     /**
@@ -117,6 +120,10 @@ public class Facade {
         } catch (NullPointerException e) {
             return null;
         }
+    }
+
+    public UnitNames getUnitNames(){
+        return unitNames;
     }
 
     public void setState(EnumHandler.State state) {

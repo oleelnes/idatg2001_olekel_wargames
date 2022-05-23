@@ -37,6 +37,16 @@ public class WarGamesApp extends Application {
     Facade.getInstance().setStage(stage);
 
 
+    Facade.getInstance().getFileHandler().createFolder(new File(Constants.ROOT_FOLDER_PATH));
+    Facade.getInstance().getFileHandler().createFolder(new File(Constants.ARMIES_FOLDER_PATH));
+    Facade.getInstance().getFileHandler().createFolder(new File(Constants.BATTLES_FOLDER_PATH));
+
+    //Create armies and battles files if they don't already exist.
+    //todo: consider removing these, or at least adding example armies/battles to the files.
+    Facade.getInstance().getFileHandler().createFile(new File(Constants.ARMIES_CSV_PATH));
+    Facade.getInstance().getFileHandler().createFile(new File(Constants.BATTLES_CSV_PATH));
+    Facade.getInstance().getFileHandler()
+        .loadDirectory(Path.of(Constants.ARMIES_FOLDER_PATH), FileHandler.RegisterType.ARMIES);
 
 
 
@@ -58,38 +68,12 @@ public class WarGamesApp extends Application {
   public void init() throws Exception {
 
     //Create folder if they don't already exist.
-    createFolder(new File(Constants.ROOT_FOLDER_PATH));
-    createFolder(new File(Constants.ARMIES_FOLDER_PATH));
-    createFolder(new File(Constants.BATTLES_FOLDER_PATH));
 
-    //Create armies and battles files if they don't already exist.
-    //todo: consider removing these, or at least adding example armies/battles to the files.
-    createFile(new File(Constants.ARMIES_CSV_PATH));
-    createFile(new File(Constants.BATTLES_CSV_PATH));
 
-    Facade.getInstance().getFileHandler()
-        .loadDirectory(Path.of(Constants.ARMIES_FOLDER_PATH), FileHandler.RegisterType.ARMIES);
+
   }
 
-  /**
-   * This method checks whether a folder exists or not. If it doesn't exist, it will
-   * create that folder.
-   *
-   * todo: consider moving createFolder and createFile into class FileHandler!
-   *
-   * @param folder The folder (File object) that will be created, or which already exists.
-   */
-  private void createFolder(File folder) {
-    if (!folder.exists()) {
-      folder.mkdir();
-    }
-  }
 
-  private void createFile(File file) throws IOException {
-    if (!file.exists()) {
-      file.createNewFile();
-    }
-  }
 
   /**
    * The entry point of the application. This method creates two armies and a
