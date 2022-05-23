@@ -22,54 +22,53 @@ import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 /**
- * This class is the controller of the simpleWarSimulationPage.fxml scene.
+ * This class is the controller of the warSimulationPage.fxml scene.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
  */
-public class SimpleWarSimulationPage implements Initializable {
+public class WarSimulationPage implements Initializable {
   private final Scenes scenes = Facade.getInstance().getScenes();
-  private Battle battle = Facade.getInstance().getBattle();
-  private DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
+  private final Battle battle = Facade.getInstance().getBattle();
+  private final DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
 
-  private boolean simulationStarted = false;
-  private int delay;
   private int simulationSpeed;
   private boolean pause;
   private boolean isSimulationRunning;
 
-  private IntegerProperty unitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getAllUnits().size());
-  private IntegerProperty commanderUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCommanderUnits().size());
-  private IntegerProperty infantryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getInfantryUnits().size());
-  private IntegerProperty rangedUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getRangedUnits().size());
-  private IntegerProperty cavalryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCavalryUnits().size());
+  private final IntegerProperty unitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getAllUnits().size());
+  private final IntegerProperty totalHealthLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getHealth());
+  private final IntegerProperty commanderUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCommanderUnits().size());
+  private final IntegerProperty infantryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getInfantryUnits().size());
+  private final IntegerProperty rangedUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getRangedUnits().size());
+  private final IntegerProperty cavalryUnitsLeftA1Value = new SimpleIntegerProperty(battle.getArmyOne().getCavalryUnits().size());
 
-  private IntegerProperty unitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getAllUnits().size());
-  private IntegerProperty commanderUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCommanderUnits().size());
-  private IntegerProperty infantryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getInfantryUnits().size());
-  private IntegerProperty rangedUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getRangedUnits().size());
-  private IntegerProperty cavalryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCavalryUnits().size());
+  private final IntegerProperty unitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getAllUnits().size());
+  private final IntegerProperty totalHealthLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getHealth());
+  private final IntegerProperty commanderUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCommanderUnits().size());
+  private final IntegerProperty infantryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getInfantryUnits().size());
+  private final IntegerProperty rangedUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getRangedUnits().size());
+  private final IntegerProperty cavalryUnitsLeftA2Value = new SimpleIntegerProperty(battle.getArmyTwo().getCavalryUnits().size());
 
-  private StringProperty unitTypeA1StringValue = new SimpleStringProperty("");
-  private IntegerProperty unitHealthA1Value = new SimpleIntegerProperty(0);
-  private IntegerProperty unitAttackBonusA1Value = new SimpleIntegerProperty(0);
-  private IntegerProperty unitResistBonusA1Value = new SimpleIntegerProperty(0);
+  private final StringProperty unitTypeA1StringValue = new SimpleStringProperty("");
+  private final IntegerProperty unitHealthA1Value = new SimpleIntegerProperty(0);
+  private final IntegerProperty unitAttackBonusA1Value = new SimpleIntegerProperty(0);
+  private final IntegerProperty unitResistBonusA1Value = new SimpleIntegerProperty(0);
 
-  private StringProperty unitTypeA2StringValue = new SimpleStringProperty("");
-  private IntegerProperty unitHealthA2Value = new SimpleIntegerProperty(0);
-  private IntegerProperty unitAttackBonusA2Value = new SimpleIntegerProperty(0);
-  private IntegerProperty unitResistBonusA2Value = new SimpleIntegerProperty(0);
+  private final StringProperty unitTypeA2StringValue = new SimpleStringProperty("");
+  private final IntegerProperty unitHealthA2Value = new SimpleIntegerProperty(0);
+  private final IntegerProperty unitAttackBonusA2Value = new SimpleIntegerProperty(0);
+  private final IntegerProperty unitResistBonusA2Value = new SimpleIntegerProperty(0);
 
-  private StringProperty winningArmyString = new SimpleStringProperty(battle.getWinningArmy());
-  private IntegerProperty roundValue = new SimpleIntegerProperty(battle.getRounds());
-  private StringProperty attackingArmyStringValue = new SimpleStringProperty("Attacking army");
+  private final StringProperty winningArmyString = new SimpleStringProperty(battle.getWinningArmy());
+  private final IntegerProperty roundValue = new SimpleIntegerProperty(battle.getRounds());
+  private final StringProperty attackingArmyStringValue = new SimpleStringProperty("Attacking army");
 
-  private StringProperty unitA1NameStringValue = new SimpleStringProperty("");
-  private StringProperty unitA2NameStringValue = new SimpleStringProperty("");
+  private final StringProperty unitA1NameStringValue = new SimpleStringProperty("");
+  private final StringProperty unitA2NameStringValue = new SimpleStringProperty("");
 
   @FXML
   private Label totalUnitsLeftA1;
@@ -164,10 +163,15 @@ public class SimpleWarSimulationPage implements Initializable {
   @FXML
   private Label battleName;
 
+  @FXML
+  private Label totalHealthLeftA1;
+
+  @FXML
+  private Label totalHealthLeftA2;
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     terrainLabel.setText(battle.getTerrain());
-    this.delay = 10;
     this.pause = false;
     simulationSpeedSlider.valueProperty().addListener((observableValue, number, t1) -> {
       simulationSpeed = (int)simulationSpeedSlider.getValue();
@@ -198,18 +202,20 @@ public class SimpleWarSimulationPage implements Initializable {
    */
   private void realtimeSimulation(){
     try {
-      Task<Void> task = new Task<Void>() {
+      Task<Void> task = new Task<>() {
         @Override
         protected Void call() {
 
           //This is the main loop that runs while it is true that both armies have units left.
           while (battle.getArmyOne().hasUnits() && battle.getArmyTwo().hasUnits() && isSimulationRunning) {
 
-            //sets the delay
+            // Checks whether the boolean pause variable is true.
             if (pause) {
+              // While pause is true, it loops a 10 milliseconds delay.
               while (pause) {
                 delay(10);
               }
+              //sets the delay between battles.
             } else delay(battle.getSimulationSpeed());
 
 
@@ -217,12 +223,14 @@ public class SimpleWarSimulationPage implements Initializable {
             //tasks to be done by the GUI in-between delays.
             if (battle.getRounds() > 0) {
               Platform.runLater(() -> unitsLeftA1Value.setValue(battle.getArmyOne().getAllUnits().size()));
+              Platform.runLater(() -> totalHealthLeftA1Value.setValue(battle.getArmyOne().getHealth()));
               Platform.runLater(() -> commanderUnitsLeftA1Value.setValue(battle.getArmyOne().getCommanderUnits().size()));
               Platform.runLater(() -> infantryUnitsLeftA1Value.setValue(battle.getArmyOne().getInfantryUnits().size()));
               Platform.runLater(() -> rangedUnitsLeftA1Value.setValue(battle.getArmyOne().getRangedUnits().size()));
               Platform.runLater(() -> cavalryUnitsLeftA1Value.setValue(battle.getArmyOne().getCavalryUnits().size()));
 
               Platform.runLater(() -> unitsLeftA2Value.setValue(battle.getArmyTwo().getAllUnits().size()));
+              Platform.runLater(() -> totalHealthLeftA2Value.setValue(battle.getArmyTwo().getHealth()));
               Platform.runLater(() -> commanderUnitsLeftA2Value.setValue(battle.getArmyTwo().getCommanderUnits().size()));
               Platform.runLater(() -> infantryUnitsLeftA2Value.setValue(battle.getArmyTwo().getInfantryUnits().size()));
               Platform.runLater(() -> rangedUnitsLeftA2Value.setValue(battle.getArmyTwo().getRangedUnits().size()));
@@ -246,7 +254,7 @@ public class SimpleWarSimulationPage implements Initializable {
             }
 
             //Simulate one round.
-            Platform.runLater(() -> battle.simulateOneRound());
+            Platform.runLater(battle::simulateOneRound);
 
           }
           return null;
@@ -260,12 +268,14 @@ public class SimpleWarSimulationPage implements Initializable {
 
       //Binding values as set inside the while-loop and the Task to their appropriate labels/fields.
       totalUnitsLeftA1.textProperty().bind(unitsLeftA1Value.asString());
+      totalHealthLeftA1.textProperty().bind(totalHealthLeftA1Value.asString());
       commanderUnitsLeftA1.textProperty().bind(commanderUnitsLeftA1Value.asString());
       infantryUnitsLeftA1.textProperty().bind(infantryUnitsLeftA1Value.asString());
       rangedUnitsLeftA1.textProperty().bind(rangedUnitsLeftA1Value.asString());
       cavalryUnitsLeftA1.textProperty().bind(cavalryUnitsLeftA1Value.asString());
 
       totalUnitsLeftA2.textProperty().bind(unitsLeftA2Value.asString());
+      totalHealthLeftA2.textProperty().bind(totalHealthLeftA2Value.asString());
       commanderUnitsLeftA2.textProperty().bind(commanderUnitsLeftA2Value.asString());
       infantryUnitsLeftA2.textProperty().bind(infantryUnitsLeftA2Value.asString());
       rangedUnitsLeftA2.textProperty().bind(rangedUnitsLeftA2Value.asString());
@@ -310,10 +320,9 @@ public class SimpleWarSimulationPage implements Initializable {
   /**
    * This method starts the war simulation.
    *
-   * @param event When start war button is clicked.
    */
   @FXML
-  public void startWarAction(ActionEvent event) {
+  public void startWarAction() {
     isSimulationRunning = !isSimulationRunning;
     if (isSimulationRunning) {
       simulate();
@@ -337,19 +346,13 @@ public class SimpleWarSimulationPage implements Initializable {
   }
 
   /**
+   * Method that pauses the simulation.
    *
-   *
-   * @param event When the pause button is pressed.
    */
   @FXML
-  public void pauseButtonAction(ActionEvent event) {
+  public void pauseButtonAction() {
     pause = !pause;
     if (pause) pauseButtonID.setText("Play");
     else pauseButtonID.setText("Pause");
-  }
-
-  @FXML
-  public void replenishArmyAction(ActionEvent event) {
-    battle.setArmyOne(Facade.getInstance().getFileHandler().replenishArmy(battle.getArmyOne(), Path.of(battle.getArmyOne().getFilePath())));
   }
 }

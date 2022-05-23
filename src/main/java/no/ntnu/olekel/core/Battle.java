@@ -106,8 +106,6 @@ public class Battle {
       }
       rounds++;
     }
-
-
   }
 
   /**
@@ -125,6 +123,20 @@ public class Battle {
     if (defender.getHealth() <= 0) defenderArmy.remove(defender);
   }
 
+  public String getWinningArmy(){
+    if (armyOne.getHealth() > armyTwo.getHealth()) {
+      return armyOne.getName() + " is winning";
+    } else if (armyOne.getHealth() < armyTwo.getHealth()) {
+      return armyTwo.getName() + " is winning";
+    } else return "The armies are tied!";
+  }
+
+  public void setSimulationSpeed(int simulationSpeed) {
+    if (simulationSpeed > 0 && simulationSpeed <= 100)
+      this.simulationSpeed = 1000 / simulationSpeed;
+    else this.simulationSpeed = 1000;
+  }
+
   public Army getArmyOne(){
     return armyOne;
   }
@@ -133,14 +145,12 @@ public class Battle {
     this.armyOne = armyOne;
   }
 
-  public Army getArmyTwo(){
-    return armyTwo;
+  public void setArmyTwo(Army armyOne) {
+    this.armyTwo = armyOne;
   }
 
-  public void setSimulationSpeed(int simulationSpeed) {
-    if (simulationSpeed > 0 && simulationSpeed <= 100)
-      this.simulationSpeed = 1000 / simulationSpeed;
-    else this.simulationSpeed = 1000;
+  public Army getArmyTwo(){
+    return armyTwo;
   }
 
   public int getSimulationSpeed(){
@@ -162,14 +172,6 @@ public class Battle {
 
   public void setSimulationMode(String simulationMode) {
     this.simulationMode = simulationMode;
-  }
-
-  public String getWinningArmy(){
-    if (getArmyOne().getHealth() > getArmyTwo().getHealth()) {
-      return getArmyOne().getName() + " is winning";
-    } else if (getArmyOne().getHealth() < getArmyTwo().getHealth()) {
-      return getArmyTwo().getName() + " is winning";
-    } else return "The armies are tied!";
   }
 
   public int getRounds(){

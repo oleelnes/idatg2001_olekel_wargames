@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.SimpleWarSimulationPage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.olekel.controllers.WarSimulationPage">
    <left>
       <VBox alignment="TOP_CENTER" minWidth="250.0" prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,11 +42,7 @@
                         <Label fx:id="unitResistBonusA1" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#replenishArmyAction" text="Replenish army" />
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0" />
                </children></VBox>
          </children>
          <BorderPane.margin>
@@ -150,6 +146,7 @@
                         <Label fx:id="unitResistBonusA2" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0" />
                </children>
             </VBox>
          </children>
@@ -187,6 +184,12 @@
                                        </font>
                                     </Label>
                                     <Label fx:id="totalUnitsLeftA1" layoutX="10.0" layoutY="10.0" />
+                                    <Label text="Total health left: ">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="totalHealthLeftA1" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
@@ -234,6 +237,12 @@
                                        </font>
                                     </Label>
                                     <Label fx:id="totalUnitsLeftA2" layoutX="10.0" layoutY="10.0" />
+                                    <Label text="Total health left: ">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="totalHealthLeftA2" layoutX="100.0" layoutY="10.0" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
