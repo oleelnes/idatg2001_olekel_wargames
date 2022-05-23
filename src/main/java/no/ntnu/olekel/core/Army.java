@@ -192,11 +192,21 @@ public class Army {
     else return 0;
   }
 
+  /**
+   * Adds a unit to the unit list.
+   *
+   * @param unit  The unit to be added.
+   */
   public void addUnit(Unit unit) {
     this.units.add(unit);
     setSize();
   }
 
+  /**
+   * Adds a list of units to the class' unit list.
+   *
+   * @param units The unit list to be added.
+   */
   public void addUnitList(List<Unit> units) {
     this.units.addAll(units);
     setSize();

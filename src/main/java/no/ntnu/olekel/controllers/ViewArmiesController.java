@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- *
+ * The controller class for the view armies fxml scene.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs

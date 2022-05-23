@@ -48,6 +48,12 @@ public class InfantryUnit extends Unit{
     return 1 + resistManipulator;
   }
 
+  /**
+   * Method that sets the attackManipulator and resistManipulator
+   * for the unit depending on what terrain is set.
+   *
+   * @param terrain The terrain.
+   */
   @Override
   public void setTerrain(EnumHandler.TerrainTypes terrain){
     if (terrain == EnumHandler.TerrainTypes.FOREST) {

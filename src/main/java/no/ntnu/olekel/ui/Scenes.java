@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.Objects;
 
 /**
- *
+ * This class handles scene-change logic.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs

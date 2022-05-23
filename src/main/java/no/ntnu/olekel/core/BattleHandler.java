@@ -58,16 +58,12 @@ public class BattleHandler {
     return "The battle is not ready to be started";
   }
 
+
   /**
-   * TODO: functionality for this can be directly implemented in the controller or facade instead.
-   * --> by creating a new instantiation of battleHandler there.
+   * Method that returns army one.
    *
+   * @return  Army one or null.
    */
-  /*public void discardBattle(){
-
-  }*/
-
-
   public Army getArmyOne() {
     try {
       return armyOne;
@@ -76,12 +72,22 @@ public class BattleHandler {
     }
   }
 
+  /**
+   * Method that sets army one andalters the battleState variable.
+   *
+   * @param armyOne The army to set as armyOne.
+   */
   public void setArmyOne(Army armyOne) {
     if (battleState == BattleState.NO_ARMIES) battleState = BattleState.ONE_ARMY;
     else if (armyTwo != null) battleState = BattleState.READY;
     this.armyOne = armyOne;
   }
 
+  /**
+   * Method that returns army two.
+   *
+   * @return  Army two or null.
+   */
   public Army getArmyTwo() {
     try {
       return armyTwo;
@@ -90,15 +96,23 @@ public class BattleHandler {
     }
   }
 
+  /**
+   * Method that sets army two and alters the battleState variable.
+   *
+   * @param armyTwo The army to set as armyTwo.
+   */
   public void setArmyTwo(Army armyTwo) {
     if (battleState == BattleState.NO_ARMIES) battleState = BattleState.ONE_ARMY;
     else if (armyOne != null) battleState = BattleState.READY;
     this.armyTwo = armyTwo;
   }
 
+  /**
+   * Method that returns the battleState.
+   *
+   * @return  the battleState.
+   */
   public BattleState getBattleState(){
     return battleState;
   }
-
-
 }

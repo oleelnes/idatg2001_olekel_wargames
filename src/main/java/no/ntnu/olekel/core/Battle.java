@@ -123,6 +123,12 @@ public class Battle {
     if (defender.getHealth() <= 0) defenderArmy.remove(defender);
   }
 
+  /**
+   * Method that returns a String containing information about which army
+   * is currently winning by checking which army has the most health left.
+   *
+   * @return  A String with information about which army is currently in the lead.
+   */
   public String getWinningArmy(){
     if (armyOne.getHealth() > armyTwo.getHealth()) {
       return armyOne.getName() + " is winning";
@@ -131,6 +137,12 @@ public class Battle {
     } else return "The armies are tied!";
   }
 
+  /**
+   * Method that sets the simulation speed.
+   *
+   * @param simulationSpeed The integer with which to divide 1000 by
+   *                        to set the simulation speed.
+   */
   public void setSimulationSpeed(int simulationSpeed) {
     if (simulationSpeed > 0 && simulationSpeed <= 100)
       this.simulationSpeed = 1000 / simulationSpeed;

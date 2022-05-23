@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * NOT YET IMPLEMENTED.
  *
+ * This class holds and manages the battle register.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
@@ -18,11 +20,9 @@ public class BattleRegister {
   }
 
   public void loadBattleCSV(Path path) {
-
   }
 
   public void saveBattleCSV(Path path) {
-
   }
 
 }

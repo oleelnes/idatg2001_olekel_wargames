@@ -6,7 +6,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.stage.FileChooser;
 import no.ntnu.olekel.constants.ClassPaths;
-import no.ntnu.olekel.controllers.CreateArmyController;
 import no.ntnu.olekel.core.Army;
 import no.ntnu.olekel.core.FileHandler;
 
@@ -15,13 +14,20 @@ import java.io.IOException;
 import java.util.Optional;
 
 /**
- *
+ * This class handles GUI dialog windows.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
  */
 public class DialogsHandler {
 
+  /**
+   * Method that opens a filechooser dialog window that prompts the user to
+   * select an army file. This army file will be used to load its units
+   * into another army.
+   *
+   * @param army  The army into which the units from the selected army file will be loaded.
+   */
   public void loadUnitsFromFile(Army army){
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Choose an army csv file!");
@@ -34,6 +40,13 @@ public class DialogsHandler {
     }
   }
 
+  /**
+   * Method that opens a filechooser and prompts the user to select an army file
+   * to add to the army register of the program.
+   *
+   * @param event         When the "add army from file" button is clicked.
+   * @throws IOException  Exception.
+   */
   public void addArmyFromFileDialog(ActionEvent event) throws IOException {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Choose an army csv file!");
@@ -58,6 +71,14 @@ public class DialogsHandler {
     }
   }
 
+  /**
+   * Method that opens a dialog window with a choice box from which
+   * the user is to select an army to appoint to the war they are
+   * currently creating.
+   *
+   * @param armyOne Whether the army to appoint is army one or not.
+   * @return        The selected army.
+   */
   public Army appointArmyDialog(boolean armyOne) {
     ChoiceDialog<Army> armyChoiceDialog = new ChoiceDialog<>(Facade.getInstance().getArmyRegister().getArmyRegister().get(0),
         Facade.getInstance().getArmyRegister().getArmyRegister());
@@ -74,6 +95,11 @@ public class DialogsHandler {
     }
   }
 
+  /**
+   * Method that opens an error alert.
+   *
+   * @param errorText The text of the error alert.
+   */
   public void errorAlert(String errorText) {
     Alert alert = new Alert(Alert.AlertType.ERROR, errorText);
     alert.setTitle("ERROR");

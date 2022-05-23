@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class that holds and manages a register with armies.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
@@ -103,6 +103,12 @@ public class ArmyRegister {
     }
   }
 
+  /**
+   * Method that loads army to a register from a file location.
+   *
+   * @param path  The path to the army file.
+   * @return      A boolean value.
+   */
   public boolean loadArmyToRegister(Path path) {
     Army newArmy = loadArmyCSV(path);
     if (newArmy != null) {
@@ -114,6 +120,13 @@ public class ArmyRegister {
     }
   }
 
+  /**
+   * Method that loads the contents of an army file into another army.
+   *
+   * @param army  The army to which the file content is to be loaded.
+   * @param path  The path to the file from which to load the units.
+   * @return      A boolean value.
+   */
   public boolean loadArmyFileContentToArmy(Army army, Path path) {
     Army newArmy = loadArmyCSV(path);
     if (newArmy != null) {
@@ -124,6 +137,9 @@ public class ArmyRegister {
     }
   }
 
+  /**
+   * Updates the health of the armies.
+   */
   public void update(){
     if (!armyRegister.isEmpty()) armyRegister.forEach(Army::updateHealth);
   }

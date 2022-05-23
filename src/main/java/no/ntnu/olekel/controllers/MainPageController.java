@@ -10,7 +10,7 @@ import no.ntnu.olekel.ui.Scenes;
 import java.io.IOException;
 
 /**
- *
+ * The controller for the main page scene.
  *
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
@@ -56,17 +56,6 @@ public class MainPageController {
     scenes.loadScene(event, ClassPaths.createArmyPageURL);
   }
 
-  /**
-   * todo:
-   *
-   * @param event         Actionevent: when main page button is clicked
-   * @throws IOException  Input/output exception
-   */
-  @FXML
-  public void simpleWarSimulationAction(ActionEvent event) throws IOException {
-    //scenes.loadScene(event, ClassPaths.simpleWarSimulationPageURL);
-    Facade.getInstance().getDialogsHandler().errorAlert("Not implemented");
-  }
 
   /**
    * This method is triggered when the "add army from file" button is pressed, and changes

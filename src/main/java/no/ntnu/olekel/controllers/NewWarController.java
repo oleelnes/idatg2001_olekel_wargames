@@ -48,9 +48,6 @@ public class NewWarController implements Initializable {
   private ComboBox<String> comboBoxTerrain;
 
   @FXML
-  private ComboBox<String> comboBoxSimulationMode;
-
-  @FXML
   private Slider simulationSpeedSlider;
 
   @FXML
@@ -142,10 +139,6 @@ public class NewWarController implements Initializable {
     ObservableList<String> terrainTypes = FXCollections.observableArrayList();
     terrainTypes.addAll(getTerrainTypes());
     comboBoxTerrain.setItems(terrainTypes);
-
-    ObservableList<String> simulationModes = FXCollections.observableArrayList();
-    simulationModes.addAll(getSimulationModes());
-    comboBoxSimulationMode.setItems(simulationModes);
 
     simulationSpeedSlider.valueProperty().addListener((observableValue, number, t1) -> {
       simulationSpeed = (int)simulationSpeedSlider.getValue();
@@ -315,12 +308,8 @@ public class NewWarController implements Initializable {
    */
   private void updateBattleSettings() {
     String selectedTerrain = comboBoxTerrain.getSelectionModel().getSelectedItem();
-    String selectedSimulationMode = comboBoxSimulationMode.getSelectionModel().getSelectedItem();
     if (selectedTerrain != null) {
       this.terrain = selectedTerrain;
-    }
-    if (selectedSimulationMode != null) {
-      this.simulationMode = selectedSimulationMode;
     }
   }
 

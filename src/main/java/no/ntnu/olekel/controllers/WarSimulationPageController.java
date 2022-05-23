@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
  * @author Ole Kristian Elnæs
  */
-public class WarSimulationPage implements Initializable {
+public class WarSimulationPageController implements Initializable {
   private final Scenes scenes = Facade.getInstance().getScenes();
   private final Battle battle = Facade.getInstance().getBattle();
   private final DialogsHandler dialogs = Facade.getInstance().getDialogsHandler();
@@ -169,6 +169,12 @@ public class WarSimulationPage implements Initializable {
   @FXML
   private Label totalHealthLeftA2;
 
+  /**
+   * Method that is run when the controller is loaded. Initializes fields.
+   *
+   * @param url             url
+   * @param resourceBundle  url
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     terrainLabel.setText(battle.getTerrain());
@@ -218,8 +224,6 @@ public class WarSimulationPage implements Initializable {
               //sets the delay between battles.
             } else delay(battle.getSimulationSpeed());
 
-
-
             //tasks to be done by the GUI in-between delays.
             if (battle.getRounds() > 0) {
               Platform.runLater(() -> unitsLeftA1Value.setValue(battle.getArmyOne().getAllUnits().size()));
@@ -255,7 +259,6 @@ public class WarSimulationPage implements Initializable {
 
             //Simulate one round.
             Platform.runLater(battle::simulateOneRound);
-
           }
           return null;
         }
@@ -267,6 +270,7 @@ public class WarSimulationPage implements Initializable {
       th.start();
 
       //Binding values as set inside the while-loop and the Task to their appropriate labels/fields.
+
       totalUnitsLeftA1.textProperty().bind(unitsLeftA1Value.asString());
       totalHealthLeftA1.textProperty().bind(totalHealthLeftA1Value.asString());
       commanderUnitsLeftA1.textProperty().bind(commanderUnitsLeftA1Value.asString());

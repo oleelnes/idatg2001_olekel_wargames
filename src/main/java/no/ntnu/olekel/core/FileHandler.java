@@ -72,6 +72,12 @@ public class FileHandler {
     }
   }
 
+  /**
+   *
+   * @param registerType  The type of register.
+   * @param path          The path to the file from which to load army units.
+   * @param army          The army into which the units from file is to be loaded.
+   */
   public void loadIntoArmy(RegisterType registerType, Path path, Army army) {
     switch (registerType) {
       case EDIT_ARMY -> armyRegister.loadArmyFileContentToArmy(army, path);
@@ -137,9 +143,7 @@ public class FileHandler {
   /**
    * This method checks whether a folder exists or not. If it doesn't exist, it will
    * create that folder.
-   *
-   * todo: consider moving createFolder and createFile into class FileHandler!
-   *
+
    * @param folder The folder (File object) that will be created, or which already exists.
    */
   public void createFolder(File folder) {
@@ -149,9 +153,10 @@ public class FileHandler {
   }
 
   /**
+   * Method that checks whether a file exists or not, if it does not, it will create it.
    *
-   * @param file
-   * @throws IOException
+   * @param file            The file to create.
+   * @throws IOException    Exception.
    */
   public void createFile(File file) throws IOException {
     if (!file.exists()) {

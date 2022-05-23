@@ -40,11 +40,21 @@ public class RangedUnit extends Unit {
     this.resistManipulator = 0;
   }
 
+  /**
+   * Returns the attack bonus for the unit.
+   *
+   * @return  The attack bonus.
+   */
   @Override
   public int getAttackBonus() {
     return 3 + attackManipulator;
   }
 
+  /**
+   * Returns the resist bonus for the unit.
+   *
+   * @return  The resist bonus.
+   */
   @Override
   public int getResistBonus() {
     if (timesResisted == 0) {
@@ -59,6 +69,12 @@ public class RangedUnit extends Unit {
     }
   }
 
+  /**
+   * Method that sets the attackManipulator and resistManipulator
+   * for the unit depending on what terrain is set.
+   *
+   * @param terrain The terrain.
+   */
   @Override
   public void setTerrain(EnumHandler.TerrainTypes terrain){
     switch (terrain) {

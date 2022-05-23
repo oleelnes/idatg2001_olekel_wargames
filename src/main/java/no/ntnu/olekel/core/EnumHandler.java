@@ -1,6 +1,12 @@
 package no.ntnu.olekel.core;
 
 
+/**
+ * Method that holds important enums.
+ *
+ * @version {@value no.ntnu.olekel.constants.Constants#VERSION}
+ * @author Ole Kristian Elnæs
+ */
 public final class EnumHandler {
 
   /**
