@@ -101,6 +101,22 @@ public class FileHandler {
     army.setFilePath(pathString);
   }
 
+  /**
+   * This method saves the army to file.
+   *
+   * @param army        The army to be written to file.
+   * @param path        The path.
+   * @throws Exception  Exception.
+   */
+  public void saveArmyToFileWithPath(Army army, Path path) throws Exception {
+    // Creates a folder if one doesn't already exist.
+    createFile(new File(path.toString()));
+    // Writes army to the file.
+    armyRegister.writeArmyCSV(army, path);
+    // Setting the path of the file to the army.
+    army.setFilePath(path.toString());
+  }
+
 
   /**
    * This method iterates over all files in a given directory and adds the data
@@ -162,6 +178,16 @@ public class FileHandler {
     if (!file.exists()) {
       file.createNewFile();
     }
+  }
+
+  /**
+   * Method that deletes a file at the given path.
+   *
+   * @param path  The path of the file to be deleted.
+   */
+  public void deleteArmy(Path path) {
+    File file = new File(path.toString());
+    file.delete();
   }
 
 }

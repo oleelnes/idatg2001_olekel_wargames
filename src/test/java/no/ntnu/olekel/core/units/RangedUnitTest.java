@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Ole Kristian Elnæs.
  * @version 16.02.2022.
  */
-class RangedUnitTest {
+public class RangedUnitTest {
   Unit rangedUnit;
   UnitFactory unitFactory;
 
