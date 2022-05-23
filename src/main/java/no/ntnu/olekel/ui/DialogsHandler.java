@@ -52,22 +52,16 @@ public class DialogsHandler {
     fileChooser.setTitle("Choose an army csv file!");
     File file = fileChooser.showOpenDialog(Facade.getInstance().getStage());
     if (file != null) {
-
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Would you like to add the army from file "
       + file.getName() + " to the army register?");
       alert.setTitle("Please confirm!");
       Optional<ButtonType> result = alert.showAndWait();
-      if (result.isEmpty()){
+      if (result.isEmpty() || result.get() == ButtonType.CANCEL){
         alert.close();
       } else if (result.get() == ButtonType.OK) {
         Facade.getInstance().getFileHandler().load(FileHandler.RegisterType.ARMIES, file.toPath());
         Facade.getInstance().getScenes().loadScene(event, ClassPaths.viewArmiesURL);
-      } else if (result.get() == ButtonType.CANCEL) {
-        alert.close();
       }
-    }
-    else {
-      System.out.println("yuck!");
     }
   }
 
@@ -87,12 +81,31 @@ public class DialogsHandler {
     Optional<Army> result = armyChoiceDialog.showAndWait();
     if (result.isPresent()) {
       return armyChoiceDialog.getSelectedItem();
-     // Facade.getInstance().getBattleHandler().setArmyOne(armyChoiceDialog.getSelectedItem());
-      //armyOneName.setText(Facade.getInstance().getBattleHandler().getArmyOne().getName());
     } else {
       armyChoiceDialog.close();
       return null;
     }
+  }
+
+  /**
+   * This method opens a dialog window which prompts the user to confirm or cancel
+   * stopping the ongoing battle.
+   *
+   * @param event         ActionEvent.
+   * @return              Boolean value.
+   * @throws IOException  Exception.
+   */
+  public boolean stopBattleDialog(ActionEvent event) throws IOException {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do the armies agree on a ceasefire?");
+    alert.setTitle("Please confirm!");
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isEmpty() || result.get() == ButtonType.CANCEL){
+      alert.close();
+      return false;
+    } else if (result.get() == ButtonType.OK) {
+      Facade.getInstance().getScenes().loadScene(event, ClassPaths.viewArmiesURL);
+      return true;
+    } else return false;
   }
 
   /**
@@ -103,6 +116,17 @@ public class DialogsHandler {
   public void errorAlert(String errorText) {
     Alert alert = new Alert(Alert.AlertType.ERROR, errorText);
     alert.setTitle("ERROR");
+    alert.showAndWait();
+  }
+
+  /**
+   * Method that opens an information alert.
+   *
+   * @param informationText The text to be displayed.
+   */
+  public void informationAlert(String informationText) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, informationText);
+    alert.setTitle("Information");
     alert.showAndWait();
   }
 

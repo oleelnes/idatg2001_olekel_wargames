@@ -39,6 +39,7 @@
                   <Insets right="80.0" />
                </HBox.margin>
             </Button>
+            <Button mnemonicParsing="false" onAction="#deleteArmyAction" text="Delete army" />
             <Button layoutX="284.0" layoutY="48.0" mnemonicParsing="false" onAction="#replenishArmyAction" text="Replenish army" />
             <Button layoutX="320.0" layoutY="48.0" mnemonicParsing="false" onAction="#editArmyAction" text="Edit army" />
          </children>

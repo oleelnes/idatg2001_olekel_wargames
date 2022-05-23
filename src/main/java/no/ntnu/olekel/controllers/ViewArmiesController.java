@@ -127,6 +127,27 @@ public class ViewArmiesController implements Initializable {
     if (selectedArmy != null) {
       Facade.getInstance().getFileHandler().replenishArmy(selectedArmy, Path.of(selectedArmy.getFilePath()));
       scenes.loadScene(event, ClassPaths.viewArmiesURL);
+      dialogs.informationAlert(selectedArmy.getName()
+          + " was replenished!");
+    } else {
+      dialogs.errorAlert("No army selected.");
+    }
+  }
+
+  /**
+   * Method that deletes an army from the army register as well as its attached file.
+   *
+   * @param event         When delete army button is pressed.
+   * @throws IOException  Exception.
+   */
+  public void deleteArmyAction(ActionEvent event) throws IOException {
+    Army selectedArmy = tableView.getSelectionModel().getSelectedItem();
+    if (selectedArmy != null) {
+      Facade.getInstance().getArmyRegister().getArmyRegister().remove(selectedArmy);
+      Facade.getInstance().getFileHandler().deleteArmy(Path.of(selectedArmy.getFilePath()));
+      scenes.loadScene(event, ClassPaths.viewArmiesURL);
+      dialogs.informationAlert(selectedArmy.getName()
+          + " was successfully deleted from the list");
     } else {
       dialogs.errorAlert("No army selected.");
     }

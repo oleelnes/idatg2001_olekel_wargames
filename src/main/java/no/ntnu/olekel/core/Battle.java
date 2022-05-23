@@ -207,7 +207,8 @@ public class Battle {
 
 
   public void setName(String name) {
-    this.name = name;
+    if (name.equals("")) this.name = "Battle";
+    else this.name = name;
   }
 
   public String getName() {

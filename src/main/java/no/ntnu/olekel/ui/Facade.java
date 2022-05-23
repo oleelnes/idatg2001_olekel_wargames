@@ -56,9 +56,6 @@ public class Facade {
         return instance;
     }
 
-    public void update(){
-        //simulationPage.update();
-    }
 
     public Scenes getScenes() {
         return scenes;
@@ -107,6 +104,10 @@ public class Facade {
 
     public void setBattle(Battle battle) {
         this.battle = battle;
+        if (battle == null) {
+            battleHandler = new BattleHandler();
+            setState(EnumHandler.State.NEW);
+        }
     }
 
     public Battle getBattle(){

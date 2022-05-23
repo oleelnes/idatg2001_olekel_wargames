@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Battle;
+import no.ntnu.olekel.core.EnumHandler;
 import no.ntnu.olekel.ui.DialogsHandler;
 import no.ntnu.olekel.ui.Facade;
 import no.ntnu.olekel.ui.Scenes;
@@ -178,6 +179,7 @@ public class WarSimulationPageController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     terrainLabel.setText(battle.getTerrain());
+    battleName.setText(battle.getName());
     this.pause = false;
     simulationSpeedSlider.valueProperty().addListener((observableValue, number, t1) -> {
       simulationSpeed = (int)simulationSpeedSlider.getValue();
@@ -199,6 +201,7 @@ public class WarSimulationPageController implements Initializable {
    */
   public void backToMainPageAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.mainPageURL);
+    Facade.getInstance().setBattle(null);
   }
 
   /**
@@ -304,6 +307,11 @@ public class WarSimulationPageController implements Initializable {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    if (!battle.getArmyOne().hasUnits() || !battle.getArmyTwo().hasUnits()) {
+      if(battle.getArmyOne().hasUnits())
+        winningArmyLabel.setText(battle.getArmyOne().getName() + " won the battle!");
+      else winningArmyLabel.setText(battle.getArmyTwo().getName() + " won the battle!");
+    }
   }
 
   /**
@@ -326,13 +334,18 @@ public class WarSimulationPageController implements Initializable {
    *
    */
   @FXML
-  public void startWarAction() {
+  public void startWarAction(ActionEvent event) throws IOException {
     isSimulationRunning = !isSimulationRunning;
     if (isSimulationRunning) {
       simulate();
       startWarButtonID.setText("Stop war");
     } else {
-      startWarButtonID.setText("Start war");
+      if (!dialogs.stopBattleDialog(event)) {
+        isSimulationRunning = true;
+        simulate();
+      } else {
+        Facade.getInstance().setBattle(null);
+      }
     }
   }
 

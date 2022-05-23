@@ -18,7 +18,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="battleName" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

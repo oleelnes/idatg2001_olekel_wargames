@@ -411,6 +411,8 @@ public class CreateArmyController implements Initializable {
       setState(EnumHandler.State.EDIT); //state is set to EDIT,
       // as the army is now created and set to be the tournament present in the Facade
       saveArmyToFile();
+      Facade.getInstance().getDialogsHandler()
+          .informationAlert(armyName + " was successfully saved!");
     } else {
       Facade.getInstance().getDialogsHandler().errorAlert("Please enter a name for the army!");
     }
@@ -428,6 +430,8 @@ public class CreateArmyController implements Initializable {
     }
     Facade.getInstance().getArmyRegister().getArmyRegister().add(army);
     saveArmyToFile();
+    Facade.getInstance().getDialogsHandler()
+        .informationAlert(army.getName() + " was successfully saved!");
   }
 
   /**

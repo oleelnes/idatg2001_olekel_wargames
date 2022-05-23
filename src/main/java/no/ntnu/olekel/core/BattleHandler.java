@@ -47,10 +47,11 @@ public class BattleHandler {
   /**
    * This method will create
    */
-  public String createBattle(){
+  public String createBattle(String battleName){
     if (battleState == BattleState.READY
         && armyOne != null && armyTwo != null) {
       this.battle = new Battle(armyOne, armyTwo);
+      this.battle.setName(battleName);
       Facade.getInstance().setBattle(battle);
       battleState = BattleState.CREATED;
       return "The battle was successfully created";

@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import no.ntnu.olekel.constants.ClassPaths;
 import no.ntnu.olekel.core.Army;
@@ -118,6 +115,9 @@ public class NewWarController implements Initializable {
 
   @FXML
   private Label simulationSpeedLabel;
+
+  @FXML
+  private TextField battleName;
 
 
   /**
@@ -235,7 +235,7 @@ public class NewWarController implements Initializable {
   @FXML
   public void startWarAction(ActionEvent event) throws IOException {
     if (battleHandler.getBattleState() == BattleHandler.BattleState.READY) {
-      battleHandler.createBattle();
+      battleHandler.createBattle(battleName.getText());
       Facade.getInstance().getBattle().setSimulationSpeed(simulationSpeed);
       Facade.getInstance().getBattle().setTerrain(terrain);
       Facade.getInstance().getBattle().setSimulationMode(simulationMode);
@@ -311,6 +311,7 @@ public class NewWarController implements Initializable {
     if (selectedTerrain != null) {
       this.terrain = selectedTerrain;
     }
+
   }
 
 
