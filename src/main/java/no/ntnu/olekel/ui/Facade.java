@@ -28,7 +28,6 @@ public class Facade {
 
     /**
      * Private constructor.
-     * todo: initialize fields.
      */
     private Facade(){
         this.scenes = new Scenes();

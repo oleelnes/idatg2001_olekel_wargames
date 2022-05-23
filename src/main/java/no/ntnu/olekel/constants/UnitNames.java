@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author  Ole Kristian Elnæs.
  */
-public class UnitNames {
+public final class UnitNames {
 
   private List<String> names;
   private List<String> placeNames;
@@ -33,7 +33,7 @@ public class UnitNames {
   private void addPlaceNames(){
     Collections.addAll(placeNames, "Ere", "Landon", "Swarthel", "Regina", "Lionas",
         "Olifar", "Thunder", "Reigna", "Bargen", "Gjavik", "Trandhome", "Homestead", "Thare",
-        "Limpen", "New Jork", "Oldstone", "Oldtown", "King's Standing", "Lannis", "Thins", "Kandell",
+        "Limpen", "New Jerk", "Oldstone", "Oldtown", "King's Standing", "Lannis", "Thins", "Kandell",
         "Cunlowe", "Ologarche", "Redfall", "Stan", "Beamslong", "Osvalder", "Gryff", "Indor",
         "Gonga", "Yundar", "Winch", "Thal", "Neander", "Mars");
   }
@@ -48,7 +48,7 @@ public class UnitNames {
         "Outgoing", "Maned", "Computer Scientist", "Programming", "Calculating", "Feared",
         "Warmongering", "Propaganda-spreading", "Sharp-witted", "Sharp-speared", "Merciless",
         "Merciful", "Vengeful", "Lazy", "Laughed-at", "Motherless", "Fatherless", "Old-men",
-        "Wizards", "Orcs", "Orcas", "Trolls", "");
+        "Wizards", "Orcs", "Orcas", "Trolls");
   }
 
   /**

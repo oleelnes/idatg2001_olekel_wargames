@@ -47,28 +47,6 @@
                <children>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Simulation mode">
-                           <VBox.margin>
-                              <Insets right="5.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ComboBox fx:id="comboBoxSimulationMode" prefWidth="150.0" promptText="select">
-                           <VBox.margin>
-                              <Insets left="5.0" right="10.0" />
-                           </VBox.margin>
-                        </ComboBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                     <children>
                         <Label text="Simulation speed">
                            <VBox.margin>
                               <Insets right="5.0" />
@@ -300,12 +278,6 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Edit army">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Replenish army" />
                </children>
             </HBox>
          </children>
@@ -329,7 +301,6 @@
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>
-                  <Button mnemonicParsing="false" text="Discard and start over" />
                   <Button mnemonicParsing="false" onAction="#startWarAction" prefHeight="50.0" prefWidth="100.0" text="Start war">
                      <HBox.margin>
                         <Insets left="40.0" />
@@ -542,12 +513,6 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Edit army">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Replenish army" />
                </children>
             </HBox>
          </children>

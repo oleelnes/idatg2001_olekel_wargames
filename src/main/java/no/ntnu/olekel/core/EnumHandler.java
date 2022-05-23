@@ -1,7 +1,11 @@
 package no.ntnu.olekel.core;
 
+
 public final class EnumHandler {
 
+  /**
+   * The different terrain types as enum
+   */
   public enum TerrainTypes{
     FOREST,
     PLAINS,

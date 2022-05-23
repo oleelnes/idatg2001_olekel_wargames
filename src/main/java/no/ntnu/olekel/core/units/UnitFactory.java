@@ -21,6 +21,7 @@ public class UnitFactory {
    * Constructor.
    */
   public UnitFactory(){
+    // Constructor is empty because there are no fields that need to be initialized.
   }
 
 
