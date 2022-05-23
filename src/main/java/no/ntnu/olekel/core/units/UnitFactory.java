@@ -65,7 +65,6 @@ public class UnitFactory {
       if (!checkCreateUnitListInput(unitType, name, health, amount))
         return Collections.emptyList();
       units.add(createUnit(unitType, name, health));
-      System.out.println("unit " + i + " of type " + unitType + " has been created.");
     }
     return units;
   }
