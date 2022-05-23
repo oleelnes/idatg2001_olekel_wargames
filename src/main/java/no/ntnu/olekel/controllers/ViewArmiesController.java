@@ -20,6 +20,7 @@ import no.ntnu.olekel.ui.Scenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -61,7 +62,6 @@ public class ViewArmiesController implements Initializable {
   @FXML
   private TableColumn<Army, Integer> totalUnitsColumn;
 
-
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ObservableList<Army> armyObservableList = FXCollections.observableArrayList();
@@ -96,13 +96,14 @@ public class ViewArmiesController implements Initializable {
 
       tableView.setEditable(false);
     } catch(NullPointerException e) {
-      System.err.println("Army list is empty"); //will improve exception handling later.
+      dialogs.errorAlert("Army list is empty.");
     }
   }
 
   @FXML
   public void mainPageAction(ActionEvent event) throws IOException {
     scenes.loadScene(event, ClassPaths.mainPageURL);
+
   }
 
   public void editArmyAction(ActionEvent event) throws IOException {
@@ -113,6 +114,21 @@ public class ViewArmiesController implements Initializable {
       scenes.loadScene(event, ClassPaths.createArmyPageURL);
     } else {
       dialogs.errorAlert("No army selected!");
+    }
+  }
+
+  /**
+   * This army replenishes the selected army by reloading it from the file it was stored to.
+   *
+   * @param event
+   */
+  public void replenishArmyAction(ActionEvent event) throws IOException {
+    Army selectedArmy = tableView.getSelectionModel().getSelectedItem();
+    if (selectedArmy != null) {
+      Facade.getInstance().getFileHandler().replenishArmy(selectedArmy, Path.of(selectedArmy.getFilePath()));
+      scenes.loadScene(event, ClassPaths.viewArmiesURL);
+    } else {
+      dialogs.errorAlert("No army selected.");
     }
   }
 }
